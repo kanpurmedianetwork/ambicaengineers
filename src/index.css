@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+}
+
+@layer base {
+  :root {
+    --color-brand-orange: #EF7D01;
+    --color-brand-orange-hover: #D66D00;
+    --color-brand-orange-light: #FFF7ED;
+    --color-brand-navy: #0A0F1D;
+    --color-surface: #FFFFFF;
+    --color-surface-subtle: #F8FAFC;
+    --color-surface-muted: #F1F5F9;
+    --color-border: #E2E8F0;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #F8FAFC;
+    color: #1E293B;
+    overflow-x: hidden;
+    letter-spacing: -0.011em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Squarespace-Grade Refined Cards */
+.sq-card {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 12px 0 rgba(15, 23, 42, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sq-card:hover {
+  border-color: rgba(239, 125, 1, 0.35);
+  box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.09), 0 0 16px 0 rgba(239, 125, 1, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Product Studio Stage for Light Canvas */
+.product-studio-bay {
+  position: relative;
+  background-color: #F8FAFC;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.product-studio-bay:hover {
+  background-color: #F1F5F9;
+}
+
+/* Technical spec table styling */
+.spec-table th {
+  padding: 0.85rem 1.25rem;
+  background-color: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748B;
+}
+
+.spec-table td {
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid #F1F5F9;
+  font-size: 0.8125rem;
+  color: #334155;
+}
+
+.spec-table tr:hover td {
+  background-color: #FFF7ED;
+}
+
+/* Refined corporate scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #EF7D01;
+}
