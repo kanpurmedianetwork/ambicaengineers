@@ -4,14 +4,31 @@ import { companyData } from '../data/company.data';
 
 export class InquiryServiceImpl implements IInquiryService {
   private whatsappNumber = companyData.contact.whatsappNumber;
+  private googleSheetsWebhookUrl = (import.meta as { env?: Record<string, string> }).env?.VITE_GOOGLE_SHEETS_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbwePD5bXarfFA87qQVzAoPbCvfGwHg-Bwo1p3I_3E0Svs_LjOeMCO3PCmkiSeqDvtjOeQ/exec';
 
   async submitRFQ(submission: RFQSubmission): Promise<InquiryResult> {
     try {
-      // Store in local storage history
+      // 1. Store in local storage history
       const key = 'ambica_rfq_submissions';
       const existing = JSON.parse(localStorage.getItem(key) || '[]');
       existing.push(submission);
       localStorage.setItem(key, JSON.stringify(existing));
+
+      // 2. Transmit live to Google Sheets Webhook
+      if (this.googleSheetsWebhookUrl) {
+        try {
+          await fetch(this.googleSheetsWebhookUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8',
+            },
+            body: JSON.stringify(submission),
+          });
+        } catch (webhookErr) {
+          console.warn('Google Sheets live push warning (non-blocking):', webhookErr);
+        }
+      }
 
       const whatsappUrl = this.generateWhatsAppLink(submission);
 
@@ -36,6 +53,34 @@ export class InquiryServiceImpl implements IInquiryService {
       const existing = JSON.parse(localStorage.getItem(key) || '[]');
       existing.push({ ...inquiry, ref, date: new Date().toISOString() });
       localStorage.setItem(key, JSON.stringify(existing));
+
+      // Transmit contact form inquiry live to Google Sheets
+      if (this.googleSheetsWebhookUrl) {
+        try {
+          await fetch(this.googleSheetsWebhookUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8',
+            },
+            body: JSON.stringify({
+              id: ref,
+              customerName: inquiry.name,
+              companyName: inquiry.company || 'N/A',
+              phone: inquiry.phone,
+              email: inquiry.email,
+              city: '',
+              country: 'India',
+              currency: 'INR',
+              items: [],
+              notes: `[Contact Form Subject: ${inquiry.subject}] ${inquiry.message}`,
+              submittedAt: new Date().toISOString()
+            }),
+          });
+        } catch (webhookErr) {
+          console.warn('Google Sheets contact push warning (non-blocking):', webhookErr);
+        }
+      }
 
       const messageText = `*New Contact Inquiry - Ambica Engineers*\n` +
         `Ref: ${ref}\n` +
