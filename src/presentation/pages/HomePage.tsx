@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ShieldCheck, 
@@ -30,6 +30,17 @@ export const HomePage: React.FC = () => {
 
   // Interactive Hero Component Selector
   const [activeHeroTab, setActiveHeroTab] = useState<'pump' | 'cushion' | 'valve'>('pump');
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {
+        // Autoplay may be restricted by browser policy; poster image acts as seamless fallback
+      });
+    }
+  }, []);
 
   const heroShowcaseData = {
     pump: {
@@ -78,18 +89,19 @@ export const HomePage: React.FC = () => {
         {/* Cinematic Background Engineering Video */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <video
+            ref={videoRef}
             autoPlay
             loop
             muted
             playsInline
             poster="/images/hero-engineering.jpg"
-            className="w-full h-full object-cover object-center scale-105 opacity-35 filter contrast-125 brightness-95"
+            className="w-full h-full object-cover object-center scale-105 opacity-65 filter contrast-120 brightness-95"
           >
             <source src="/videos/hero-engineering.webm" type="video/webm" />
           </video>
           {/* Multi-layered dark cinematic gradient overlays for pristine contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0F1D] via-[#0A0F1D]/85 to-[#0A0F1D]/55" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1D] via-transparent to-[#0A0F1D]/85" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0F1D] via-[#0A0F1D]/80 via-50% to-[#0A0F1D]/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1D] via-transparent via-50% to-[#0A0F1D]/75" />
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -158,7 +170,7 @@ export const HomePage: React.FC = () => {
                 </Link>
 
                 <Link to="/solutions/wood-panel">
-                  <Button size="lg" variant="outline" className="bg-transparent text-white border-white/20 hover:border-white hover:bg-white/10" icon={<Flame className="w-4 h-4 text-[#EF7D01]" />}>
+                  <Button size="lg" variant="outline-light" icon={<Flame className="w-4 h-4 text-[#EF7D01]" />}>
                     Wood Panel Solutions
                   </Button>
                 </Link>
