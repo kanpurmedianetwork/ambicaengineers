@@ -73,21 +73,57 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="space-y-20 pb-24 bg-[#F8FAFC]">
-      {/* High-Contrast Executive Navy Hero Banner */}
+      {/* High-Contrast Executive Navy Hero Banner with Engineering Video */}
       <section className="relative bg-[#0A0F1D] text-white py-20 lg:py-28 overflow-hidden border-b border-slate-800">
+        {/* Cinematic Background Engineering Video */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/images/hero-engineering.jpg"
+            className="w-full h-full object-cover object-center scale-105 opacity-35 filter contrast-125 brightness-95"
+          >
+            <source src="/videos/hero-engineering.webm" type="video/webm" />
+          </video>
+          {/* Multi-layered dark cinematic gradient overlays for pristine contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0F1D] via-[#0A0F1D]/85 to-[#0A0F1D]/55" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1D] via-transparent to-[#0A0F1D]/85" />
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse at 80% 20%, rgba(239, 125, 1, 0.22), transparent 60%), radial-gradient(ellipse at 15% 85%, rgba(14, 165, 233, 0.12), transparent 50%)'
+            }}
+          />
+          {/* Subtle industrial grid pattern */}
+          <div 
+            className="absolute inset-0 opacity-[0.035] pointer-events-none"
+            style={{
+              backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
+              backgroundSize: '44px 44px'
+            }}
+          />
+        </div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
             
             {/* Left Column: Headline & Direct Action */}
             <div className="lg:col-span-7 space-y-7 text-left">
-              {/* Top High-Tech Indicator */}
-              <div className="inline-flex items-center gap-2.5 bg-slate-900/90 border border-[#EF7D01]/50 px-3.5 py-1.5 rounded-full shadow-xs">
+              {/* Top High-Tech Live Indicator */}
+              <div className="inline-flex flex-wrap items-center gap-2.5 bg-[#0A0F1D]/85 backdrop-blur-md border border-[#EF7D01]/50 px-3.5 py-1.5 rounded-full shadow-lg">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EF7D01] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#EF7D01]" />
                 </span>
                 <span className="text-[11px] font-mono font-bold tracking-wider text-[#EF7D01] uppercase">
                   ENGINEERING HERITAGE SINCE 1982 • NOIDA HQ
+                </span>
+                <span className="hidden sm:inline h-3 w-px bg-slate-700 mx-0.5" />
+                <span className="text-[10px] font-mono text-emerald-400 font-semibold flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  PRECISION WORKSHOP FEED
                 </span>
               </div>
 
@@ -116,7 +152,7 @@ export const HomePage: React.FC = () => {
                 </Button>
 
                 <Link to="/products">
-                  <Button size="lg" variant="secondary" className="bg-slate-800 hover:bg-slate-700 text-white" icon={<ArrowRight className="w-4 h-4" />}>
+                  <Button size="lg" variant="secondary" className="bg-slate-800/90 hover:bg-slate-700 text-white border border-slate-700" icon={<ArrowRight className="w-4 h-4" />}>
                     Explore 350-Bar Catalog
                   </Button>
                 </Link>
@@ -129,23 +165,23 @@ export const HomePage: React.FC = () => {
               </div>
 
               {/* Real-Time Telemetry Metrics Bar */}
-              <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 border-t border-slate-800">
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
+              <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 border-t border-slate-800/80">
+                <div className="bg-[#0A0F1D]/80 backdrop-blur-md border border-slate-800 rounded-xl p-3 hover:border-[#EF7D01]/50 transition-colors">
                   <div className="text-xl sm:text-2xl font-extrabold text-[#EF7D01] font-mono tracking-tight">350 BAR</div>
                   <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">Operating Pressure</div>
                 </div>
 
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
+                <div className="bg-[#0A0F1D]/80 backdrop-blur-md border border-slate-800 rounded-xl p-3 hover:border-white/30 transition-colors">
                   <div className="text-xl sm:text-2xl font-extrabold text-white font-mono tracking-tight">220°C</div>
                   <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">Cushion Heat Buffer</div>
                 </div>
 
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
+                <div className="bg-[#0A0F1D]/80 backdrop-blur-md border border-slate-800 rounded-xl p-3 hover:border-white/30 transition-colors">
                   <div className="text-xl sm:text-2xl font-extrabold text-white font-mono tracking-tight">15,000+</div>
                   <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">Spares In Stock</div>
                 </div>
 
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
+                <div className="bg-[#0A0F1D]/80 backdrop-blur-md border border-slate-800 rounded-xl p-3 hover:border-[#EF7D01]/50 transition-colors">
                   <div className="text-xl sm:text-2xl font-extrabold text-[#EF7D01] font-mono tracking-tight">42+ YRS</div>
                   <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">Industry Trust</div>
                 </div>
@@ -154,7 +190,8 @@ export const HomePage: React.FC = () => {
 
             {/* Right Column: Clean White Interactive Telemetry Showcase Card */}
             <div className="lg:col-span-5">
-              <div className="bg-white text-slate-900 border border-slate-200/90 rounded-3xl p-6 shadow-2xl">
+              <div className="bg-white/95 backdrop-blur-md text-slate-900 border border-white/30 rounded-3xl p-6 shadow-2xl shadow-black/40 relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#EF7D01] via-amber-500 to-[#0A0F1D]" />
                 {/* Header HUD */}
                 <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                   <div className="flex items-center gap-2">
