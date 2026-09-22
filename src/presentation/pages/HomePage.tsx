@@ -23,6 +23,7 @@ import { productsData } from '../../infrastructure/data/products.data';
 import { brandsData } from '../../infrastructure/data/brands.data';
 import { companyData } from '../../infrastructure/data/company.data';
 import { useRFQ } from '../context/RFQContext';
+import { ClientMarquee } from '../components/home/ClientMarquee';
 
 export const HomePage: React.FC = () => {
   const { addItem, isInRFQ, openDrawer } = useRFQ();
@@ -315,6 +316,9 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Live Client Logos Infinite Scroller */}
+      <ClientMarquee />
 
       {/* Squarespace Clean Bento Grid: Core Engineering Divisions */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
