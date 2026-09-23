@@ -530,18 +530,34 @@ export const HomePage: React.FC = () => {
               <Link
                 key={brand.id}
                 to={`/brands/${brand.id}`}
-                className="bg-slate-50/80 border border-slate-200/90 hover:border-[#EF7D01]/50 rounded-2xl p-5 text-center flex flex-col items-center justify-between group transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
+                className="bg-slate-50/80 border border-slate-200/90 hover:border-[#EF7D01]/50 rounded-2xl p-4 text-center flex flex-col items-center justify-between group transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
               >
-                <div className="w-full">
-                  <span className="text-[10px] font-mono font-bold text-[#EF7D01] uppercase tracking-widest block mb-2 bg-orange-50 py-0.5 rounded-full border border-orange-200">
+                <div className="w-full flex flex-col items-center">
+                  <span className="text-[10px] font-mono font-bold text-[#EF7D01] uppercase tracking-widest block mb-2.5 bg-orange-50/90 py-0.5 px-2 rounded-full border border-orange-200">
                     {brand.countryOfOrigin}
                   </span>
-                  <div className="text-sm font-extrabold text-slate-900 group-hover:text-[#EF7D01] transition-colors">
+                  
+                  {/* Brand Partner Visual Logo */}
+                  <div className="h-16 w-full flex items-center justify-center p-2 mb-3 bg-white rounded-xl border border-slate-200/80 group-hover:border-[#EF7D01]/40 transition-all shadow-sm">
+                    {brand.logoUrl ? (
+                      <img
+                        src={brand.logoUrl}
+                        alt={`${brand.name} logo`}
+                        className="max-h-10 max-w-[88%] object-contain filter contrast-105 group-hover:scale-105 transition-transform duration-200"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="text-xs font-bold text-slate-700">{brand.name}</div>
+                    )}
+                  </div>
+
+                  <div className="text-xs font-extrabold text-slate-900 group-hover:text-[#EF7D01] transition-colors leading-snug">
                     {brand.name}
                   </div>
                 </div>
-                <div className="mt-4 text-[10px] font-mono text-slate-500 group-hover:text-slate-900 uppercase tracking-wider flex items-center gap-1">
-                  Series Catalog <ArrowRight className="w-3 h-3" />
+
+                <div className="mt-3 text-[10px] font-mono text-slate-500 group-hover:text-slate-900 uppercase tracking-wider flex items-center gap-1">
+                  Series Catalog <ArrowRight className="w-3 h-3 text-[#EF7D01]" />
                 </div>
               </Link>
             ))}

@@ -66,19 +66,39 @@ export const BrandPage: React.FC = () => {
 
       {/* Brand Hero Banner */}
       <section className="relative bg-[#0A0F1D] border border-slate-800 rounded-3xl p-8 sm:p-12 overflow-hidden space-y-6 shadow-xl">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-[#EF7D01]/15 border border-[#EF7D01]/30 px-3 py-1 rounded-full text-xs font-semibold text-[#EF7D01]">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              {brand.authorizedStatus}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="space-y-4 max-w-2xl">
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="inline-flex items-center gap-2 bg-[#EF7D01]/15 border border-[#EF7D01]/30 px-3 py-1 rounded-full text-xs font-semibold text-[#EF7D01]">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                {brand.authorizedStatus}
+              </div>
+              <span className="text-xs font-mono text-slate-400 bg-white/5 border border-white/10 px-2.5 py-0.5 rounded-full">
+                Origin: {brand.countryOfOrigin}
+              </span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-white uppercase font-mono tracking-tight">
-              {brand.name}
-            </h1>
-            <p className="text-[#EF7D01] font-mono text-sm font-semibold">
-              &ldquo;{brand.tagline}&rdquo; • Origin: {brand.countryOfOrigin}
-            </p>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pt-2">
+
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+              {brand.logoUrl && (
+                <div className="bg-white p-3 rounded-2xl border border-slate-700/60 shadow-xl shrink-0 flex items-center justify-center w-36 h-16">
+                  <img
+                    src={brand.logoUrl}
+                    alt={`${brand.name} logo`}
+                    className="max-h-11 max-w-[120px] object-contain filter contrast-105"
+                  />
+                </div>
+              )}
+              <div>
+                <h1 className="text-3xl sm:text-5xl font-extrabold text-white uppercase font-mono tracking-tight">
+                  {brand.name}
+                </h1>
+                <p className="text-[#EF7D01] font-mono text-sm font-semibold mt-1">
+                  &ldquo;{brand.tagline}&rdquo;
+                </p>
+              </div>
+            </div>
+
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pt-1">
               {brand.description}
             </p>
           </div>

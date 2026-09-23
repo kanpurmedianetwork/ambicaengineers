@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" fill="none">
+  <!-- Top Left Diamond -->
+  <polygon points="25,12 37,24 25,36 13,24" fill="#005697"/>
+  <!-- Top Right Diamond -->
+  <polygon points="50,12 62,24 50,36 38,24" fill="#005697"/>
+  <!-- Bottom Diamond (Red) -->
+  <polygon points="37.5,25 49.5,37 37.5,49 25.5,37" fill="#D21F1B"/>
+  <!-- Wordmark VELJAN -->
+  <text x="75" y="38" font-family="'Times New Roman', Times, 'Cinzel', serif" font-size="34" font-weight="bold" fill="#005697" letter-spacing="3">VELJAN</text>
+</svg>

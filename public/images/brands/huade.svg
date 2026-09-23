@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 120" fill="none">
+  <!-- Outer Gauge Ring -->
+  <circle cx="60" cy="65" r="42" stroke="#E2001A" stroke-width="14" fill="none" stroke-dasharray="210 55" transform="rotate(-40 60 65)"/>
+  <!-- Inner Dynamic Valve/D Emblem -->
+  <path d="M 44 48 L 74 48 C 82 48 86 52 83 60 C 80 68 73 72 65 72 L 53 72 Z" fill="#E2001A"/>
+  <path d="M 52 54 L 68 54 C 73 54 75 56 73 60 C 71 64 67 66 62 66 L 49 66 Z" fill="#FFFFFF"/>
+  <path d="M 35 78 L 60 96 L 85 78" stroke="#E2001A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Registered Circle -->
+  <circle cx="95" cy="22" r="8" stroke="#E2001A" stroke-width="1.5" fill="none"/>
+  <text x="95" y="26" font-family="Arial, sans-serif" font-size="11" fill="#E2001A" text-anchor="middle" font-weight="bold">R</text>
+  <!-- Wordmark Huade -->
+  <text x="110" y="85" font-family="'Arial Black', Impact, sans-serif" font-style="italic" font-weight="900" font-size="54" fill="#162383" letter-spacing="-1">Huade</text>
+</svg>
