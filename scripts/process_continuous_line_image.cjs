@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 
-const src = 'C:/Users/pc/.gemini/antigravity/brain/0e92dddf-40c8-4a76-ae76-a040eea51692/.user_uploaded/media_1790765148762.png';
+const src = 'C:/Users/pc/.gemini/antigravity/brain/0e92dddf-40c8-4a76-ae76-a040eea51692/.user_uploaded/media_1790765339515.jpg';
 
 const destinations = [
   'C:/Users/pc/Desktop/ambica-engineers/public/images/products/continuous-line-machinery.webp',
@@ -10,7 +10,9 @@ const destinations = [
   'C:/Users/pc/.gemini/antigravity/scratch/ambica-engineers/public/images/products/continuous-line-machinery.webp',
   'C:/Users/pc/.gemini/antigravity/scratch/ambica-engineers/public/images/products/continuous-line-machinery.jpg',
   'C:/Users/pc/Desktop/ambica-engineers/dist/images/products/continuous-line-machinery.webp',
-  'C:/Users/pc/Desktop/ambica-engineers/dist/images/products/continuous-line-machinery.jpg'
+  'C:/Users/pc/Desktop/ambica-engineers/dist/images/products/continuous-line-machinery.jpg',
+  'C:/Users/pc/.gemini/antigravity/scratch/ambica-engineers/dist/images/products/continuous-line-machinery.webp',
+  'C:/Users/pc/.gemini/antigravity/scratch/ambica-engineers/dist/images/products/continuous-line-machinery.jpg'
 ];
 
 async function main() {
