@@ -11,6 +11,7 @@ export interface ExhibitionEvent {
   highlightProducts: string[];
   description: string;
   badgeText: string;
+  images?: string[];
 }
 
 export interface Milestone {
@@ -37,6 +38,11 @@ export interface CompanyInfo {
     state: string;
     country: string;
     floor: string;
+    googleMapsUrl?: string;
+    coordinates?: {
+      lat: number;
+      lng: number;
+    };
   };
   contact: {
     primaryPhone: string;

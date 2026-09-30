@@ -45,15 +45,15 @@ export const HomePage: React.FC = () => {
 
   const heroShowcaseData = {
     pump: {
-      id: 'prod-a10vso-71',
+      id: 'prod-rexroth-a10vso',
       name: 'Rexroth A10VSO Variable Piston Pump',
       series: 'A10VSO Series 31 / 32',
       brand: 'BOSCH REXROTH',
       pressure: '350 bar Peak',
       displacement: '18 - 140 cm³/rev',
       standard: 'ISO 3019-2 / SAE Flange',
-      imageUrl: '/images/products/a10vso-pump.png',
-      targetSlug: 'rexroth-a10vso-variable-displacement-pump'
+      imageUrl: '/images/products/rexroth-a10vso.webp',
+      targetSlug: 'bosch-rexroth-a10vso-axial-piston-pump'
     },
     cushion: {
       id: 'prod-cushion-pad-silicon-copper',
@@ -63,19 +63,19 @@ export const HomePage: React.FC = () => {
       pressure: 'High Hydraulic Buffer',
       displacement: '> 180 W/m·K Heat Transfer',
       standard: 'Short Cycle Press Fit',
-      imageUrl: '/images/products/cushion-pad-mesh.jpg',
+      imageUrl: '/images/products/cushion-pad-silicon-copper.webp',
       targetSlug: 'cushion-pad-silicon-copper'
     },
     valve: {
-      id: 'prod-directional-spool-valve',
+      id: 'prod-nachi-ss-g01-valve',
       name: 'Directional High-Pressure Solenoid Valve',
-      series: '4WE6 / 4WE10 Wet Pin',
-      brand: 'REXROTH / HUADE',
+      series: 'SS-G01 Wet Pin',
+      brand: 'NACHI-FUJIKOSHI',
       pressure: '315 bar Nominal',
-      displacement: 'Flow up to 160 L/min',
-      standard: 'DIN 24340 / CETOP 03/05',
-      imageUrl: '/images/products/directional-valve.png',
-      targetSlug: 'directional-spool-valves'
+      displacement: 'Flow up to 100 L/min',
+      standard: 'DIN 24340 / CETOP 03',
+      imageUrl: '/images/products/nachi-ss-g01-solenoid.webp',
+      targetSlug: 'nachi-ss-g01-wet-solenoid-directional-valve'
     }
   };
 
@@ -258,6 +258,10 @@ export const HomePage: React.FC = () => {
                   <img
                     src={currentHeroItem.imageUrl}
                     alt={currentHeroItem.name}
+                    width={400}
+                    height={260}
+                    decoding="async"
+                    fetchPriority="high"
                     className="max-h-52 max-w-[85%] object-contain transition-transform duration-500 group-hover:scale-105"
                   />
 

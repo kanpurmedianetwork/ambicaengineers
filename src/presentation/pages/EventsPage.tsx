@@ -101,6 +101,34 @@ export const EventsPage: React.FC = () => {
                 </div>
               </div>
 
+              {/* Live Exhibition Photo Gallery */}
+              {event.images && event.images.length > 0 && (
+                <div className="space-y-3 pt-2">
+                  <div className="text-xs font-mono font-bold text-slate-900 uppercase tracking-wider flex items-center justify-between">
+                    <span>Exhibition Stall &amp; Live Showcase Gallery</span>
+                    <span className="text-[11px] text-[#EF7D01] font-semibold">{event.images.length} Photos</span>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+                    {event.images.map((imgUrl, imgIdx) => (
+                      <div 
+                        key={imgIdx} 
+                        className="group relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shadow-xs hover:shadow-md transition-all"
+                      >
+                        <img 
+                          src={imgUrl} 
+                          alt={`${event.title} stall exhibition showcase ${imgIdx + 1}`}
+                          width={400}
+                          height={300}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {isUpcoming && (
                 <div className="pt-2 flex items-center gap-4">
                   <Link to="/contact">

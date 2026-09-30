@@ -144,7 +144,15 @@ export const ProductsPage: React.FC = () => {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className={`grid gap-6 ${
+            filteredProducts.length === 1 
+              ? 'grid-cols-1 max-w-md mx-auto'
+              : filteredProducts.length === 2 
+                ? 'grid-cols-1 sm:grid-cols-2 max-w-4xl mx-auto' 
+                : filteredProducts.length % 3 === 0 && filteredProducts.length % 4 !== 0
+                  ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' 
+                  : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+          }`}>
             {filteredProducts.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}

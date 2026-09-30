@@ -138,7 +138,17 @@ export const BrandPage: React.FC = () => {
             Additional {brand.name} spares are available upon inquiry. Contact our technical desk for part numbers and interchange specs.
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className={`grid gap-6 ${
+            products.length === 1 
+              ? 'grid-cols-1 max-w-md mx-auto'
+              : products.length === 2 
+                ? 'grid-cols-1 sm:grid-cols-2 max-w-4xl mx-auto' 
+                : products.length === 4 
+                  ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' 
+                  : products.length % 3 === 0 
+                    ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' 
+                    : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+          }`}>
             {products.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}

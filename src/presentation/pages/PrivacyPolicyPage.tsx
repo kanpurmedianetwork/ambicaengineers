@@ -15,7 +15,7 @@ export const PrivacyPolicyPage: React.FC = () => {
           Privacy Policy &amp; Terms of Service
         </h1>
         <p className="text-xs text-slate-500">
-          Last Updated: March 2026 • Ambica Engineers India Limited
+          Last Updated: March 2026 • <span className="whitespace-nowrap font-medium">Ambica Engineers &amp; Lubricants Pvt Ltd</span>
         </p>
       </div>
 
@@ -25,7 +25,7 @@ export const PrivacyPolicyPage: React.FC = () => {
             <span className="text-[#EF7D01] mr-2">1.</span> Overview &amp; Commitment
           </h2>
           <p>
-            At Ambica Engineers India Limited (&ldquo;Ambica Engineers&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), we respect the privacy of our industrial clients, procurement managers, and website visitors. This Privacy Policy sets forth our practices regarding the collection, storage, and handling of business and personal information provided through our website (<a href="https://www.ambicaengineers.in" className="text-[#EF7D01] underline">www.ambicaengineers.in</a>) and related inquiry services.
+            At <span className="whitespace-nowrap font-medium text-slate-900">Ambica Engineers &amp; Lubricants Pvt Ltd</span> (&ldquo;Ambica Engineers&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), we respect the privacy of our industrial clients, procurement managers, and website visitors. This Privacy Policy sets forth our practices regarding the collection, storage, and handling of business and personal information provided through our website (<a href="https://www.ambicaengineers.in" className="text-[#EF7D01] underline">www.ambicaengineers.in</a>) and related inquiry services.
           </p>
         </section>
 
@@ -75,7 +75,7 @@ export const PrivacyPolicyPage: React.FC = () => {
             For inquiries regarding our privacy standards or to update your company contact records, please reach us at:
           </p>
           <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 text-xs font-mono space-y-1.5 text-slate-700">
-            <div className="font-bold text-slate-900">Ambica Engineers India Limited</div>
+            <div className="font-bold text-slate-900 whitespace-nowrap">Ambica Engineers &amp; Lubricants Pvt Ltd</div>
             <div>Attn: Compliance &amp; Legal Desk</div>
             <div>5th Floor, Sovereign Corporate Tower, Sector 136, Noida, UP 201304</div>
             <div>Email: <a href={`mailto:${companyData.contact.primaryEmail}`} className="text-[#EF7D01] hover:underline">{companyData.contact.primaryEmail}</a></div>

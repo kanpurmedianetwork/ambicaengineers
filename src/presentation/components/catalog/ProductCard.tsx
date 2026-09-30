@@ -53,6 +53,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <img
             src={product.imageUrl}
             alt={product.name}
+            width={320}
+            height={200}
+            loading="lazy"
+            decoding="async"
             className="max-h-40 max-w-[85%] object-contain transition-transform duration-500 group-hover:scale-105 filter drop-shadow-sm"
             onError={(e) => {
               e.currentTarget.src = '/images/logo.png';

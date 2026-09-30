@@ -37,8 +37,14 @@ export const ProductDetailPage: React.FC = () => {
       setProduct(p);
       setLoading(false);
       if (p) {
-        productRepository.getProductsByCategory(p.category).then((related) => {
-          setRelatedProducts(related.filter((r) => r.id !== p.id).slice(0, 3));
+        productRepository.getProductsByCategory(p.category).then(async (related) => {
+          let prods = related.filter((r) => r.id !== p.id);
+          if (prods.length < 3) {
+            const all = await productRepository.getAllProducts();
+            const supplements = all.filter((item) => item.id !== p.id && !prods.some(r => r.id === item.id));
+            prods = [...prods, ...supplements];
+          }
+          setRelatedProducts(prods.slice(0, 3));
         });
       }
     });
@@ -108,6 +114,10 @@ export const ProductDetailPage: React.FC = () => {
             <img
               src={product.imageUrl}
               alt={product.name}
+              width={500}
+              height={500}
+              decoding="async"
+              fetchPriority="high"
               className="max-h-72 w-auto object-contain transition-transform duration-500 hover:scale-105 filter drop-shadow-sm"
               onError={(e) => {
                 e.currentTarget.src = '/images/logo.png';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, CheckCircle2, Clock, Building2 } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, CheckCircle2, Clock, Building2, ExternalLink, Navigation } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { companyData } from '../../infrastructure/data/company.data';
@@ -57,13 +57,14 @@ export const ContactPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Left Col: Contact Information */}
           <div className="lg:col-span-5 space-y-6">
-            <Card className="p-8 space-y-6 bg-white border border-slate-200/90 shadow-sm">
-              <div className="space-y-2">
-                <div className="text-xs font-mono font-bold text-[#EF7D01] uppercase tracking-wider">
+            <Card className="p-5 sm:p-8 space-y-6 bg-white border border-slate-200/90 shadow-sm">
+              <div className="space-y-1.5 overflow-hidden">
+                <div className="text-[11px] font-mono font-bold text-[#EF7D01] uppercase tracking-wider flex items-center gap-1.5">
+                  <Building2 className="w-3.5 h-3.5" />
                   Corporate Headquarters
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 uppercase font-mono">
-                  Ambica Engineers India Limited
+                <h2 className="text-[13px] xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-900 uppercase font-mono whitespace-nowrap tracking-tight overflow-hidden text-ellipsis">
+                  Ambica Engineers &amp; Lubricants Pvt Ltd
                 </h2>
               </div>
 
@@ -121,18 +122,57 @@ export const ContactPage: React.FC = () => {
               </div>
             </Card>
 
-            {/* Google Map Embed */}
-            <div className="rounded-2xl overflow-hidden border border-slate-200/90 h-64 shadow-sm">
-              <iframe
-                title="Ambica Engineers Sovereign Corporate Tower Noida Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.2625895744883!2d77.38289567549605!3d28.501726075735043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce7cb146603a1%3A0xe54955b2cae51f8a!2sSovereign%20Corporate%20Tower!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+            {/* Google Map Card with Live Business Location & Driving Directions */}
+            <div className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-sm space-y-0">
+              <div className="p-4 border-b border-slate-100 bg-slate-50/80 flex items-center justify-between gap-3">
+                <div className="space-y-0.5">
+                  <div className="text-[11px] font-mono font-bold text-[#EF7D01] uppercase tracking-wider flex items-center gap-1.5">
+                    <Navigation className="w-3.5 h-3.5 text-[#EF7D01]" />
+                    Live Google Maps Location
+                  </div>
+                  <div className="text-xs font-bold text-slate-900 font-mono">
+                    28.5050948° N, 77.3991225° E
+                  </div>
+                </div>
+                <a
+                  href="https://www.google.com/maps/place/Ambica+Engineers+%26+Lubricants+Pvt+Ltd/@28.5050948,77.3991225,17z/data=!3m1!4b1!4m6!3m5!1s0x390cfb6fde65dd9b:0xcaf224d0f79b6a4a!8m2!3d28.5050948!4d77.3991225!16s%2Fg%2F11bxfyyngf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold text-[#EF7D01] hover:text-[#D66D00] bg-orange-50 hover:bg-orange-100 border border-orange-200/80 px-2.5 py-1.5 rounded-lg transition-colors"
+                  title="Open live pin in Google Maps"
+                >
+                  Open Maps <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+
+              {/* Exact Google Map Iframe Pin */}
+              <div className="h-64 w-full relative">
+                <iframe
+                  title="Ambica Engineers & Lubricants Pvt Ltd Sovereign Corporate Tower Noida Map"
+                  src="https://maps.google.com/maps?q=28.5050948,77.3991225&hl=en&z=17&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+
+              {/* One-Click Direct Navigation Footer */}
+              <div className="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
+                <span className="text-[11px] text-slate-500 font-mono">
+                  Sovereign Corporate Tower, Sector 136, Noida
+                </span>
+                <a
+                  href="https://www.google.com/maps/dir//Ambica+Engineers+%26+Lubricants+Pvt+Ltd,+Floor+No:+5th+Floor,+Plot+No.+A-143,+Sovereign+Corporate+Tower,+Sector+136,+Noida,+Uttar+Pradesh+201304/@28.5050948,77.3991225,17z"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[#EF7D01] hover:text-[#D66D00] inline-flex items-center gap-1 text-[11px]"
+                >
+                  Get Directions →
+                </a>
+              </div>
             </div>
           </div>
 

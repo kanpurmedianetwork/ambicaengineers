@@ -27,17 +27,37 @@ export const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/about-us" element={<AboutPage />} />
+              <Route path="/about" element={<AboutPage />} />
               <Route path="/products" element={<ProductsPage />} />
               <Route path="/products/:slug" element={<ProductDetailPage />} />
+              <Route path="/product-page/:slug" element={<ProductDetailPage />} />
+              <Route path="/items/:slug" element={<ProductDetailPage />} />
               <Route path="/brands/:brandId" element={<BrandPage />} />
               <Route path="/solutions/wood-panel" element={<WoodPanelSolutionsPage />} />
+              <Route path="/wood-panel-solutions" element={<WoodPanelSolutionsPage />} />
               <Route path="/events" element={<EventsPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 
-              {/* Backward compatibility with old Wix slugs */}
+              {/* Backward compatibility with old Wix routes */}
+              <Route path="/blank-38" element={<Navigate to="/events" replace />} />
+              <Route path="/blank-18" element={<Navigate to="/events" replace />} />
+              <Route path="/blank-19" element={<Navigate to="/events" replace />} />
+              <Route path="/blank-17" element={<Navigate to="/events" replace />} />
               <Route path="/blank-24" element={<Navigate to="/products/cushion-pad-silicon-copper" replace />} />
               <Route path="/blank-16" element={<Navigate to="/contact" replace />} />
+              <Route path="/blank" element={<Navigate to="/brands/rexroth" replace />} />
+              <Route path="/blank-9" element={<Navigate to="/brands/polyhydron" replace />} />
+              <Route path="/blank-10" element={<Navigate to="/brands/polyhydron" replace />} />
+              <Route path="/blank-11" element={<Navigate to="/brands/nachi" replace />} />
+              <Route path="/blank-12" element={<Navigate to="/brands/nachi" replace />} />
+              <Route path="/blank-13" element={<Navigate to="/brands/huade" replace />} />
+              <Route path="/blank-14" element={<Navigate to="/brands/huade" replace />} />
+              <Route path="/blank-15" element={<Navigate to="/brands/voith" replace />} />
+              <Route path="/hydraulic-pump-2" element={<Navigate to="/products?category=hydraulic-pumps" replace />} />
+              <Route path="/hydraulic-pump-2-list" element={<Navigate to="/products?category=hydraulic-pumps" replace />} />
+              <Route path="/hydraulic-motor-2" element={<Navigate to="/products?category=hydraulic-motors" replace />} />
+              <Route path="/hydrualics-valves" element={<Navigate to="/products?category=hydraulic-valves" replace />} />
               <Route path="/projects" element={<Navigate to="/events" replace />} />
               <Route path="/home" element={<Navigate to="/" replace />} />
               <Route path="*" element={<Navigate to="/" replace />} />

@@ -1,14 +1,14 @@
 import { CompanyInfo, Milestone } from '../../domain/entities/CompanyInfo';
 
 export const companyData: CompanyInfo = {
-  legalName: "Ambica Engineers India Limited",
+  legalName: "Ambica Engineers & Lubricants Pvt Ltd",
   brandName: "Ambica Engineers",
   foundedYear: 2013,
   legacyYear: 1982,
-  tagline: "Powering Industrial Performance Through Engineering Excellence",
+  tagline: "Engineering Solutions That Drive Industry",
   managingDirector: "Mohit Abhay Raj Chhajer",
-  mdMessage: "At Ambica Engineers, our success has always been driven by an uncompromising commitment to quality, engineering reliability, and lasting customer partnerships. Over the decades, we have built strong relationships with manufacturers across India by delivering world-class hydraulic components, industrial lubricants, machinery spares, and wood panel manufacturing solutions. Our team remains focused on understanding exacting customer specifications, providing rapid technical support, and supplying components that deliver long-term operational excellence.",
-  qualityPolicy: "The brand 'AMBICA' in the Wood & Panel and Industrial Hydraulic industries defines Quality. We associate with the world's finest engineering manufacturers to provide only genuine, certified, and precision-tested hydraulic components and machinery spares. We carry out stringent quality checks at every stage from procurement to dispatch. We ensure our clients receive components that maximize uptime, withstand extreme operating pressures, and deliver continuous performance.",
+  mdMessage: "At Ambica Engineers, our success has always been driven by a commitment to quality, reliability, and customer satisfaction. Over the years, we have built strong partnerships with manufacturers across India by delivering trusted hydraulic components, industrial lubricants, machinery spares, and engineering solutions. Our focus remains on understanding customer requirements, providing dependable support, and delivering products that create long-term value. As industries continue to evolve, we remain dedicated to innovation, excellence, and building lasting relationships with our customers and partners. Thank you for your trust and continued support.",
+  qualityPolicy: "The brand 'AMBICA' in Wood & Panel Industry defines Quality. We are associated with the best companies across the industries to sell only quality and branded Hydraulic Spare Parts and Machinery Equipments to the market. We consider Quality as our first motto towards our business ethics and brand image. We have been constantly repeating our success in offering complete range of spare parts for Hydraulic Presses and complete Particle Board & MDF Production Line with superior functionality and highest performance industry standards. We carry out quality assurance at each and every stage of procurement till dispatch. We always strive to offer perfect engineering and maintenance solutions which provide customers with long terms benefits. We expect our clients and business channel partners to follow the product guidelines and instructions for long terms benefits of our supplied product and service.",
   headquarters: {
     address: "5th Floor, Plot No. A-143, Sovereign Corporate Tower, Sector 136",
     building: "Sovereign Corporate Tower",
@@ -17,7 +17,12 @@ export const companyData: CompanyInfo = {
     city: "Noida",
     state: "Uttar Pradesh",
     country: "India",
-    floor: "5th Floor"
+    floor: "5th Floor",
+    googleMapsUrl: "https://www.google.com/maps/place/Ambica+Engineers+%26+Lubricants+Pvt+Ltd/@28.5050948,77.3991225,17z/data=!3m1!4b1!4m6!3m5!1s0x390cfb6fde65dd9b:0xcaf224d0f79b6a4a!8m2!3d28.5050948!4d77.3991225!16s%2Fg%2F11bxfyyngf",
+    coordinates: {
+      lat: 28.5050948,
+      lng: 77.3991225
+    }
   },
   contact: {
     primaryPhone: "+91 7600025020",
@@ -35,58 +40,58 @@ export const companyData: CompanyInfo = {
 
 export const companyMilestones: Milestone[] = [
   {
-    year: "1982",
-    title: "Engineering Legacy Inception",
-    description: "Foundations laid in precision engineering, industrial maintenance, and machine tool supply."
+    year: "2013",
+    title: "Formation in Ahmedabad",
+    description: "Ambica Engineers was formed and started operations from Ahmedabad."
   },
   {
-    year: "2013",
-    title: "Ambica Engineers Established",
-    description: "Commenced formal corporate operations from Ahmedabad, establishing core distribution channels for hydraulic spares."
+    year: "2014",
+    title: "Hydraulic Spares Portfolio",
+    description: "Introduced various other brands of Hydraulic Spares & Components."
   },
   {
     year: "2015",
-    title: "Expanded Hydraulic Spares Portfolio",
-    description: "Introduced global hydraulic pump and valve product lines from premier international manufacturers."
+    title: "North India Expansion",
+    description: "Launched new office in the North India region."
+  },
+  {
+    year: "2016",
+    title: "DelhiWood Expo Launch",
+    description: "Launch of Hydraulic Oil Filtration Unit at DelhiWood Expo."
   },
   {
     year: "2017",
-    title: "North India Regional Presence",
-    description: "Established dedicated operations and regional engineering support in Delhi NCR."
+    title: "Brenntag Authorised Distributor",
+    description: "Became Authorised Distributor for brand BRENNTAG by Raj Petro Specialities."
   },
   {
     year: "2018",
-    title: "Hydraulic Filtration Launch @ DelhiWood",
-    description: "Unveiled advanced mobile and offline hydraulic oil filtration units at DelhiWood Expo."
-  },
-  {
-    year: "2019",
-    title: "Brenntag Authorized Distributor",
-    description: "Appointed authorized distributor for Brenntag industrial lubricants by Raj Petro Specialities."
+    title: "Stockist of Premier Hydraulic Brands",
+    description: "Appointed stockist of Voith, Nachi, Polyhydron, and Veljan."
   },
   {
     year: "2020",
-    title: "Premier Brand Stockist Network",
-    description: "Direct official stockist status for Voith, Nachi, Polyhydron, and Veljan hydraulic lines."
+    title: "Wood Panel Innovations",
+    description: "Introduced wide range of products like SS Plates, Cushion Pads & Bearings."
   },
   {
     year: "2021",
-    title: "Wood Panel Innovations (Cushion Pads & SS Plates)",
-    description: "Introduced European grade Silicon & Copper cushion pads and specialized press plates for short-cycle presses."
+    title: "Corporate Re-branding",
+    description: "Re-branding as Ambica Engineers & Lubricants Pvt Ltd."
   },
   {
     year: "2022",
-    title: "Incorporation & Expansion",
-    description: "Re-branded and incorporated as Ambica Engineers & Lubricants Pvt Ltd with expanded technical services."
+    title: "KLJ Noida One Facility",
+    description: "Shifted to new corporate office @ KLJ Noida One."
   },
   {
     year: "2024",
     title: "Global Collaboration with Aminova",
-    description: "Formed strategic alliance with Aminova for state-of-the-art wood panel and particle board automation lines."
+    description: "Global Collaboration with Aminova for wood panel processing and automation lines."
   },
   {
-    year: "2026",
-    title: "State-of-the-Art Experience Centre",
-    description: "Inaugurated the flagship corporate experience centre and regional headquarters at Sovereign Corporate Tower, Noida."
+    year: "2025",
+    title: "Experience Centre @ Sovereign Corporate Tower",
+    description: "Inaugurated flagship Experience Centre cum Office in Sovereign Corporate Tower, Sector 136, Noida, UP."
   }
 ];

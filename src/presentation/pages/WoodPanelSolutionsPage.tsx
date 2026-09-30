@@ -71,10 +71,14 @@ export const WoodPanelSolutionsPage: React.FC = () => {
           </div>
 
           <div className="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center space-y-4">
-            <div className="relative h-44 rounded-xl overflow-hidden border border-slate-200 shadow-sm group">
+            <div className="relative h-48 rounded-xl overflow-hidden border border-slate-200 shadow-sm group">
               <img
-                src="/images/products/cushion-pad-mesh.jpg"
+                src="/images/products/cushion-pad-detail.webp"
                 alt="European Silicon & Twilled Copper Cushion Pad Microstructure"
+                width={600}
+                height={350}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />

@@ -17,7 +17,27 @@ export const eventsData: ExhibitionEvent[] = [
       'Continuous Production Line Automation Spares',
       'High-Pressure Hydraulic Power Packs for Laminate Presses'
     ],
-    description: 'Join Ambica Engineers at IndiaWood 2026, South Asia’s premier woodworking and panel manufacturing exhibition. We will showcase our next-generation European cushion pads, high-performance Rexroth & Huade hydraulic systems, and customized wood processing spares.'
+    description: 'Join Ambica Engineers at IndiaWood 2026, South Asia’s premier woodworking and panel manufacturing exhibition. We will showcase our next-generation European cushion pads, high-performance Rexroth & Huade hydraulic systems, and customized wood processing spares.',
+    images: [
+      '/images/events/indiawood_2026_01.webp',
+      '/images/events/indiawood_2026_02.webp',
+      '/images/events/indiawood_2026_03.webp',
+      '/images/events/indiawood_2026_04.webp',
+      '/images/events/indiawood_2026_05.webp',
+      '/images/events/indiawood_2026_06.webp',
+      '/images/events/indiawood_2026_07.webp',
+      '/images/events/indiawood_2026_08.webp',
+      '/images/events/indiawood_2026_09.webp',
+      '/images/events/indiawood_2026_10.webp',
+      '/images/events/indiawood_2026_11.webp',
+      '/images/events/indiawood_2026_12.webp',
+      '/images/events/indiawood_2026_13.webp',
+      '/images/events/indiawood_2026_14.webp',
+      '/images/events/indiawood_2026_15.webp',
+      '/images/events/indiawood_2026_16.webp',
+      '/images/events/indiawood_2026_17.webp',
+      '/images/events/indiawood_2026_18.webp'
+    ]
   },
   {
     id: 'matecia-2023',

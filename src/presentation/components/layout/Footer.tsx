@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center">
               <img 
                 src="/images/logo.png" 
-                alt="Ambica Engineers Logo" 
+                alt="Ambica Engineers & Lubricants Pvt Ltd" 
                 className="h-10 w-auto object-contain brightness-115 drop-shadow-[0_2px_10px_rgba(239,125,1,0.2)]" 
                 onError={(e) => { e.currentTarget.style.display = 'none'; }}
               />
@@ -197,8 +197,8 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <div>
-            © {new Date().getFullYear()} Ambica Engineers India Limited. All rights reserved. Legacy Since 1982.
+          <div className="text-center sm:text-left">
+            © {new Date().getFullYear()} <span className="whitespace-nowrap font-medium text-slate-300">Ambica Engineers &amp; Lubricants Pvt Ltd</span>. All rights reserved. Legacy Since 1982.
           </div>
           <div className="flex items-center gap-6">
             <Link to="/privacy-policy" className="hover:text-[#EF7D01] transition-colors">

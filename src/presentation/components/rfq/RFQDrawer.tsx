@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { X, Trash2, Plus, Minus, Send, FileText, CheckCircle2, ShoppingBag } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, Trash2, Plus, Minus, Send, FileText, CheckCircle2, ShoppingBag, Hash, Settings } from 'lucide-react';
 import { useRFQ } from '../../context/RFQContext';
 import { Button } from '../ui/Button';
 import { inquiryService } from '../../../infrastructure/repositories/InquiryServiceImpl';
 import { RFQSubmission } from '../../../domain/entities/RFQItem';
+import { RFQSequenceService } from '../../../domain/services/RFQSequenceService';
 
 export const RFQDrawer: React.FC = () => {
   const { items, isDrawerOpen, closeDrawer, removeItem, updateQuantity, updateNotes, clearRFQ } = useRFQ();
@@ -20,6 +21,18 @@ export const RFQDrawer: React.FC = () => {
   const [submissionSuccess, setSubmissionSuccess] = useState<string | null>(null);
   const [whatsAppUrl, setWhatsAppUrl] = useState<string | null>(null);
 
+  // Sequential RFQ tracking
+  const [currentRfqId, setCurrentRfqId] = useState<string>('');
+  const [isEditingSequence, setIsEditingSequence] = useState(false);
+  const [manualSequenceInput, setManualSequenceInput] = useState('');
+
+  useEffect(() => {
+    if (isDrawerOpen) {
+      const nextId = RFQSequenceService.getNextRFQId();
+      setCurrentRfqId(nextId);
+    }
+  }, [isDrawerOpen]);
+
   if (!isDrawerOpen) return null;
 
   const handleSubmitRFQ = async (e: React.FormEvent) => {
@@ -31,8 +44,10 @@ export const RFQDrawer: React.FC = () => {
     }
 
     setSubmitting(true);
+    const finalId = currentRfqId || RFQSequenceService.getNextRFQId();
+
     const submission: RFQSubmission = {
-      id: `RFQ-${Date.now().toString().slice(-6)}`,
+      id: finalId,
       customerName,
       companyName,
       phone,
@@ -56,10 +71,13 @@ export const RFQDrawer: React.FC = () => {
     setSubmitting(false);
 
     if (result.success) {
-      setSubmissionSuccess(result.referenceId || submission.id);
+      RFQSequenceService.commitRFQNumber(finalId);
+      setSubmissionSuccess(finalId);
       if (result.whatsappUrl) {
         setWhatsAppUrl(result.whatsappUrl);
       }
+      // Prepare next consecutive RFQ number
+      setCurrentRfqId(RFQSequenceService.getNextRFQId());
       clearRFQ();
     }
   };
@@ -102,8 +120,7 @@ export const RFQDrawer: React.FC = () => {
                 <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
                 <h3 className="text-lg font-bold text-slate-900">RFQ Successfully Generated!</h3>
                 <p className="text-xs text-slate-600">
-                  Your reference ID is <span className="font-mono text-[#EF7D01] font-bold">{submissionSuccess}</span>.
-                  Our engineering sales team has received your component requirements.
+                  Sequential reference <span className="font-mono text-[#EF7D01] font-bold text-sm">{submissionSuccess}</span> has been recorded and synchronized live to Google Sheets.
                 </p>
 
                 {whatsAppUrl && (
@@ -161,40 +178,30 @@ export const RFQDrawer: React.FC = () => {
                   {items.map((item) => (
                     <div 
                       key={item.product.id}
-                      className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-2.5"
+                      className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 space-y-3"
                     >
                       <div className="flex items-start justify-between gap-3">
-                        <div className="flex items-center gap-3">
-                          <img 
-                            src={item.product.imageUrl} 
-                            alt={item.product.name} 
-                            className="w-12 h-12 rounded-lg object-contain bg-white border border-slate-200 p-1 shrink-0"
-                            onError={(e) => { e.currentTarget.src = '/images/logo.png'; }}
-                          />
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 line-clamp-1">
-                              {item.product.name}
-                            </div>
-                            <div className="text-[11px] text-[#EF7D01] font-mono font-semibold">
-                              {item.product.series} • {item.product.brand.toUpperCase()}
-                            </div>
+                        <div className="space-y-0.5 flex-1">
+                          <div className="text-[10px] font-mono text-[#EF7D01] font-semibold uppercase">
+                            {item.product.series} • {item.product.brand.toUpperCase()}
+                          </div>
+                          <div className="text-xs font-bold text-slate-900 leading-snug">
+                            {item.product.name}
                           </div>
                         </div>
-
                         <button
                           onClick={() => removeItem(item.product.id)}
-                          className="text-slate-400 hover:text-rose-500 p-1 transition-colors cursor-pointer"
-                          title="Remove item"
+                          className="p-1 text-slate-400 hover:text-rose-600 rounded transition-colors cursor-pointer"
+                          title="Remove component"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
                       </div>
 
-                      <div className="flex items-center justify-between pt-2 border-t border-slate-200/80">
-                        {/* Quantity Counter */}
-                        <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-lg p-1 shadow-2xs">
+                      <div className="flex items-center justify-between gap-3 pt-2 border-t border-slate-200/60">
+                        <div className="flex items-center border border-slate-200 bg-white rounded-lg p-0.5">
                           <button
-                            onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
+                            onClick={() => updateQuantity(item.product.id, Math.max(1, item.quantity - 1))}
                             className="p-1 hover:bg-slate-100 rounded text-slate-500 hover:text-slate-900 cursor-pointer"
                           >
                             <Minus className="w-3 h-3" />
@@ -222,8 +229,80 @@ export const RFQDrawer: React.FC = () => {
                   ))}
                 </div>
 
+                {/* Sequential RFQ Reference Banner */}
+                <div className="bg-orange-50/80 border border-orange-200/90 rounded-2xl p-4 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <div className="space-y-0.5">
+                      <div className="text-[10px] font-mono text-slate-500 uppercase tracking-wider font-semibold flex items-center gap-1">
+                        <Hash className="w-3 h-3 text-[#EF7D01]" />
+                        Sequential RFQ Reference
+                      </div>
+                      <div className="text-base font-extrabold font-mono text-[#EF7D01]">
+                        {currentRfqId || RFQSequenceService.getNextRFQId()}
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-[10px] font-mono bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                        Live Sheets Sync
+                      </span>
+                      <div className="text-[10px] font-mono text-slate-500 mt-1">
+                        Follows #{RFQSequenceService.getLastFollowedNumber()}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Manual sequence sync option */}
+                  <div className="pt-2 border-t border-orange-200/60 flex items-center justify-between text-[11px] text-slate-600">
+                    <span className="text-slate-500">Match your company sheet counter:</span>
+                    {isEditingSequence ? (
+                      <div className="flex items-center gap-1">
+                        <input
+                          type="number"
+                          value={manualSequenceInput}
+                          onChange={(e) => setManualSequenceInput(e.target.value)}
+                          placeholder="e.g. 1001"
+                          className="w-20 px-2 py-0.5 text-xs bg-white border border-slate-300 rounded font-mono"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const num = parseInt(manualSequenceInput, 10);
+                            if (!isNaN(num) && num > 0) {
+                              RFQSequenceService.setSequence(num - 1);
+                              setCurrentRfqId(RFQSequenceService.getNextRFQId());
+                            }
+                            setIsEditingSequence(false);
+                          }}
+                          className="text-xs text-[#EF7D01] font-bold px-2 py-0.5 bg-white border border-[#EF7D01] rounded hover:bg-orange-50 cursor-pointer"
+                        >
+                          Save
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setIsEditingSequence(false)}
+                          className="text-xs text-slate-400 px-1 hover:text-slate-600 cursor-pointer"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setManualSequenceInput(String(RFQSequenceService.getLastFollowedNumber() + 1));
+                          setIsEditingSequence(true);
+                        }}
+                        className="text-[11px] text-[#EF7D01] hover:underline font-mono font-medium inline-flex items-center gap-1 cursor-pointer"
+                      >
+                        <Settings className="w-3 h-3" />
+                        Edit Number
+                      </button>
+                    )}
+                  </div>
+                </div>
+
                 {/* Customer Details Form */}
-                <form onSubmit={handleSubmitRFQ} className="space-y-3 pt-4 border-t border-slate-200">
+                <form onSubmit={handleSubmitRFQ} className="space-y-3 pt-2 border-t border-slate-200">
                   <div className="text-xs font-semibold text-[#EF7D01] uppercase tracking-wider">
                     Contact &amp; Delivery Information
                   </div>
@@ -265,7 +344,7 @@ export const RFQDrawer: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] text-slate-700 font-medium block mb-1">Work Email</label>
+                      <label className="text-[11px] text-slate-700 font-medium block mb-1">Email Address</label>
                       <input
                         type="email"
                         value={email}
@@ -276,51 +355,43 @@ export const RFQDrawer: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <label className="text-[11px] text-slate-700 font-medium block mb-1">City / State</label>
+                  <div className="grid grid-cols-3 gap-2">
+                    <div className="col-span-1">
+                      <label className="text-[11px] text-slate-700 font-medium block mb-1">City / Region</label>
                       <input
                         type="text"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
-                        placeholder="e.g. Noida / Dubai"
+                        placeholder="e.g. Noida"
                         className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors"
                       />
                     </div>
-                    <div>
-                      <label className="text-[11px] text-slate-700 font-medium block mb-1">Country / Port</label>
+                    <div className="col-span-1">
+                      <label className="text-[11px] text-slate-700 font-medium block mb-1">Country</label>
                       <input
                         type="text"
                         value={country}
                         onChange={(e) => setCountry(e.target.value)}
-                        placeholder="India / UAE / Germany"
+                        placeholder="India"
                         className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors"
                       />
                     </div>
-                  </div>
-
-                  <div>
-                    <label className="text-[11px] text-slate-700 font-medium block mb-1">Quotation Currency</label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {(['INR', 'USD', 'EUR'] as const).map((curr) => (
-                        <button
-                          key={curr}
-                          type="button"
-                          onClick={() => setCurrency(curr)}
-                          className={`py-1.5 px-3 rounded-lg text-xs font-mono font-bold transition-all border cursor-pointer ${
-                            currency === curr
-                              ? 'bg-[#EF7D01] text-white border-[#EF7D01] shadow-sm'
-                              : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-slate-300 hover:text-slate-900'
-                          }`}
-                        >
-                          {curr === 'INR' ? '₹ INR (Domestic)' : curr === 'USD' ? '$ USD (Export)' : '€ EUR (Global)'}
-                        </button>
-                      ))}
+                    <div className="col-span-1">
+                      <label className="text-[11px] text-slate-700 font-medium block mb-1">Currency</label>
+                      <select
+                        value={currency}
+                        onChange={(e) => setCurrency(e.target.value as 'INR' | 'USD' | 'EUR')}
+                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-2 py-2 text-xs text-slate-900 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors"
+                      >
+                        <option value="INR">INR (₹)</option>
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (€)</option>
+                      </select>
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-[11px] text-slate-700 font-medium block mb-1">General Inquiries / Specs</label>
+                    <label className="text-[11px] text-slate-700 font-medium block mb-1">Application Notes / Requirements</label>
                     <textarea
                       rows={2}
                       value={generalNotes}
@@ -334,15 +405,12 @@ export const RFQDrawer: React.FC = () => {
                     <Button
                       type="submit"
                       variant="primary"
+                      size="md"
                       disabled={submitting}
-                      className="w-full py-3 text-sm font-semibold"
-                      icon={<Send className="w-4 h-4" />}
+                      className="w-full justify-center"
                     >
-                      {submitting ? 'Generating RFQ...' : 'Submit Official RFQ Quotation'}
+                      {submitting ? 'Transmitting to Engineering Sales...' : `Submit RFQ (${currentRfqId || RFQSequenceService.getNextRFQId()})`}
                     </Button>
-                    <div className="text-[10px] text-slate-500 text-center mt-2">
-                      Direct quote dispatch to Ambica Engineers Central Procurement Desk (+91 7600025020).
-                    </div>
                   </div>
                 </form>
               </>

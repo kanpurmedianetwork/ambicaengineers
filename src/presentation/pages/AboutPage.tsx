@@ -4,54 +4,108 @@ import {
   Award, 
   Quote, 
   Target, 
-  Compass 
+  Compass,
+  Wrench,
+  Droplets,
+  Layers,
+  Cpu,
+  Settings2,
+  Headphones,
+  CheckCircle2
 } from 'lucide-react';
 import { companyData, companyMilestones } from '../../infrastructure/data/company.data';
-import { Card } from '../components/ui/Card';
 
 export const AboutPage: React.FC = () => {
+  const services = [
+    {
+      title: "Hydraulic Components & Spare Parts",
+      desc: "Authorized pumps, motors, valves, and cartridge systems from Rexroth, Nachi, Polyhydron, Huade, and Voith with immediate dispatch support.",
+      icon: Settings2
+    },
+    {
+      title: "Industrial Lubricants & Maintenance Products",
+      desc: "High-performance hydraulic oils, specialty synthetic greases, and filtration solutions as authorized distributors for Brenntag & Raj Petro.",
+      icon: Droplets
+    },
+    {
+      title: "Hydraulic Press Spare Parts",
+      desc: "Heavy-duty press cylinders, proportional control valves, seal kits, and pressure control assemblies engineered for high-cycle industrial presses.",
+      icon: Wrench
+    },
+    {
+      title: "MDF & Particle Board Production Lines",
+      desc: "End-to-end turnkey machinery spares, European silicon/copper cushion pads, and process automation lines in partnership with Aminova.",
+      icon: Layers
+    },
+    {
+      title: "Machinery Equipment & Industrial Spares",
+      desc: "Precision engineering components, SS press plates, bearings, heat exchangers, and drive systems for continuous plant operations.",
+      icon: Cpu
+    },
+    {
+      title: "Technical Support & Product Consultation",
+      desc: "Engineering audit, replacement retrofits, hydraulic circuit troubleshooting, and custom technical sizing by senior engineers.",
+      icon: Headphones
+    }
+  ];
+
   return (
     <div className="space-y-20 pb-24 bg-[#F8FAFC]">
       {/* Header Banner */}
       <section className="bg-[#0A0F1D] text-white border-b border-slate-800 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 bg-orange-950/60 border border-[#EF7D01]/50 px-3.5 py-1 rounded-full text-xs font-mono font-semibold text-[#EF7D01]">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            ABOUT AMBICA ENGINEERS INDIA LIMITED
+          <div className="inline-flex items-center gap-2 bg-orange-950/60 border border-[#EF7D01]/50 px-3.5 py-1 rounded-full text-xs font-mono font-semibold text-[#EF7D01] whitespace-nowrap">
+            <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
+            <span>ABOUT AMBICA ENGINEERS</span>
           </div>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white uppercase font-display tracking-tight">
-            ENGINEERING EXCELLENCE &amp; TRUST SINCE 1982
+            ENGINEERING SOLUTIONS THAT DRIVE INDUSTRY
           </h1>
           <p className="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed">
-            From humble beginnings to India&apos;s leading supplier of specialized hydraulic components, wood panel manufacturing equipment, and industrial lubricants.
+            Ambica Engineers is a trusted supplier of hydraulic components, industrial lubricants, machinery spares, and wood panel industry solutions. We support MDF, Particle Board, Laminate, and Industrial Manufacturing companies with reliable products and technical expertise.
           </p>
         </div>
       </section>
 
-      {/* Story & Managing Director Message */}
+      {/* Story & MD Message */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Main Story */}
+          {/* Main Story & Facility Image */}
           <div className="lg:col-span-7 space-y-6 text-sm text-slate-600 leading-relaxed">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 uppercase font-display">
-              Decades of Driving Indian Industrial Progress
-            </h2>
+            <div className="space-y-2">
+              <span className="text-xs font-mono font-bold text-[#EF7D01] uppercase tracking-wider">
+                Industrial Engineering Legacy
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 uppercase font-display">
+                Delivering Excellence Across Indian Manufacturing
+              </h2>
+            </div>
+            
             <p>
-              Ambica Engineers was established to bridge the gap between global precision hydraulic engineering and Indian industrial manufacturing. Operating nationwide with facilities in Ahmedabad and our corporate experience centre in Noida, we supply heavy industrial plants with certified hydraulic pumps, motors, valves, and specialized wood panel machinery spares.
+              Ambica Engineers was established to bridge the gap between world-class precision hydraulic engineering and Indian manufacturing infrastructure. Operating nationwide with stockist warehousing in Ahmedabad and our flagship corporate Experience Centre in Sovereign Corporate Tower, Noida, we supply heavy industrial plants with certified hydraulic pumps, motors, valves, and specialized wood panel machinery spares.
             </p>
             <p>
-              Over four decades, our team has developed deep application know-how across MDF, Particle Board, Laminate, Steel Mills, Machine Tools, and Plastic processing industries. Whether replacing critical axial piston pumps on a continuous production line or custom-cutting European silicon-copper cushion pads for short cycle hot presses, we ensure minimal plant downtime and maximum productivity.
+              Our commitment to quality, dependable service, and long-term customer relationships has helped us serve industries across India. We support MDF, Particle Board, Laminate, Steel Mills, Machine Tools, Plastic processing, and Infrastructure companies with high-reliability products and technical expertise.
             </p>
 
-            {/* Quality Statement Box */}
-            <div className="bg-orange-50 border-l-4 border-[#EF7D01] rounded-r-2xl p-6 space-y-2">
-              <div className="text-xs font-mono font-bold text-[#EF7D01] uppercase tracking-wider flex items-center gap-2">
-                <Award className="w-4 h-4" />
-                Our Uncompromising Quality Policy
+            {/* Team / Facility Photo */}
+            <div className="pt-2">
+              <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100 relative group aspect-[16/9]">
+                <img
+                  src="/images/about/team-facility.webp"
+                  alt="Ambica Engineers Team and Corporate Operations"
+                  width={1000}
+                  height={562}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent flex items-end p-4">
+                  <p className="text-white text-xs font-medium">
+                    Corporate Engineering &amp; Operations Centre • Sector 136, Noida
+                  </p>
+                </div>
               </div>
-              <p className="text-xs text-slate-800 italic">
-                &ldquo;{companyData.qualityPolicy}&rdquo;
-              </p>
             </div>
           </div>
 
@@ -64,7 +118,7 @@ export const AboutPage: React.FC = () => {
                   Leadership Perspective
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">
-                  Message from Managing Director
+                  A Message From Our Managing Director
                 </h3>
               </div>
 
@@ -77,6 +131,10 @@ export const AboutPage: React.FC = () => {
                   <img
                     src="/images/leadership/mohit-chhajer-md.jpg"
                     alt={companyData.managingDirector}
+                    width={80}
+                    height={80}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
@@ -86,17 +144,133 @@ export const AboutPage: React.FC = () => {
                     {companyData.managingDirector}
                   </div>
                   <div className="text-xs text-[#EF7D01] font-medium">
-                    Managing Director • Ambica Engineers India Limited
+                    Managing Director • Ambica Engineers
                   </div>
-                  {/* Handwritten signature (Natural black ink on white) */}
                   <div className="pt-2">
                     <img
                       src="/images/leadership/mohit-signature.png"
                       alt="Signature of Mohit Chhajer"
+                      width={140}
+                      height={40}
+                      loading="lazy"
+                      decoding="async"
                       className="h-10 w-auto object-contain sm:mx-0 mx-auto"
                       onError={(e) => { e.currentTarget.style.display = 'none'; }}
                     />
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Services Section */}
+      <section className="bg-white border-y border-slate-200/80 py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <span className="text-xs font-mono font-bold text-[#EF7D01] uppercase tracking-wider">
+              Comprehensive Industrial Capabilities
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 uppercase font-display">
+              OUR SERVICES &amp; SOLUTIONS
+            </h2>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              At Ambica Engineers, we provide a comprehensive range of industrial products and solutions to support the smooth operation of manufacturing facilities across India.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((svc, idx) => {
+              const Icon = svc.icon;
+              return (
+                <div 
+                  key={idx} 
+                  className="bg-slate-50 border border-slate-200/90 rounded-2xl p-6 hover:border-[#EF7D01]/50 hover:bg-white transition-all space-y-3 shadow-xs group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-orange-100 text-[#EF7D01] flex items-center justify-center group-hover:bg-[#EF7D01] group-hover:text-white transition-colors">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 font-display">
+                    {svc.title}
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    {svc.desc}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience, Accountability & Quality Policy */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="lg:col-span-6 space-y-6">
+            <div className="space-y-2">
+              <span className="text-xs font-mono font-bold text-[#EF7D01] uppercase tracking-wider">
+                Built on Trust &amp; Performance
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 uppercase font-display">
+                EXPERIENCE &amp; ACCOUNTABILITY
+              </h2>
+            </div>
+
+            <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
+              <div className="flex gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#EF7D01] shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-bold text-slate-900 text-sm">Decades of Industrial Experience</h4>
+                  <p className="text-xs text-slate-600 mt-1">
+                    With extensive experience in hydraulic components, industrial lubricants, machinery spares, and wood panel industry solutions, Ambica Engineers delivers reliable products backed by deep technical knowledge and application engineering expertise.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#EF7D01] shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-bold text-slate-900 text-sm">Uncompromising Accountability</h4>
+                  <p className="text-xs text-slate-600 mt-1">
+                    We follow strict quality control standards from procurement to dispatch, ensuring every product meets performance, durability, and reliability requirements for demanding high-cycle manufacturing lines.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Quality Policy Box */}
+            <div className="bg-orange-50 border-l-4 border-[#EF7D01] rounded-r-2xl p-6 space-y-2">
+              <div className="text-xs font-mono font-bold text-[#EF7D01] uppercase tracking-wider flex items-center gap-2">
+                <Award className="w-4 h-4" />
+                Our Quality Policy
+              </div>
+              <p className="text-xs text-slate-800 leading-relaxed italic">
+                &ldquo;{companyData.qualityPolicy}&rdquo;
+              </p>
+            </div>
+          </div>
+
+          {/* Maintenance & Precision Photo */}
+          <div className="lg:col-span-6">
+            <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-slate-100 relative group aspect-[4/3]">
+              <img
+                src="/images/about/maintenance-precision.webp"
+                alt="Industrial Maintenance and Quality Testing"
+                width={800}
+                height={600}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6">
+                <div>
+                  <p className="text-white text-sm font-bold">
+                    Rigorous Inspection &amp; Maintenance Protocols
+                  </p>
+                  <p className="text-slate-300 text-xs mt-0.5">
+                    Certified testing before dispatch to ensure zero plant downtime
+                  </p>
                 </div>
               </div>
             </div>
@@ -123,7 +297,7 @@ export const AboutPage: React.FC = () => {
             </div>
             <h3 className="text-xl font-bold text-slate-900 uppercase font-display">Our Core Mission</h3>
             <p className="text-xs text-slate-600 leading-relaxed">
-              To provide world-class machinery, hydraulic systems, industrial spares, and technical services through continuous innovation, uncompromising quality control, same-day dispatch support, and lasting customer relationships.
+              To provide world-class machinery, hydraulic systems, industrial spares, and technical services through innovation, uncompromising quality, timely support, and lasting customer relationships.
             </p>
           </div>
         </div>
@@ -133,14 +307,17 @@ export const AboutPage: React.FC = () => {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center space-y-2">
           <div className="text-xs font-semibold text-[#EF7D01] uppercase tracking-widest">
-            A Legacy of Continuous Growth
+            A Journey of Unstoppable Growth &amp; Excellence
           </div>
           <h2 className="text-3xl font-extrabold text-slate-900 uppercase font-display">
-            Corporate Milestones (1982 – 2026)
+            OUR JOURNEY (2013 – 2026)
           </h2>
+          <p className="text-xs text-slate-600 max-w-2xl mx-auto">
+            Since our founding in 2013, Ambica Engineers has grown from a single office in Ahmedabad to a trusted name in hydraulic components, industrial lubricants, and engineering solutions across India.
+          </p>
         </div>
 
-        <div className="relative border-l-2 border-slate-200 ml-4 md:ml-32 space-y-10 py-6">
+        <div className="relative border-l-2 border-slate-200 ml-4 md:ml-32 space-y-8 py-6">
           {companyMilestones.map((m, index) => (
             <div key={index} className="relative pl-8 group">
               {/* Dot */}
