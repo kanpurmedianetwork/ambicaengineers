@@ -5,21 +5,25 @@ import { companyData } from '../../infrastructure/data/company.data';
 
 export const PrivacyPolicyPage: React.FC = () => {
   return (
-    <div className="space-y-12 pb-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
-      <div className="space-y-3 text-center">
-        <div className="inline-flex items-center gap-2 bg-[#EF7D01]/10 border border-[#EF7D01]/30 px-3.5 py-1 rounded-full text-xs font-semibold text-[#EF7D01]">
-          <Lock className="w-3.5 h-3.5" />
-          Legal &amp; Data Protection
+    <div className="space-y-12 pb-20 bg-[#F8FAFC]">
+      {/* Dark Header Banner for Transparent Nav */}
+      <section className="bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-14 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto space-y-3 text-center">
+          <div className="inline-flex items-center gap-2 bg-[#EF7D01]/10 border border-[#EF7D01]/30 px-3.5 py-1 rounded-full text-xs font-semibold text-[#EF7D01]">
+            <Lock className="w-3.5 h-3.5" />
+            Legal &amp; Data Protection
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-white uppercase font-display tracking-tight">
+            Privacy Policy &amp; Terms of Service
+          </h1>
+          <p className="text-xs text-slate-400">
+            Last Updated: March 2026 • <span className="whitespace-nowrap font-medium text-slate-300">Ambica Engineers &amp; Lubricants Pvt Ltd</span>
+          </p>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 uppercase font-mono tracking-tight">
-          Privacy Policy &amp; Terms of Service
-        </h1>
-        <p className="text-xs text-slate-500">
-          Last Updated: March 2026 • <span className="whitespace-nowrap font-medium">Ambica Engineers &amp; Lubricants Pvt Ltd</span>
-        </p>
-      </div>
+      </section>
 
-      <Card className="p-8 sm:p-12 space-y-8 text-xs sm:text-sm text-slate-600 leading-relaxed bg-white border border-slate-200/90 shadow-sm">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Card className="p-8 sm:p-12 space-y-8 text-xs sm:text-sm text-slate-600 leading-relaxed bg-white border border-slate-200/90 shadow-sm">
         <section className="space-y-2">
           <h2 className="text-base font-bold text-slate-900 uppercase font-mono">
             <span className="text-[#EF7D01] mr-2">1.</span> Overview &amp; Commitment
@@ -83,6 +87,7 @@ export const PrivacyPolicyPage: React.FC = () => {
           </div>
         </section>
       </Card>
+      </div>
     </div>
   );
 };

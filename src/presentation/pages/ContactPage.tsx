@@ -37,7 +37,7 @@ export const ContactPage: React.FC = () => {
   return (
     <div className="space-y-16 pb-20">
       {/* Header Banner */}
-      <section className="bg-[#0A0F1D] border-b border-slate-800 py-16 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#0A0F1D] border-b border-slate-800 pt-32 pb-16 lg:pt-36 lg:pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 bg-[#EF7D01]/10 border border-[#EF7D01]/30 px-3.5 py-1 rounded-full text-xs font-semibold text-[#EF7D01]">
             <Building2 className="w-3.5 h-3.5" />

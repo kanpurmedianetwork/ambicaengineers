@@ -87,7 +87,7 @@ export const HomePage: React.FC = () => {
   return (
     <div className="space-y-20 pb-24 bg-[#F8FAFC]">
       {/* High-Contrast Executive Navy Hero Banner with Engineering Video */}
-      <section className="relative bg-[#0A0F1D] text-white py-20 lg:py-28 overflow-hidden border-b border-slate-800">
+      <section className="relative bg-[#0A0F1D] text-white pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden border-b border-slate-800">
         {/* Cinematic Background Engineering Video */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <video

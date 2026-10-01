@@ -86,25 +86,29 @@ export const ProductDetailPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-12 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 bg-[#F8FAFC]">
-      {/* Breadcrumb & Back */}
-      <div className="flex items-center justify-between text-xs text-slate-500">
-        <button
-          onClick={() => navigate(-1)}
-          className="inline-flex items-center gap-1.5 hover:text-slate-900 transition-colors cursor-pointer font-medium"
-        >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          Back
-        </button>
+    <div className="space-y-10 pb-24 bg-[#F8FAFC]">
+      {/* Dark Breadcrumb Banner for Transparent Nav */}
+      <section className="bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-7 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-slate-400">
+          <button
+            onClick={() => navigate(-1)}
+            className="inline-flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer font-medium"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Back to Catalog
+          </button>
 
-        <div className="flex items-center gap-2">
-          <Link to="/" className="hover:text-slate-900">Home</Link>
-          <span>/</span>
-          <Link to="/products" className="hover:text-slate-900">Products</Link>
-          <span>/</span>
-          <span className="text-[#EF7D01] truncate max-w-xs font-semibold">{product.name}</span>
+          <div className="flex items-center gap-2">
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+            <span>/</span>
+            <Link to="/products" className="hover:text-white transition-colors">Products</Link>
+            <span>/</span>
+            <span className="text-[#EF7D01] truncate max-w-xs font-semibold">{product.name}</span>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
       {/* Main Product Hero / Spec Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
@@ -338,6 +342,7 @@ export const ProductDetailPage: React.FC = () => {
           </div>
         </section>
       )}
+      </div>
     </div>
   );
 };

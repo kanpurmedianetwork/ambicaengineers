@@ -82,7 +82,7 @@ export const ProductsPage: React.FC = () => {
   return (
     <div className="space-y-12 pb-20">
       {/* Header Banner */}
-      <section className="bg-[#0A0F1D] text-white border-b border-slate-800 py-16 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-16 lg:pt-36 lg:pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-3">
           <div className="text-xs font-mono font-semibold text-[#EF7D01] uppercase tracking-widest flex items-center gap-2">
             <Package className="w-4 h-4" />

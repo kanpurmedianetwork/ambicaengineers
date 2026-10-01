@@ -54,19 +54,20 @@ export const BrandPage: React.FC = () => {
   }
 
   return (
-    <div className="space-y-12 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-      {/* Back link */}
-      <div className="flex items-center gap-2 text-xs text-slate-500">
-        <Link to="/" className="hover:text-slate-900 transition-colors">Home</Link>
-        <span>/</span>
-        <Link to="/products" className="hover:text-slate-900 transition-colors">Brands</Link>
-        <span>/</span>
-        <span className="text-[#EF7D01] font-semibold">{brand.name}</span>
-      </div>
-
+    <div className="space-y-12 pb-20">
       {/* Brand Hero Banner */}
-      <section className="relative bg-[#0A0F1D] border border-slate-800 rounded-3xl p-8 sm:p-12 overflow-hidden space-y-6 shadow-xl">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-14 px-4 sm:px-6 lg:px-8 overflow-hidden shadow-xl">
+        <div className="max-w-7xl mx-auto space-y-6">
+          {/* Back link / Breadcrumbs */}
+          <div className="flex items-center gap-2 text-xs text-slate-400">
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+            <span>/</span>
+            <Link to="/products" className="hover:text-white transition-colors">Brands</Link>
+            <span>/</span>
+            <span className="text-[#EF7D01] font-semibold">{brand.name}</span>
+          </div>
+
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-4 max-w-2xl">
             <div className="flex flex-wrap items-center gap-3">
               <div className="inline-flex items-center gap-2 bg-[#EF7D01]/15 border border-[#EF7D01]/30 px-3 py-1 rounded-full text-xs font-semibold text-[#EF7D01]">
@@ -120,41 +121,44 @@ export const BrandPage: React.FC = () => {
             </span>
           ))}
         </div>
+      </div>
       </section>
 
       {/* Brand Products Grid */}
-      <section className="space-y-6">
-        <div className="flex items-center justify-between border-b border-slate-200 pb-4">
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 uppercase font-mono">
-            {brand.name} Spares &amp; Products ({products.length})
-          </h2>
-          <Link to="/products" className="text-xs font-semibold text-[#EF7D01] hover:text-[#D66D00] transition-colors">
-            View All Brands Catalog →
-          </Link>
-        </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <section className="space-y-6">
+          <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 uppercase font-mono">
+              {brand.name} Spares &amp; Products ({products.length})
+            </h2>
+            <Link to="/products" className="text-xs font-semibold text-[#EF7D01] hover:text-[#D66D00] transition-colors">
+              View All Brands Catalog →
+            </Link>
+          </div>
 
-        {products.length === 0 ? (
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-12 text-center text-xs text-slate-500 shadow-sm">
-            Additional {brand.name} spares are available upon inquiry. Contact our technical desk for part numbers and interchange specs.
-          </div>
-        ) : (
-          <div className={`grid gap-6 ${
-            products.length === 1 
-              ? 'grid-cols-1 max-w-md mx-auto'
-              : products.length === 2 
-                ? 'grid-cols-1 sm:grid-cols-2 max-w-4xl mx-auto' 
-                : products.length === 4 
-                  ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' 
-                  : products.length % 3 === 0 
-                    ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' 
-                    : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
-          }`}>
-            {products.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
-        )}
-      </section>
+          {products.length === 0 ? (
+            <div className="bg-white border border-slate-200/90 rounded-2xl p-12 text-center text-xs text-slate-500 shadow-sm">
+              Additional {brand.name} spares are available upon inquiry. Contact our technical desk for part numbers and interchange specs.
+            </div>
+          ) : (
+            <div className={`grid gap-6 ${
+              products.length === 1 
+                ? 'grid-cols-1 max-w-md mx-auto' 
+                : products.length === 2 
+                  ? 'grid-cols-1 sm:grid-cols-2 max-w-4xl mx-auto' 
+                  : products.length === 4 
+                    ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' 
+                    : products.length % 3 === 0 
+                      ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' 
+                      : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+            }`}>
+              {products.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+          )}
+        </section>
+      </div>
     </div>
   );
 };

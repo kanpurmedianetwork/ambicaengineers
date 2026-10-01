@@ -52,7 +52,7 @@ export const AboutPage: React.FC = () => {
   return (
     <div className="space-y-20 pb-24 bg-[#F8FAFC]">
       {/* Header Banner */}
-      <section className="bg-[#0A0F1D] text-white border-b border-slate-800 py-16 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-16 lg:pt-36 lg:pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 bg-orange-950/60 border border-[#EF7D01]/50 px-3.5 py-1 rounded-full text-xs font-mono font-semibold text-[#EF7D01] whitespace-nowrap">
             <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
