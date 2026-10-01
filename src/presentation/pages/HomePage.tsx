@@ -649,7 +649,7 @@ export const HomePage: React.FC = () => {
                   <div className="text-[10px] font-mono font-bold text-[#EF7D01] uppercase tracking-wider">
                     CHAIRMAN &amp; MANAGING DIRECTOR
                   </div>
-                  <div className="text-xs font-bold text-white uppercase font-display tracking-tight mt-0.5">
+                  <div className="text-xs font-bold text-white uppercase font-executive tracking-wider mt-0.5">
                     {companyData.managingDirector}
                   </div>
                 </div>
@@ -673,7 +673,7 @@ export const HomePage: React.FC = () => {
 
               <div className="pt-3 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <div className="text-lg font-bold text-white uppercase font-display">
+                  <div className="text-lg sm:text-xl font-bold text-white uppercase font-executive tracking-wider">
                     {companyData.managingDirector}
                   </div>
                   <div className="text-xs text-[#EF7D01] font-mono font-semibold">
@@ -684,7 +684,7 @@ export const HomePage: React.FC = () => {
                 <div className="flex items-center gap-4">
                   <img
                     src="/images/leadership/mohit-signature.png"
-                    alt="Signature of Mohit Abhay Raj Chhajer, CMD"
+                    alt="Signature of Mohit Abhayraj Chhajer, CMD"
                     width={140}
                     height={45}
                     loading="lazy"

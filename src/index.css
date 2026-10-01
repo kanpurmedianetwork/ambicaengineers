@@ -4,6 +4,7 @@
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-executive: 'Cinzel', 'Playfair Display', Georgia, serif;
 }
 
 @layer base {
@@ -33,6 +34,11 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
+  }
+
+  .font-executive {
+    font-family: var(--font-executive);
+    letter-spacing: 0.06em;
   }
 
   code, pre, .font-mono {

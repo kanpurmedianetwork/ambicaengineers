@@ -167,7 +167,7 @@ export const AboutPage: React.FC = () => {
                     <div className="text-[10px] font-mono font-bold text-[#EF7D01] uppercase tracking-wider">
                       CHAIRMAN &amp; MANAGING DIRECTOR
                     </div>
-                    <div className="text-sm font-extrabold text-white uppercase font-display tracking-tight mt-0.5">
+                    <div className="text-sm sm:text-base font-bold text-white uppercase font-executive tracking-wider mt-0.5">
                       {companyData.managingDirector}
                     </div>
                   </div>
@@ -224,7 +224,7 @@ export const AboutPage: React.FC = () => {
               {/* Signature Block */}
               <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                 <div>
-                  <div className="text-xl sm:text-2xl font-extrabold text-white uppercase font-display tracking-tight">
+                  <div className="text-2xl sm:text-3xl font-bold text-white uppercase font-executive tracking-wider">
                     {companyData.managingDirector}
                   </div>
                   <div className="text-sm font-semibold text-[#EF7D01] font-mono mt-0.5">
@@ -240,7 +240,7 @@ export const AboutPage: React.FC = () => {
                   <div className="inline-block p-2 rounded-xl bg-white/5 border border-slate-800">
                     <img
                       src="/images/leadership/mohit-signature.png"
-                      alt="Signature of Mohit Abhay Raj Chhajer, CMD"
+                      alt="Signature of Mohit Abhayraj Chhajer, CMD"
                       width={180}
                       height={60}
                       loading="lazy"
