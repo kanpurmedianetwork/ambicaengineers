@@ -13,7 +13,8 @@ import {
   Zap,
   Globe2,
   Check,
-  Plus
+  Plus,
+  Quote
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
@@ -619,6 +620,84 @@ export const HomePage: React.FC = () => {
                   Request Custom Cut Quote
                 </Button>
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Chairman & Managing Director (CMD) Leadership Spotlight */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative rounded-3xl bg-[#0A0F1D] border-2 border-slate-800 p-8 sm:p-12 shadow-2xl overflow-hidden">
+          <Quote className="w-64 h-64 text-white/[0.03] absolute -bottom-12 -right-12 pointer-events-none" />
+          <div className="absolute top-0 right-1/4 w-80 h-80 bg-[#EF7D01]/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+            {/* CMD Portrait */}
+            <div className="lg:col-span-4 flex justify-center lg:justify-start">
+              <div className="relative w-56 sm:w-64 aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#EF7D01]/60 shadow-2xl bg-slate-900 group shrink-0">
+                <img
+                  src="/images/leadership/mohit-chhajer-md.webp"
+                  alt={`${companyData.managingDirector} - Chairman & Managing Director`}
+                  width={976}
+                  height={994}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover object-top filter brightness-105 contrast-105 group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1D] via-transparent to-transparent opacity-85" />
+                <div className="absolute bottom-3 inset-x-3 p-2.5 rounded-xl bg-[#0A0F1D]/80 backdrop-blur-md border border-slate-700/80 text-center">
+                  <div className="text-[10px] font-mono font-bold text-[#EF7D01] uppercase tracking-wider">
+                    CHAIRMAN &amp; MANAGING DIRECTOR
+                  </div>
+                  <div className="text-xs font-bold text-white uppercase font-display tracking-tight mt-0.5">
+                    {companyData.managingDirector}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CMD Quote & Vision */}
+            <div className="lg:col-span-8 space-y-5 text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EF7D01]/15 border border-[#EF7D01]/30 text-[#EF7D01] text-xs font-mono font-bold uppercase tracking-wider">
+                <Quote className="w-3.5 h-3.5" />
+                Executive Leadership Perspective
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white uppercase font-display tracking-tight leading-tight">
+                "Our Success Has Always Been Driven By Quality, Reliability &amp; Customer Trust"
+              </h2>
+
+              <blockquote className="text-sm sm:text-base text-slate-200 leading-relaxed italic border-l-2 border-[#EF7D01] pl-4 sm:pl-5 font-normal">
+                &ldquo;{companyData.mdMessage}&rdquo;
+              </blockquote>
+
+              <div className="pt-3 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <div className="text-lg font-bold text-white uppercase font-display">
+                    {companyData.managingDirector}
+                  </div>
+                  <div className="text-xs text-[#EF7D01] font-mono font-semibold">
+                    Chairman &amp; Managing Director • Ambica Engineers
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <img
+                    src="/images/leadership/mohit-signature.png"
+                    alt="Signature of Mohit Abhay Raj Chhajer, CMD"
+                    width={140}
+                    height={45}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-10 sm:h-11 w-auto object-contain filter brightness-110 drop-shadow-[0_2px_8px_rgba(255,255,255,0.2)] hidden sm:block"
+                  />
+                  <Link to="/about-us">
+                    <Button variant="outline" size="sm" className="border-slate-700 text-white hover:bg-white/10" icon={<ArrowRight className="w-3.5 h-3.5" />}>
+                      Read Full Address
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
