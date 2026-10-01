@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   Phone, 
@@ -9,9 +9,9 @@ import {
   Cpu, 
   Layers, 
   Flame, 
-  Activity,
-  ArrowRight,
-  Send
+  Activity, 
+  ArrowRight, 
+  Send 
 } from 'lucide-react';
 import { useRFQ } from '../../context/RFQContext';
 import { companyData } from '../../../infrastructure/data/company.data';
@@ -21,8 +21,18 @@ export const Navbar: React.FC = () => {
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
   const [brandsDropdownOpen, setBrandsDropdownOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { totalItemCount, openDrawer } = useRFQ();
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 15);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/';
@@ -30,7 +40,11 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#0A0F1D]/95 backdrop-blur-md border-b border-slate-800/80 transition-all">
+    <header className={`sticky top-0 z-40 w-full transition-all duration-300 ${
+      scrolled 
+        ? 'bg-[#0A0F1D]/80 backdrop-blur-2xl border-b border-white/10 shadow-xl shadow-black/25' 
+        : 'bg-[#0A0F1D]/65 backdrop-blur-xl border-b border-white/[0.08] shadow-sm'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Official Brand Logo */}
@@ -66,8 +80,8 @@ export const Navbar: React.FC = () => {
               </Link>
 
               {productsDropdownOpen && (
-                <div className="absolute top-full left-0 w-80 bg-[#0A0F1D]/98 backdrop-blur-xl border border-slate-700/80 rounded-2xl shadow-2xl p-2.5 z-50 ring-1 ring-white/10 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <div className="text-[11px] font-mono font-bold text-[#EF7D01] uppercase tracking-wider px-3 py-1.5 border-b border-slate-800/80 mb-1 flex items-center justify-between">
+                <div className="absolute top-full left-0 w-80 bg-[#0A0F1D]/85 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl p-2.5 z-50 ring-1 ring-white/10 animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="text-[11px] font-mono font-bold text-[#EF7D01] uppercase tracking-wider px-3 py-1.5 border-b border-white/10 mb-1 flex items-center justify-between">
                     <span>Industrial Product Lines</span>
                     <span className="text-[10px] text-slate-400 font-normal">350-Bar Heavy Duty</span>
                   </div>
@@ -125,7 +139,7 @@ export const Navbar: React.FC = () => {
                       </div>
                     </Link>
                   </div>
-                  <div className="p-2 pt-2.5 border-t border-slate-800/80 mt-1">
+                  <div className="p-2 pt-2.5 border-t border-white/10 mt-1">
                     <Link 
                       to="/products"
                       onClick={() => setProductsDropdownOpen(false)}
@@ -168,8 +182,8 @@ export const Navbar: React.FC = () => {
               </button>
 
               {brandsDropdownOpen && (
-                <div className="absolute top-full left-0 w-64 bg-[#0A0F1D]/98 backdrop-blur-xl border border-slate-700/80 rounded-2xl shadow-2xl p-2.5 z-50 ring-1 ring-white/10 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <div className="text-[11px] font-mono font-bold text-[#EF7D01] uppercase tracking-wider px-3 py-1.5 border-b border-slate-800/80 mb-1">
+                <div className="absolute top-full left-0 w-64 bg-[#0A0F1D]/85 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl p-2.5 z-50 ring-1 ring-white/10 animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="text-[11px] font-mono font-bold text-[#EF7D01] uppercase tracking-wider px-3 py-1.5 border-b border-white/10 mb-1">
                     OEM Partner Brands
                   </div>
                   <div className="py-1 space-y-0.5">
@@ -215,7 +229,7 @@ export const Navbar: React.FC = () => {
               </Link>
 
               {aboutDropdownOpen && (
-                <div className="absolute top-full left-0 w-64 bg-[#0A0F1D]/98 backdrop-blur-xl border border-slate-700/80 rounded-2xl shadow-2xl p-2.5 z-50 ring-1 ring-white/10 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="absolute top-full left-0 w-64 bg-[#0A0F1D]/85 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl p-2.5 z-50 ring-1 ring-white/10 animate-in fade-in slide-in-from-top-2 duration-150">
                   <div className="py-1 space-y-1">
                     <Link 
                       to="/about-us" 
@@ -256,7 +270,7 @@ export const Navbar: React.FC = () => {
             {/* Quick Contact Link (Direct, quiet, elegant) */}
             <a 
               href={`tel:${companyData.contact.primaryPhone.replace(/\s+/g, '')}`} 
-              className="hidden xl:flex items-center gap-2 text-sm text-slate-200 hover:text-[#EF7D01] transition-all font-mono font-medium py-2 px-3 rounded-xl hover:bg-white/10 border border-slate-800"
+              className="hidden xl:flex items-center gap-2 text-sm text-slate-200 hover:text-[#EF7D01] transition-all font-mono font-medium py-2 px-3 rounded-xl bg-white/[0.04] hover:bg-white/10 border border-white/10"
               title="Call Technical Support"
             >
               <Phone className="w-4 h-4 text-[#EF7D01]" />
@@ -268,7 +282,7 @@ export const Navbar: React.FC = () => {
               href={`https://wa.me/${companyData.contact.whatsappNumber}?text=${encodeURIComponent("Hello Ambica Engineers team, I would like to inquire about hydraulic spares and engineering solutions.")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center justify-center text-slate-300 hover:text-emerald-400 p-2.5 rounded-xl hover:bg-white/10 transition-colors border border-slate-800 cursor-pointer"
+              className="hidden sm:inline-flex items-center justify-center text-slate-300 hover:text-emerald-400 p-2.5 rounded-xl bg-white/[0.04] hover:bg-white/10 transition-colors border border-white/10 cursor-pointer"
               title="WhatsApp Engineering Chat"
               aria-label="WhatsApp Engineering Chat"
             >
@@ -293,7 +307,7 @@ export const Navbar: React.FC = () => {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer border border-slate-800"
+              className="lg:hidden p-2.5 rounded-xl text-slate-300 hover:text-white bg-white/[0.04] hover:bg-white/10 transition-colors cursor-pointer border border-white/10"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -304,7 +318,7 @@ export const Navbar: React.FC = () => {
 
       {/* Clean Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0A0F1D]/98 backdrop-blur-xl border-b border-slate-800 px-6 pt-4 pb-8 space-y-3 animate-in fade-in slide-in-from-top-2 duration-150">
+        <div className="lg:hidden bg-[#0A0F1D]/90 backdrop-blur-2xl border-b border-white/10 px-6 pt-4 pb-8 space-y-3 animate-in fade-in slide-in-from-top-2 duration-150">
           <Link
             to="/products"
             onClick={() => setMobileMenuOpen(false)}
