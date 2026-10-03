@@ -57,7 +57,13 @@ export const BrandPage: React.FC = () => {
     <div className="space-y-12 pb-20">
       {/* Brand Hero Banner */}
       <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-14 px-4 sm:px-6 lg:px-8 overflow-hidden shadow-xl">
-        <div className="max-w-7xl mx-auto space-y-6">
+        {/* Ambient Top Glow & Engineering Precision Grid for Transparent Nav */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[1100px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(239,125,1,0.22),transparent_70%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_20%,#000_60%,transparent_100%)] opacity-80" />
+        </div>
+
+        <div className="max-w-7xl mx-auto space-y-6 relative z-10">
           {/* Back link / Breadcrumbs */}
           <div className="flex items-center gap-2 text-xs text-slate-400">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>

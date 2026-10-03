@@ -102,8 +102,8 @@ export const HomePage: React.FC = () => {
             <source src="/videos/hero-engineering.webm" type="video/webm" />
           </video>
           {/* Multi-layered dark cinematic gradient overlays for pristine contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0F1D] via-[#0A0F1D]/80 via-50% to-[#0A0F1D]/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1D] via-transparent via-50% to-[#0A0F1D]/75" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0F1D] via-[#0A0F1D]/70 via-50% to-[#0A0F1D]/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1D] via-transparent via-50% to-transparent" />
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
