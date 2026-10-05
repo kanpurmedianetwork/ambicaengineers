@@ -1,8 +1,8 @@
 import { CompanyInfo, Milestone } from '../../domain/entities/CompanyInfo';
 
 export const companyData: CompanyInfo = {
-  legalName: "Ambica Engineers & Lubricants Pvt Ltd",
-  brandName: "Ambica Engineers",
+  legalName: "Ambica Engineers Ltd",
+  brandName: "Ambica Engineers Ltd",
   foundedYear: 2013,
   legacyYear: 1982,
   tagline: "Engineering Solutions That Drive Industry",

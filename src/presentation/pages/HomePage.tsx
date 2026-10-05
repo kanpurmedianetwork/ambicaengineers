@@ -96,7 +96,7 @@ export const HomePage: React.FC = () => {
             loop
             muted
             playsInline
-            poster="/images/hero-engineering.jpg"
+            poster="/images/products/continuous-line-machinery.webp"
             className="w-full h-full object-cover object-center scale-105 opacity-65 filter contrast-120 brightness-95"
           >
             <source src="/videos/hero-engineering.webm" type="video/webm" />
@@ -667,7 +667,7 @@ export const HomePage: React.FC = () => {
                 "Our Success Has Always Been Driven By Quality, Reliability &amp; Customer Trust"
               </h2>
 
-              <blockquote className="text-sm sm:text-base text-slate-200 leading-relaxed italic border-l-2 border-[#EF7D01] pl-4 sm:pl-5 font-normal">
+              <blockquote className="text-sm sm:text-base text-slate-200 leading-relaxed not-italic font-sans border-l-2 border-[#EF7D01] pl-4 sm:pl-5 font-normal">
                 &ldquo;{companyData.mdMessage}&rdquo;
               </blockquote>
 
@@ -677,7 +677,7 @@ export const HomePage: React.FC = () => {
                     {companyData.managingDirector}
                   </div>
                   <div className="text-xs text-[#EF7D01] font-mono font-semibold">
-                    Chairman &amp; Managing Director • Ambica Engineers
+                    Chairman &amp; Managing Director • {companyData.brandName}
                   </div>
                 </div>
 

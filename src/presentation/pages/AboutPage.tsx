@@ -202,7 +202,7 @@ export const AboutPage: React.FC = () => {
               </h2>
 
               {/* Prominent Large Message */}
-              <div className="space-y-4 text-slate-200 text-base sm:text-lg leading-relaxed italic border-l-2 border-[#EF7D01] pl-5 sm:pl-6 bg-white/[0.02] py-2 rounded-r-xl font-normal">
+              <div className="space-y-4 text-slate-200 text-base sm:text-lg leading-relaxed not-italic font-sans border-l-2 border-[#EF7D01] pl-5 sm:pl-6 bg-white/[0.02] py-2 rounded-r-xl font-normal">
                 <p>
                   &ldquo;At Ambica Engineers, our success has always been driven by a commitment to quality, reliability, and customer satisfaction. Over the years, we have built strong partnerships with manufacturers across India by delivering trusted hydraulic components, industrial lubricants, machinery spares, and engineering solutions.
                 </p>
@@ -234,10 +234,7 @@ export const AboutPage: React.FC = () => {
                     {companyData.managingDirector}
                   </div>
                   <div className="text-sm font-semibold text-[#EF7D01] font-mono mt-0.5">
-                    Chairman &amp; Managing Director (CMD)
-                  </div>
-                  <div className="text-xs text-slate-400 mt-0.5 font-medium">
-                    Ambica Engineers &amp; Lubricants Pvt Ltd
+                    Chairman &amp; Managing Director (CMD) • {companyData.brandName}
                   </div>
                 </div>
 

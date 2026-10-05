@@ -154,7 +154,7 @@ export const ContactPage: React.FC = () => {
               {/* Exact Google Map Iframe Pin */}
               <div className="h-64 w-full relative">
                 <iframe
-                  title="Ambica Engineers & Lubricants Pvt Ltd Sovereign Corporate Tower Noida Map"
+                  title="Ambica Engineers Ltd Sovereign Corporate Tower Noida Map"
                   src="https://maps.google.com/maps?q=28.5050948,77.3991225&hl=en&z=17&output=embed"
                   width="100%"
                   height="100%"
