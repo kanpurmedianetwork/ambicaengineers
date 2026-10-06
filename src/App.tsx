@@ -21,7 +21,7 @@ export const App: React.FC = () => {
   return (
     <RFQProvider>
       <BrowserRouter>
-        <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-slate-900 selection:bg-[#EF7D01] selection:text-white font-sans antialiased">
+        <div className="min-h-screen flex flex-col bg-[#0A0F1D] text-slate-900 selection:bg-[#EF7D01] selection:text-white font-sans antialiased">
           <Navbar />
           
           <main className="flex-1">
