@@ -23,7 +23,7 @@ export const PrivacyPolicyPage: React.FC = () => {
             Privacy Policy &amp; Terms of Service
           </h1>
           <p className="text-xs text-slate-400">
-            Last Updated: March 2026 • <span className="whitespace-nowrap font-medium text-slate-300">Ambica Engineers Ltd</span>
+            Last Updated: March 2026 • <span className="whitespace-nowrap font-medium text-slate-300">Ambica Engineers &amp; Lubricants Ltd</span>
           </p>
         </div>
       </section>
@@ -31,16 +31,16 @@ export const PrivacyPolicyPage: React.FC = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <Card className="p-8 sm:p-12 space-y-8 text-xs sm:text-sm text-slate-600 leading-relaxed bg-white border border-slate-200/90 shadow-sm">
         <section className="space-y-2">
-          <h2 className="text-base font-bold text-slate-900 uppercase font-mono">
+          <h2 className="text-base font-bold text-slate-900 uppercase font-display">
             <span className="text-[#EF7D01] mr-2">1.</span> Overview &amp; Commitment
           </h2>
           <p>
-            At <span className="whitespace-nowrap font-medium text-slate-900">Ambica Engineers Ltd</span> (&ldquo;Ambica Engineers&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), we respect the privacy of our industrial clients, procurement managers, and website visitors. This Privacy Policy sets forth our practices regarding the collection, storage, and handling of business and personal information provided through our website (<a href="https://www.ambicaengineers.in" className="text-[#EF7D01] underline">www.ambicaengineers.in</a>) and related inquiry services.
+            At <span className="whitespace-nowrap font-medium text-slate-900">Ambica Engineers &amp; Lubricants Ltd</span> (&ldquo;Ambica Engineers&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), we respect the privacy of our industrial clients, procurement managers, and website visitors. This Privacy Policy sets forth our practices regarding the collection, storage, and handling of business and personal information provided through our website (<a href="https://www.ambicaengineers.in" className="text-[#EF7D01] underline">www.ambicaengineers.in</a>) and related inquiry services.
           </p>
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-base font-bold text-slate-900 uppercase font-mono">
+          <h2 className="text-base font-bold text-slate-900 uppercase font-display">
             <span className="text-[#EF7D01] mr-2">2.</span> Information We Collect
           </h2>
           <p>
@@ -54,7 +54,7 @@ export const PrivacyPolicyPage: React.FC = () => {
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-base font-bold text-slate-900 uppercase font-mono">
+          <h2 className="text-base font-bold text-slate-900 uppercase font-display">
             <span className="text-[#EF7D01] mr-2">3.</span> Use of Business Information
           </h2>
           <p>
@@ -69,7 +69,7 @@ export const PrivacyPolicyPage: React.FC = () => {
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-base font-bold text-slate-900 uppercase font-mono">
+          <h2 className="text-base font-bold text-slate-900 uppercase font-display">
             <span className="text-[#EF7D01] mr-2">4.</span> Data Security &amp; Non-Disclosure
           </h2>
           <p>
@@ -78,14 +78,14 @@ export const PrivacyPolicyPage: React.FC = () => {
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-base font-bold text-slate-900 uppercase font-mono">
+          <h2 className="text-base font-bold text-slate-900 uppercase font-display">
             <span className="text-[#EF7D01] mr-2">5.</span> Contact Information
           </h2>
           <p>
             For inquiries regarding our privacy standards or to update your company contact records, please reach us at:
           </p>
           <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 text-xs font-mono space-y-1.5 text-slate-700">
-            <div className="font-bold text-slate-900 whitespace-nowrap">Ambica Engineers Ltd</div>
+            <div className="font-bold text-slate-900 whitespace-nowrap">Ambica Engineers &amp; Lubricants Ltd</div>
             <div>Attn: Compliance &amp; Legal Desk</div>
             <div>5th Floor, Sovereign Corporate Tower, Sector 136, Noida, UP 201304</div>
             <div>Email: <a href={`mailto:${companyData.contact.primaryEmail}`} className="text-[#EF7D01] hover:underline">{companyData.contact.primaryEmail}</a></div>

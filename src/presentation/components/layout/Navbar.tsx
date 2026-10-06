@@ -51,7 +51,7 @@ export const Navbar: React.FC = () => {
           <Link to="/" className="flex items-center shrink-0 py-2">
             <img 
               src="/images/logo.png" 
-              alt="Ambica Engineers Ltd" 
+              alt="Ambica Engineers & Lubricants Ltd" 
               className="h-11 sm:h-12 w-auto object-contain brightness-115 drop-shadow-[0_2px_12px_rgba(239,125,1,0.25)]" 
               onError={(e) => {
                 e.currentTarget.style.display = 'none';

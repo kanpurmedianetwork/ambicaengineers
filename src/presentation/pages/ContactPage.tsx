@@ -49,7 +49,7 @@ export const ContactPage: React.FC = () => {
             <Building2 className="w-3.5 h-3.5" />
             Noida Experience Centre &amp; Headquarters
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white uppercase font-mono tracking-tight">
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white uppercase font-display tracking-tight">
             CONTACT &amp; ENGINEERING DESK
           </h1>
           <p className="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
@@ -69,8 +69,8 @@ export const ContactPage: React.FC = () => {
                   <Building2 className="w-3.5 h-3.5" />
                   Corporate Headquarters
                 </div>
-                <h2 className="text-[13px] xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-900 uppercase font-mono whitespace-nowrap tracking-tight overflow-hidden text-ellipsis">
-                  Ambica Engineers &amp; Lubricants Pvt Ltd
+                <h2 className="text-[clamp(12px,2vw,22px)] font-extrabold text-slate-900 uppercase whitespace-nowrap tracking-tight">
+                  Ambica Engineers &amp; Lubricants Ltd
                 </h2>
               </div>
 
@@ -154,7 +154,7 @@ export const ContactPage: React.FC = () => {
               {/* Exact Google Map Iframe Pin */}
               <div className="h-64 w-full relative">
                 <iframe
-                  title="Ambica Engineers Ltd Sovereign Corporate Tower Noida Map"
+                  title="Ambica Engineers & Lubricants Ltd Sovereign Corporate Tower Noida Map"
                   src="https://maps.google.com/maps?q=28.5050948,77.3991225&hl=en&z=17&output=embed"
                   width="100%"
                   height="100%"

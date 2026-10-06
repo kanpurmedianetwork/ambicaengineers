@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-executive: 'Cinzel', 'Playfair Display', Georgia, serif;
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-executive: 'Outfit', system-ui, -apple-system, sans-serif;
 }
 
 @layer base {
@@ -19,10 +19,14 @@
     --color-border: #E2E8F0;
   }
 
+  *, ::before, ::after {
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif !important;
+  }
+
   body {
     margin: 0;
     padding: 0;
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif !important;
     background-color: #F8FAFC;
     color: #1E293B;
     overflow-x: hidden;
@@ -32,17 +36,16 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif !important;
     letter-spacing: -0.02em;
   }
 
-  .font-executive {
-    font-family: var(--font-executive);
-    letter-spacing: 0.06em;
+  .font-display, .font-sans, .font-executive, .font-mono, code, pre {
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif !important;
   }
 
-  code, pre, .font-mono {
-    font-family: 'JetBrains Mono', monospace;
+  .font-executive {
+    letter-spacing: 0.03em;
   }
 }
 
