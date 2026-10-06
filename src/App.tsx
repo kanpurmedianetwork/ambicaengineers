@@ -7,14 +7,15 @@ import { RFQDrawer } from './presentation/components/rfq/RFQDrawer';
 import { FloatingRFQButton } from './presentation/components/rfq/FloatingRFQButton';
 
 import { HomePage } from './presentation/pages/HomePage';
-import { AboutPage } from './presentation/pages/AboutPage';
-import { ProductsPage } from './presentation/pages/ProductsPage';
-import { ProductDetailPage } from './presentation/pages/ProductDetailPage';
-import { BrandPage } from './presentation/pages/BrandPage';
-import { WoodPanelSolutionsPage } from './presentation/pages/WoodPanelSolutionsPage';
-import { EventsPage } from './presentation/pages/EventsPage';
-import { ContactPage } from './presentation/pages/ContactPage';
-import { PrivacyPolicyPage } from './presentation/pages/PrivacyPolicyPage';
+
+const AboutPage = React.lazy(() => import('./presentation/pages/AboutPage').then(m => ({ default: m.AboutPage })));
+const ProductsPage = React.lazy(() => import('./presentation/pages/ProductsPage').then(m => ({ default: m.ProductsPage })));
+const ProductDetailPage = React.lazy(() => import('./presentation/pages/ProductDetailPage').then(m => ({ default: m.ProductDetailPage })));
+const BrandPage = React.lazy(() => import('./presentation/pages/BrandPage').then(m => ({ default: m.BrandPage })));
+const WoodPanelSolutionsPage = React.lazy(() => import('./presentation/pages/WoodPanelSolutionsPage').then(m => ({ default: m.WoodPanelSolutionsPage })));
+const EventsPage = React.lazy(() => import('./presentation/pages/EventsPage').then(m => ({ default: m.EventsPage })));
+const ContactPage = React.lazy(() => import('./presentation/pages/ContactPage').then(m => ({ default: m.ContactPage })));
+const PrivacyPolicyPage = React.lazy(() => import('./presentation/pages/PrivacyPolicyPage').then(m => ({ default: m.PrivacyPolicyPage })));
 
 export const App: React.FC = () => {
   return (
@@ -24,20 +25,25 @@ export const App: React.FC = () => {
           <Navbar />
           
           <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about-us" element={<AboutPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/products/:slug" element={<ProductDetailPage />} />
-              <Route path="/product-page/:slug" element={<ProductDetailPage />} />
-              <Route path="/items/:slug" element={<ProductDetailPage />} />
-              <Route path="/brands/:brandId" element={<BrandPage />} />
-              <Route path="/solutions/wood-panel" element={<WoodPanelSolutionsPage />} />
-              <Route path="/wood-panel-solutions" element={<WoodPanelSolutionsPage />} />
-              <Route path="/events" element={<EventsPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <React.Suspense fallback={
+              <div className="min-h-[50vh] flex items-center justify-center">
+                <div className="w-8 h-8 border-3 border-[#EF7D01] border-t-transparent rounded-full animate-spin" />
+              </div>
+            }>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about-us" element={<AboutPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/products" element={<ProductsPage />} />
+                <Route path="/products/:slug" element={<ProductDetailPage />} />
+                <Route path="/product-page/:slug" element={<ProductDetailPage />} />
+                <Route path="/items/:slug" element={<ProductDetailPage />} />
+                <Route path="/brands/:brandId" element={<BrandPage />} />
+                <Route path="/solutions/wood-panel" element={<WoodPanelSolutionsPage />} />
+                <Route path="/wood-panel-solutions" element={<WoodPanelSolutionsPage />} />
+                <Route path="/events" element={<EventsPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 
               {/* Backward compatibility with old Wix routes */}
               <Route path="/blank-38" element={<Navigate to="/events" replace />} />
@@ -62,7 +68,8 @@ export const App: React.FC = () => {
               <Route path="/home" element={<Navigate to="/" replace />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-          </main>
+          </React.Suspense>
+        </main>
 
           <Footer />
           <RFQDrawer />

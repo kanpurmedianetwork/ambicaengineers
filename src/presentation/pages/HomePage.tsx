@@ -35,7 +35,7 @@ export const HomePage: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (videoRef.current) {
+    if (videoRef.current && typeof window !== 'undefined' && window.innerWidth >= 768) {
       videoRef.current.defaultMuted = true;
       videoRef.current.muted = true;
       videoRef.current.play().catch(() => {
@@ -96,10 +96,11 @@ export const HomePage: React.FC = () => {
             loop
             muted
             playsInline
+            preload="none"
             poster="/images/products/continuous-line-machinery.webp"
             className="w-full h-full object-cover object-center scale-105 opacity-65 filter contrast-120 brightness-95"
           >
-            <source src="/videos/hero-engineering.webm" type="video/webm" />
+            <source src="/videos/hero-engineering.webm" media="(min-width: 768px)" type="video/webm" />
           </video>
           {/* Multi-layered dark cinematic gradient overlays for pristine contrast */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0F1D] via-[#0A0F1D]/70 via-50% to-[#0A0F1D]/30" />
