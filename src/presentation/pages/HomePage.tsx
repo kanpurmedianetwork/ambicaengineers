@@ -25,6 +25,7 @@ import { brandsData } from '../../infrastructure/data/brands.data';
 import { companyData } from '../../infrastructure/data/company.data';
 import { useRFQ } from '../context/RFQContext';
 import { ClientMarquee } from '../components/home/ClientMarquee';
+import { SEOHead } from '../components/common/SEOHead';
 
 export const HomePage: React.FC = () => {
   const { addItem, isInRFQ, openDrawer } = useRFQ();
@@ -86,6 +87,7 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="space-y-20 pb-24 bg-[#F8FAFC]">
+      <SEOHead canonicalPath="/" />
       {/* High-Contrast Executive Navy Hero Banner with Engineering Video */}
       <section className="relative bg-[#0A0F1D] text-white pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden border-b border-slate-800">
         {/* Cinematic Background Engineering Video */}

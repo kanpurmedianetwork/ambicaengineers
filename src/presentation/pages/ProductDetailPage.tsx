@@ -17,6 +17,7 @@ import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { ProductCard } from '../components/catalog/ProductCard';
 import { companyData } from '../../infrastructure/data/company.data';
+import { SEOHead } from '../components/common/SEOHead';
 
 export const ProductDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -87,6 +88,13 @@ export const ProductDetailPage: React.FC = () => {
 
   return (
     <div className="space-y-10 pb-24 bg-[#F8FAFC]">
+      <SEOHead 
+        title={`${product.name} | Ambica Engineers & Lubricants Ltd`}
+        description={product.shortDescription || `${product.name} (${product.series}) from ${product.brand.toUpperCase()}. Authorized supply with technical support.`}
+        canonicalPath={`/products/${product.slug}`}
+        image={product.imageUrl.startsWith('http') ? product.imageUrl : `https://www.ambicaengineers.in${product.imageUrl}`}
+        type="product"
+      />
       {/* Dark Breadcrumb Banner for Transparent Nav */}
       <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-7 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Ambient Top Glow & Engineering Precision Grid for Transparent Nav */}

@@ -6,6 +6,7 @@ import { Brand } from '../../domain/entities/Brand';
 import { productRepository } from '../../infrastructure/repositories/ProductRepositoryImpl';
 import { ProductCard } from '../components/catalog/ProductCard';
 import { Button } from '../components/ui/Button';
+import { SEOHead } from '../components/common/SEOHead';
 
 export const BrandPage: React.FC = () => {
   const { brandId } = useParams<{ brandId: string }>();
@@ -55,6 +56,12 @@ export const BrandPage: React.FC = () => {
 
   return (
     <div className="space-y-12 pb-20">
+      <SEOHead 
+        title={`${brand.name} Hydraulic Products & Spares | Ambica Engineers & Lubricants Ltd`}
+        description={brand.description || `Authorized distributor of ${brand.name} components, hydraulic systems, and spare parts in India.`}
+        canonicalPath={`/brands/${brand.id}`}
+        image={brand.logoUrl ? (brand.logoUrl.startsWith('http') ? brand.logoUrl : `https://www.ambicaengineers.in${brand.logoUrl}`) : undefined}
+      />
       {/* Brand Hero Banner */}
       <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-14 px-4 sm:px-6 lg:px-8 overflow-hidden shadow-xl">
         {/* Ambient Top Glow & Engineering Precision Grid for Transparent Nav */}

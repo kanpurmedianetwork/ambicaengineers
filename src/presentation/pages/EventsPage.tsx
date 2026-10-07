@@ -5,10 +5,16 @@ import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
+import { SEOHead } from '../components/common/SEOHead';
 
 export const EventsPage: React.FC = () => {
   return (
     <div className="space-y-16 pb-20">
+      <SEOHead 
+        title="Events & Industrial Expos | Ambica Engineers & Lubricants Ltd"
+        description="Explore Ambica Engineers & Lubricants Ltd trade fairs, industry exhibitions, and summit participations across South Asia."
+        canonicalPath="/events"
+      />
       {/* Header Banner */}
       <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-16 lg:pt-36 lg:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Ambient Top Glow & Engineering Precision Grid for Transparent Nav */}

@@ -4,6 +4,7 @@ import { Flame, Layers, ArrowRight, CheckCircle2, Cpu, Wrench } from 'lucide-rea
 import { Button } from '../components/ui/Button';
 import { ProductCard } from '../components/catalog/ProductCard';
 import { productsData } from '../../infrastructure/data/products.data';
+import { SEOHead } from '../components/common/SEOHead';
 
 export const WoodPanelSolutionsPage: React.FC = () => {
   const woodProducts = productsData.filter(
@@ -12,6 +13,11 @@ export const WoodPanelSolutionsPage: React.FC = () => {
 
   return (
     <div className="space-y-16 pb-24 bg-[#F8FAFC]">
+      <SEOHead 
+        title="Wood Panel & MDF Manufacturing Solutions | Ambica Engineers & Lubricants Ltd"
+        description="European silicone cushion pads, hot press spare parts, and continuous production machinery for MDF, particle board, and laminate plants."
+        canonicalPath="/solutions/wood-panel"
+      />
       {/* Header Banner */}
       <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-16 lg:pt-36 lg:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Ambient Top Glow & Engineering Precision Grid for Transparent Nav */}

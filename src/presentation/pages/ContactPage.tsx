@@ -4,6 +4,7 @@ import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { companyData } from '../../infrastructure/data/company.data';
 import { inquiryService } from '../../infrastructure/repositories/InquiryServiceImpl';
+import { SEOHead } from '../components/common/SEOHead';
 
 export const ContactPage: React.FC = () => {
   const [name, setName] = useState('');
@@ -36,6 +37,11 @@ export const ContactPage: React.FC = () => {
 
   return (
     <div className="space-y-16 pb-20">
+      <SEOHead 
+        title="Contact Us | Ambica Engineers & Lubricants Ltd"
+        description="Get in touch with Ambica Engineers & Lubricants Ltd. Request quotation, technical assistance, or branch office directions."
+        canonicalPath="/contact"
+      />
       {/* Header Banner */}
       <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-16 lg:pt-36 lg:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Ambient Top Glow & Engineering Precision Grid for Transparent Nav */}

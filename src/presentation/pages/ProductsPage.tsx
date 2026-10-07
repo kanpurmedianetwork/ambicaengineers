@@ -5,6 +5,7 @@ import { Product, ProductCategory, BrandId } from '../../domain/entities/Product
 import { productRepository } from '../../infrastructure/repositories/ProductRepositoryImpl';
 import { ProductCard } from '../components/catalog/ProductCard';
 import { ParametricFilter } from '../components/catalog/ParametricFilter';
+import { SEOHead } from '../components/common/SEOHead';
 
 export const ProductsPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -81,6 +82,11 @@ export const ProductsPage: React.FC = () => {
 
   return (
     <div className="space-y-12 pb-20">
+      <SEOHead 
+        title="Industrial Products Catalog | Ambica Engineers & Lubricants Ltd"
+        description="Explore our product catalog: Rexroth, Polyhydron, Nachi, Huade hydraulic pumps, valves, cylinders, industrial lubricants, and European cushion pads."
+        canonicalPath="/products"
+      />
       {/* Header Banner */}
       <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-16 lg:pt-36 lg:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Ambient Top Glow & Engineering Precision Grid for Transparent Nav */}

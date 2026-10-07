@@ -46,7 +46,7 @@ const urls = [];
 // Add Static Routes
 staticRoutes.forEach(r => {
   urls.push({
-    loc: `${domain}${r.path}`,
+    loc: r.path === '' ? `${domain}/` : `${domain}${r.path}`,
     lastmod: today,
     changefreq: r.changefreq,
     priority: r.priority

@@ -14,6 +14,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { companyData, companyMilestones } from '../../infrastructure/data/company.data';
+import { SEOHead } from '../components/common/SEOHead';
 
 export const AboutPage: React.FC = () => {
   const services = [
@@ -51,6 +52,11 @@ export const AboutPage: React.FC = () => {
 
   return (
     <div className="space-y-20 pb-24 bg-[#F8FAFC]">
+      <SEOHead 
+        title="About Us | Ambica Engineers & Lubricants Ltd"
+        description="Learn about Ambica Engineers & Lubricants Ltd, founded in 1982. Trusted partner for Rexroth, Polyhydron, Nachi hydraulic components and European wood panel machinery."
+        canonicalPath="/about-us"
+      />
       {/* Header Banner */}
       <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-16 lg:pt-36 lg:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Ambient Top Glow & Engineering Precision Grid for Transparent Nav */}

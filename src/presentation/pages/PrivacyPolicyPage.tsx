@@ -2,10 +2,16 @@ import React from 'react';
 import { ShieldCheck, Lock, Eye, FileText } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { companyData } from '../../infrastructure/data/company.data';
+import { SEOHead } from '../components/common/SEOHead';
 
 export const PrivacyPolicyPage: React.FC = () => {
   return (
     <div className="space-y-12 pb-20 bg-[#F8FAFC]">
+      <SEOHead 
+        title="Privacy Policy & Terms | Ambica Engineers & Lubricants Ltd"
+        description="Privacy policy, terms of service, and corporate governance for Ambica Engineers & Lubricants Ltd."
+        canonicalPath="/privacy-policy"
+      />
       {/* Dark Header Banner for Transparent Nav */}
       <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-14 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Ambient Top Glow & Engineering Precision Grid for Transparent Nav */}
