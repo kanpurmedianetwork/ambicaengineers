@@ -1,6 +1,6 @@
 const https = require('https');
 
-const url1 = 'https://script.google.com/macros/s/AKfycbwePD5bXarfFA87qQVzAoPbCvfGwHg-Bwo1p3I_3E0Svs_LjOeMCO3PCmkiSeqDvtjOeQ/exec';
+const url1 = 'https://script.google.com/macros/s/AKfycbySFZPp9xl2X8FXJS4zb9J2PMl1Sp01TjWlQSTNJvf7vWMFFZ3YI2wQOWkRWGH3jLkq-g/exec';
 const url2 = 'https://script.google.com/a/macros/ambicapanels.com/s/AKfycbwePD5bXarfFA87qQVzAoPbCvfGwHg-Bwo1p3I_3E0Svs_LjOeMCO3PCmkiSeqDvtjOeQ/exec';
 
 function makeRequest(targetUrl, method, postData) {
