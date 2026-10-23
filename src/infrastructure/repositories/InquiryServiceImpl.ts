@@ -18,17 +18,9 @@ export class InquiryServiceImpl implements IInquiryService {
 
     for (const url of this.webhookEndpoints) {
       try {
-        // Strategy 1: Navigator sendBeacon (immune to unload/cross-origin redirect aborts)
-        if (typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function') {
-          const blob = new Blob([rawJson], { type: 'text/plain;charset=utf-8' });
-          navigator.sendBeacon(url, blob);
-        }
-
-        // Strategy 2: Fetch API with no-cors and keepalive
         await fetch(url, {
           method: 'POST',
           mode: 'no-cors',
-          keepalive: true,
           headers: {
             'Content-Type': 'text/plain;charset=utf-8',
           },
@@ -37,7 +29,12 @@ export class InquiryServiceImpl implements IInquiryService {
 
         console.info(`[Google Sheets Sync] Live sync dispatched for ${payload.id || payload.ref} to: ${url}`);
       } catch (err) {
-        console.warn(`[Google Sheets Sync] Sync attempt note for ${url}:`, err);
+        console.warn(`[Google Sheets Sync] Fetch attempt note for ${url}:`, err);
+        // Fallback: sendBeacon if fetch threw
+        if (typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function') {
+          const blob = new Blob([rawJson], { type: 'text/plain;charset=utf-8' });
+          navigator.sendBeacon(url, blob);
+        }
       }
     }
   }
@@ -62,8 +59,7 @@ export class InquiryServiceImpl implements IInquiryService {
         .map(i => `${i.productName} (x${i.quantity})`)
         .join(', ');
 
-      const rawPhone = submission.phone.trim();
-      const safePhone = rawPhone.startsWith('+') ? `'${rawPhone}` : rawPhone;
+      const safePhone = submission.phone.trim().replace(/^'+/, '');
 
       // 4. Build enriched payload supporting all common sheet column header names
       const enrichedPayload = {
@@ -143,8 +139,7 @@ export class InquiryServiceImpl implements IInquiryService {
       existing.push({ ...inquiry, ref, date: new Date().toISOString() });
       localStorage.setItem(key, JSON.stringify(existing));
 
-      const rawPhone = inquiry.phone.trim();
-      const safePhone = rawPhone.startsWith('+') ? `'${rawPhone}` : rawPhone;
+      const safePhone = inquiry.phone.trim().replace(/^'+/, '');
 
       const contactPayload = {
         id: ref,
