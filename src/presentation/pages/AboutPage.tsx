@@ -56,6 +56,7 @@ export const AboutPage: React.FC = () => {
         title="About Us | Ambica Engineers & Lubricants Ltd"
         description="Learn about Ambica Engineers & Lubricants Ltd, founded in 1982. Trusted partner for Rexroth, Polyhydron, Nachi hydraulic components and European wood panel machinery."
         canonicalPath="/about-us"
+        image="/images/about/team-facility.webp"
       />
       {/* Header Banner */}
       <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-16 lg:pt-36 lg:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">

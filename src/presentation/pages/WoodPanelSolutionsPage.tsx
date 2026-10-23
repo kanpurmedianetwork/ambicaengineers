@@ -17,6 +17,7 @@ export const WoodPanelSolutionsPage: React.FC = () => {
         title="Wood Panel & MDF Manufacturing Solutions | Ambica Engineers & Lubricants Ltd"
         description="European silicone cushion pads, hot press spare parts, and continuous production machinery for MDF, particle board, and laminate plants."
         canonicalPath="/solutions/wood-panel"
+        image="/images/products/cushion-pad-silicon-copper.webp"
       />
       {/* Header Banner */}
       <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-16 lg:pt-36 lg:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">

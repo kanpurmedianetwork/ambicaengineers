@@ -14,6 +14,7 @@ export const EventsPage: React.FC = () => {
         title="Events & Industrial Expos | Ambica Engineers & Lubricants Ltd"
         description="Explore Ambica Engineers & Lubricants Ltd trade fairs, industry exhibitions, and summit participations across South Asia."
         canonicalPath="/events"
+        image="/images/events/indiawood_2026_01.webp"
       />
       {/* Header Banner */}
       <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-16 lg:pt-36 lg:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">

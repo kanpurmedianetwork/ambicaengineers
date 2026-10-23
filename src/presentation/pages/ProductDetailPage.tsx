@@ -62,6 +62,12 @@ export const ProductDetailPage: React.FC = () => {
   if (!product) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center space-y-4 bg-[#F8FAFC]">
+        <SEOHead
+          title="Component Not Found | Ambica Engineers & Lubricants Ltd"
+          description="The requested product specification could not be found."
+          canonicalPath="/products"
+          noindex={true}
+        />
         <h2 className="text-2xl font-bold text-slate-900">Component Specification Not Found</h2>
         <p className="text-xs text-slate-500">
           The requested product may have been moved or updated in our catalog.

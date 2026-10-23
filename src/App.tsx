@@ -33,14 +33,14 @@ export const App: React.FC = () => {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/about-us" element={<AboutPage />} />
-                <Route path="/about" element={<AboutPage />} />
+                <Route path="/about" element={<Navigate to="/about-us" replace />} />
                 <Route path="/products" element={<ProductsPage />} />
                 <Route path="/products/:slug" element={<ProductDetailPage />} />
                 <Route path="/product-page/:slug" element={<ProductDetailPage />} />
                 <Route path="/items/:slug" element={<ProductDetailPage />} />
                 <Route path="/brands/:brandId" element={<BrandPage />} />
                 <Route path="/solutions/wood-panel" element={<WoodPanelSolutionsPage />} />
-                <Route path="/wood-panel-solutions" element={<WoodPanelSolutionsPage />} />
+                <Route path="/wood-panel-solutions" element={<Navigate to="/solutions/wood-panel" replace />} />
                 <Route path="/events" element={<EventsPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />

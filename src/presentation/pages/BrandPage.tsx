@@ -44,6 +44,12 @@ export const BrandPage: React.FC = () => {
   if (!brand) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center space-y-4">
+        <SEOHead
+          title="Brand Not Found | Ambica Engineers & Lubricants Ltd"
+          description="The requested brand catalog could not be found."
+          canonicalPath="/products"
+          noindex={true}
+        />
         <h2 className="text-2xl font-bold text-slate-900">Brand Not Found</h2>
         <Link to="/products">
           <Button variant="primary" size="sm">
