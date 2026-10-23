@@ -1,0 +1,114 @@
+
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Metallic Chrome Gradient -->
+    <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2E8F0" />
+      <stop offset="25%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#CBD5E1" />
+      <stop offset="75%" stop-color="#94A3B8" />
+      <stop offset="100%" stop-color="#F1F5F9" />
+    </linearGradient>
+
+    <!-- Chrome Sheen Reflection -->
+    <linearGradient id="sheen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.3" />
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.8" />
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Woodgrain Texture Pattern -->
+    <pattern id="grainPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 0 10 Q 20 5 40 10 M 0 20 Q 20 25 40 20 M 0 30 Q 20 28 40 30" stroke="#94A3B8" stroke-width="0.75" fill="none" opacity="0.4"/>
+    </pattern>
+  </defs>
+
+  <!-- Clean studio stage background -->
+  <rect width="800" height="600" rx="16" fill="#F8FAFC"/>
+  
+  <!-- Subtle Precision Grid -->
+  <g stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4 4" opacity="0.8">
+    <line x1="80" y1="0" x2="80" y2="600" />
+    <line x1="160" y1="0" x2="160" y2="600" />
+    <line x1="240" y1="0" x2="240" y2="600" />
+    <line x1="320" y1="0" x2="320" y2="600" />
+    <line x1="400" y1="0" x2="400" y2="600" />
+    <line x1="480" y1="0" x2="480" y2="600" />
+    <line x1="560" y1="0" x2="560" y2="600" />
+    <line x1="640" y1="0" x2="640" y2="600" />
+    <line x1="720" y1="0" x2="720" y2="600" />
+    
+    <line x1="0" y1="75" x2="800" y2="75" />
+    <line x1="0" y1="150" x2="800" y2="150" />
+    <line x1="0" y1="225" x2="800" y2="225" />
+    <line x1="0" y1="300" x2="800" y2="300" />
+    <line x1="0" y1="375" x2="800" y2="375" />
+    <line x1="0" y1="450" x2="800" y2="450" />
+    <line x1="0" y1="525" x2="800" y2="525" />
+  </g>
+
+  <!-- Outer Technical Border -->
+  <rect x="30" y="30" width="740" height="540" rx="12" stroke="#CBD5E1" stroke-width="1.5" fill="none" />
+  <line x1="50" y1="30" x2="150" y2="30" stroke="#EF7D01" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Corner Crosshairs -->
+  <g stroke="#94A3B8" stroke-width="1.5">
+    <line x1="42" y1="48" x2="54" y2="48" />
+    <line x1="48" y1="42" x2="48" y2="54" />
+    <line x1="746" y1="48" x2="758" y2="48" />
+    <line x1="752" y1="42" x2="752" y2="54" />
+    <line x1="42" y1="552" x2="54" y2="552" />
+    <line x1="48" y1="546" x2="48" y2="558" />
+    <line x1="746" y1="552" x2="758" y2="552" />
+    <line x1="752" y1="546" x2="752" y2="558" />
+  </g>
+
+  <!-- Isometric Textured Stainless Steel Press Plates Representation -->
+  <g transform="translate(170, 95)">
+    <!-- Plate Shadow -->
+    <path d="M230 45 L450 145 L230 245 L10 145 Z" fill="#000000" opacity="0.08" transform="translate(0, 30)"/>
+    
+    <!-- Bottom Plate (Backplate) -->
+    <path d="M230 45 L450 145 L230 245 L10 145 Z" fill="url(#chromeGrad)" stroke="#64748B" stroke-width="1.5"/>
+    <path d="M10 145 L10 160 L230 260 L230 245 Z" fill="#475569" stroke="#334155" stroke-width="1.5"/>
+    <path d="M230 245 L230 260 L450 160 L450 145 Z" fill="#334155" stroke="#1E293B" stroke-width="1.5"/>
+
+    <!-- Top Plate (Polished Hard-Chrome Textured Surface) -->
+    <g transform="translate(0, -35)">
+      <path d="M230 45 L450 145 L230 245 L10 145 Z" fill="url(#chromeGrad)" stroke="#475569" stroke-width="2"/>
+      <!-- Texture overlay pattern -->
+      <path d="M230 45 L450 145 L230 245 L10 145 Z" fill="url(#grainPattern)" opacity="0.7"/>
+      <!-- Chrome Bevel Edges -->
+      <path d="M10 145 L10 160 L230 260 L230 245 Z" fill="#64748B" stroke="#475569" stroke-width="2"/>
+      <path d="M230 245 L230 260 L450 160 L450 145 Z" fill="#475569" stroke="#334155" stroke-width="2"/>
+      <!-- Specular reflection streak across plate -->
+      <path d="M140 90 L260 45 L320 185 L200 230 Z" fill="url(#sheen)" opacity="0.6"/>
+    </g>
+
+    <!-- Hardness & Quality Seal -->
+    <circle cx="230" cy="180" r="30" fill="#0A0F1D" stroke="#EF7D01" stroke-width="2"/>
+    <text x="230" y="174" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="10" font-weight="800" fill="#EF7D01" text-anchor="middle">AISI 430/304</text>
+    <text x="230" y="190" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">&gt;900 HV</text>
+  </g>
+
+  <!-- Badge Pill -->
+  <g transform="translate(260, 435)">
+    <rect width="280" height="32" rx="16" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1.5"/>
+    <text x="140" y="21" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="12" font-weight="700" fill="#475569" text-anchor="middle" letter-spacing="1.2">
+      PHOTO SPECIFICATION PENDING
+    </text>
+  </g>
+
+  <!-- Headline & Subtitle -->
+  <text x="400" y="500" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="20" font-weight="800" fill="#0F172A" text-anchor="middle" letter-spacing="-0.3">
+    Specialized Stainless Steel Textured Press Plates
+  </text>
+  <text x="400" y="528" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="middle">
+    Ambica Surface Series • Mirror Gloss, Matte, Suede &amp; Woodgrain Embossed Finishes
+  </text>
+  <text x="400" y="552" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="600" fill="#94A3B8" text-anchor="middle" letter-spacing="0.5">
+    HARD CHROME PLATED (25-30 µm) • STANDARD FORMATS: 4'x8', 6'x9', 7'x14'
+  </text>
+</svg>

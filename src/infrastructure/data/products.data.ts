@@ -141,7 +141,7 @@ export const productsData: Product[] = [
     category: 'wood-panel-solutions',
     shortDescription: 'High-hardness chrome-plated stainless steel press plates engineered for short cycle melamine pressing, delivering gloss, matte, suede, and synchronized woodgrain textures.',
     fullDescription: 'Ambica Specialized Stainless Steel Press Plates are manufactured from high-tensile European alloy stainless steel (AISI 430 & 304). Precision ground, polished, and hard-chrome plated, these plates transfer flawless aesthetic textures to melamine faced chipboard (MFC), MDF, and laminates. Designed to withstand repetitive thermal cycling up to 240°C and hydraulic pressures up to 40 bar without micro-cracking or surface distortion.',
-    imageUrl: '/images/products/wood-panel-press.webp',
+    imageUrl: '/images/products/stainless-steel-press-plates-placeholder.webp',
     keyFeatures: [
       'Available in Mirror Gloss, Suede, Woodgrain Texture, and Synchronized Embossed finishes',
       'Hard chrome plating thickness of 25–30 microns for exceptional scratch and wear resistance',
