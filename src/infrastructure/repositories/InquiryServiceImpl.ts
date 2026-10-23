@@ -6,7 +6,7 @@ import { RFQSequenceService } from '../../domain/services/RFQSequenceService';
 export class InquiryServiceImpl implements IInquiryService {
   private whatsappNumber = companyData.contact.whatsappNumber;
   private webhookEndpoints = [
-    'https://script.google.com/macros/s/AKfycbySFZPp9xl2X8FXJS4zb9J2PMl1Sp01TjWlQSTNJvf7vWMFFZ3YI2wQOWkRWGH3jLkq-g/exec'
+    '/api/inquiry'
   ];
 
   /**
@@ -20,7 +20,6 @@ export class InquiryServiceImpl implements IInquiryService {
       try {
         await fetch(url, {
           method: 'POST',
-          mode: 'no-cors',
           headers: {
             'Content-Type': 'text/plain;charset=utf-8',
           },

@@ -24,7 +24,10 @@ export const RFQProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [items, setItems] = useState<RFQItem[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : [];
+      if (!saved) return [];
+      const parsed = JSON.parse(saved);
+      if (!Array.isArray(parsed)) return [];
+      return parsed.filter(item => item && item.product && item.product.id);
     } catch {
       return [];
     }
@@ -88,7 +91,7 @@ export const RFQProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const isInRFQ = (productId: string) => {
-    return items.some(item => item.product.id === productId);
+    return items.some(item => item?.product?.id === productId);
   };
 
   return (
