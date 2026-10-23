@@ -1,0 +1,83 @@
+
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Clean studio stage background -->
+  <rect width="800" height="600" rx="16" fill="#F8FAFC"/>
+  
+  <!-- Subtle Blueprint Precision Grid -->
+  <g stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4 4" opacity="0.8">
+    <line x1="80" y1="0" x2="80" y2="600" />
+    <line x1="160" y1="0" x2="160" y2="600" />
+    <line x1="240" y1="0" x2="240" y2="600" />
+    <line x1="320" y1="0" x2="320" y2="600" />
+    <line x1="400" y1="0" x2="400" y2="600" />
+    <line x1="480" y1="0" x2="480" y2="600" />
+    <line x1="560" y1="0" x2="560" y2="600" />
+    <line x1="640" y1="0" x2="640" y2="600" />
+    <line x1="720" y1="0" x2="720" y2="600" />
+    
+    <line x1="0" y1="75" x2="800" y2="75" />
+    <line x1="0" y1="150" x2="800" y2="150" />
+    <line x1="0" y1="225" x2="800" y2="225" />
+    <line x1="0" y1="300" x2="800" y2="300" />
+    <line x1="0" y1="375" x2="800" y2="375" />
+    <line x1="0" y1="450" x2="800" y2="450" />
+    <line x1="0" y1="525" x2="800" y2="525" />
+  </g>
+
+  <!-- Technical Schematic Border -->
+  <rect x="30" y="30" width="740" height="540" rx="12" stroke="#CBD5E1" stroke-width="1.5" fill="none" />
+  <line x1="50" y1="30" x2="150" y2="30" stroke="#EF7D01" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Corner Crosshairs -->
+  <g stroke="#94A3B8" stroke-width="1.5">
+    <line x1="42" y1="48" x2="54" y2="48" />
+    <line x1="48" y1="42" x2="48" y2="54" />
+    <line x1="746" y1="48" x2="758" y2="48" />
+    <line x1="752" y1="42" x2="752" y2="54" />
+    <line x1="42" y1="552" x2="54" y2="552" />
+    <line x1="48" y1="546" x2="48" y2="558" />
+    <line x1="746" y1="552" x2="758" y2="552" />
+    <line x1="752" y1="546" x2="752" y2="558" />
+  </g>
+
+  <!-- Central Technical Layer Diagram of Thermal Platen Insulation Board -->
+  <g transform="translate(160, 110)">
+    <!-- Top Platen Layer -->
+    <path d="M240 20 L440 100 L240 180 L40 100 Z" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2"/>
+    <path d="M40 100 L40 125 L240 205 L240 180 Z" fill="#CBD5E1" stroke="#94A3B8" stroke-width="2"/>
+    <path d="M240 180 L240 205 L440 125 L440 100 Z" fill="#94A3B8" stroke="#64748B" stroke-width="2"/>
+    
+    <!-- Thermal Insulation Board (Golden/Amber Highlight Layer) -->
+    <path d="M240 135 L440 215 L240 295 L40 215 Z" fill="#FEF3C7" stroke="#EF7D01" stroke-width="2.5"/>
+    <path d="M40 215 L40 245 L240 325 L240 295 Z" fill="#FDE68A" stroke="#EF7D01" stroke-width="2.5"/>
+    <path d="M240 295 L240 325 L440 245 L440 215 Z" fill="#F59E0B" stroke="#D97706" stroke-width="2.5"/>
+
+    <!-- Bottom Machine Frame Layer -->
+    <path d="M240 255 L440 335 L240 415 L40 335 Z" fill="#F1F5F9" stroke="#94A3B8" stroke-width="2"/>
+    <path d="M40 335 L40 365 L240 445 L240 415 Z" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2"/>
+    <path d="M240 415 L240 445 L440 365 L440 335 Z" fill="#CBD5E1" stroke="#94A3B8" stroke-width="2"/>
+
+    <!-- Heat Shield Indicator Badges -->
+    <circle cx="240" cy="215" r="28" fill="#EF7D01" opacity="0.9" />
+    <path d="M240 200 C234 207 230 214 230 221 C230 228 234 233 240 233 C246 233 250 228 250 221 C250 214 246 207 240 200 Z" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Badge Pill -->
+  <g transform="translate(260, 435)">
+    <rect width="280" height="32" rx="16" fill="#FFF7ED" stroke="#FDBA74" stroke-width="1.5"/>
+    <text x="140" y="21" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="12" font-weight="700" fill="#EF7D01" text-anchor="middle" letter-spacing="1.2">
+      TECHNICAL SPECIFICATION PENDING
+    </text>
+  </g>
+
+  <!-- Headline & Subtitle -->
+  <text x="400" y="500" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="20" font-weight="800" fill="#0F172A" text-anchor="middle" letter-spacing="-0.3">
+    High-Temperature Platen Thermal Insulation Boards
+  </text>
+  <text x="400" y="528" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="middle">
+    Ambica Thermoshield 350 • Custom Pre-Drilled Cut-to-Size Specifications
+  </text>
+  <text x="400" y="552" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="600" fill="#94A3B8" text-anchor="middle" letter-spacing="0.5">
+    DRAWINGS &amp; CAD SAMPLES AVAILABLE VIA RFQ / WHATSAPP
+  </text>
+</svg>

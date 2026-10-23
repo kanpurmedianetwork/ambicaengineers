@@ -82,7 +82,7 @@ export const productsData: Product[] = [
     category: 'wood-panel-solutions',
     shortDescription: 'Heavy-duty multi-opening hydraulic hot press designed for batch consolidation of high-density fiberboards, particle boards, and plywood with synchronous closing.',
     fullDescription: 'The Multi-Opening Hot Press System is a cornerstone in MDF, HDHMR, and Particle Board manufacturing. Engineered to apply extreme tonnage and uniform thermal distribution simultaneously across multiple daylight openings, it guarantees uniform board density, superior resin curing bonding strength, and tight thickness tolerances. Equipped with simultaneous closing mechanisms to prevent pre-curing of lower boards.',
-    imageUrl: '/images/products/wood-panel-press.webp',
+    imageUrl: '/images/products/multi-opening-hot-press.webp',
     keyFeatures: [
       'Synchronous rack-and-pinion platen closing mechanism',
       'Multi-cylinder high-tonnage hydraulic ram arrangement for equalized pressure',
@@ -172,7 +172,7 @@ export const productsData: Product[] = [
     category: 'wood-panel-solutions',
     shortDescription: 'Asbestos-free glass-reinforced composite insulation boards installed between press hot platens and machine frame to eliminate heat losses and save up to 30% thermal energy.',
     fullDescription: 'Ambica Thermoshield High-Temperature Platen Insulation Boards are engineered using specialized glass fabric bonded with high-grade thermosetting resins. Installed directly between the heated press platen and hydraulic cylinders or press frame, they serve as a critical thermal barrier, preventing heat transfer into hydraulic rams and machine structures while reducing heating energy costs by up to 30%.',
-    imageUrl: '/images/products/cushion-pad-mesh.jpg',
+    imageUrl: '/images/products/platen-insulation-board-placeholder.webp',
     keyFeatures: [
       '100% asbestos-free, non-toxic glass-reinforced composite construction',
       'Continuous thermal resistance up to 350°C with exceptionally low thermal conductivity',
