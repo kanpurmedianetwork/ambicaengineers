@@ -515,7 +515,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Authorized Brand Partners Showcase */}
+      {/* Stockist Showcase */}
       <section className="bg-white border-y border-slate-200/80 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -525,7 +525,7 @@ export const HomePage: React.FC = () => {
                 Global OEM Distribution Network
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 uppercase font-display mt-1">
-                Authorized Brand Partners
+                Stockist
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-slate-500 max-w-md">
