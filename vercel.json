@@ -26,8 +26,15 @@
       "permanent": true
     },
     {
-      "source": "/index.php/component/sppagebuilder/:path*",
-      "destination": "/products",
+      "source": "/index.php/component/sppagebuilder/",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "33"
+        }
+      ],
+      "destination": "/products/polyhydron-1r-2r-radial-piston-pump",
       "permanent": true
     },
     {
@@ -136,7 +143,7 @@
       "permanent": true
     },
     {
-      "source": "/index.php/:path*",
+      "source": "/index.php/:slug*",
       "destination": "/products",
       "permanent": true
     },
