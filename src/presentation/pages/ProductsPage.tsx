@@ -6,6 +6,7 @@ import { productRepository } from '../../infrastructure/repositories/ProductRepo
 import { ProductCard } from '../components/catalog/ProductCard';
 import { ParametricFilter } from '../components/catalog/ParametricFilter';
 import { SEOHead } from '../components/common/SEOHead';
+import { productsData } from '../../infrastructure/data/products.data';
 
 export const ProductsPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -53,7 +54,7 @@ export const ProductsPage: React.FC = () => {
   };
 
   // Products filtering using clean repository filter method
-  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [allProducts, setAllProducts] = useState<Product[]>(() => productsData);
 
   useEffect(() => {
     productRepository.getAllProducts().then(setAllProducts);
@@ -83,8 +84,8 @@ export const ProductsPage: React.FC = () => {
   return (
     <div className="space-y-12 pb-20">
       <SEOHead 
-        title="Industrial Products Catalog | Ambica Engineers & Lubricants Ltd"
-        description="Explore our product catalog: Rexroth, Polyhydron, Nachi, Huade hydraulic pumps, valves, cylinders, industrial lubricants, and European cushion pads."
+        title="Hydraulic Products & Spares | Ambica Engineers"
+        description="Catalog of Rexroth, Polyhydron, Nachi, Huade hydraulic pumps, valves, cylinders, industrial lubricants, and European cushion pads. In-stock spares."
         canonicalPath="/products"
       />
       {/* Header Banner */}

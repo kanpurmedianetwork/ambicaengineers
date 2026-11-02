@@ -1,12 +1,260 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "ambicaengineers.in"
+        }
+      ],
+      "destination": "https://www.ambicaengineers.in/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/component/sppagebuilder",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "33"
+        }
+      ],
+      "destination": "/products/polyhydron-1r-2r-radial-piston-pump",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/component/sppagebuilder/:path*",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/distributor-stockist",
+      "destination": "/about-us",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/about",
+      "destination": "/about-us",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/contact",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/brands",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/catalogues",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/product/cushion-pads",
+      "destination": "/products/cushion-pad-silicon-copper",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/product/ambica",
+      "destination": "/about-us",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/product/rexroth",
+      "destination": "/brands/rexroth",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/product/polyhydron",
+      "destination": "/brands/polyhydron",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/product/nachi",
+      "destination": "/brands/nachi",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/product/huade",
+      "destination": "/brands/huade",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/product/voith",
+      "destination": "/brands/voith",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/product/veljan-sarva",
+      "destination": "/brands/veljan",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/exhibition/matecia-2022",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/exhibition/delhiwood-2023",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/exhibition/matecia-2023",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/clients/plywood",
+      "destination": "/solutions/wood-panel",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/clients/hpl-high-pressure-laminates",
+      "destination": "/solutions/wood-panel",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/clients/particle-board-mdf",
+      "destination": "/solutions/wood-panel",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/clients/paper-plastic",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/clients/export",
+      "destination": "/about-us",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/:path*",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/blank-38",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/blank-18",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/blank-19",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/blank-17",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/blank-24",
+      "destination": "/products/cushion-pad-silicon-copper",
+      "permanent": true
+    },
+    {
+      "source": "/blank-16",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/blank",
+      "destination": "/brands/rexroth",
+      "permanent": true
+    },
+    {
+      "source": "/blank-9",
+      "destination": "/brands/polyhydron",
+      "permanent": true
+    },
+    {
+      "source": "/blank-10",
+      "destination": "/brands/polyhydron",
+      "permanent": true
+    },
+    {
+      "source": "/blank-11",
+      "destination": "/brands/nachi",
+      "permanent": true
+    },
+    {
+      "source": "/blank-12",
+      "destination": "/brands/nachi",
+      "permanent": true
+    },
+    {
+      "source": "/blank-13",
+      "destination": "/brands/huade",
+      "permanent": true
+    },
+    {
+      "source": "/blank-14",
+      "destination": "/brands/huade",
+      "permanent": true
+    },
+    {
+      "source": "/blank-15",
+      "destination": "/brands/voith",
+      "permanent": true
+    },
+    {
+      "source": "/hydraulic-pump-2",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/hydraulic-pump-2-list",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/hydraulic-motor-2",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/hydrualics-valves",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/projects",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/wood-panel-solutions",
+      "destination": "/solutions/wood-panel",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/about-us",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/inquiry",
       "destination": "https://script.google.com/macros/s/AKfycbySFZPp9xl2X8FXJS4zb9J2PMl1Sp01TjWlQSTNJvf7vWMFFZ3YI2wQOWkRWGH3jLkq-g/exec"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
   ]
 }

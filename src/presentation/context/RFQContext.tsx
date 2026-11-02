@@ -22,6 +22,7 @@ const STORAGE_KEY = 'ambica_rfq_cart';
 
 export const RFQProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<RFQItem[]>(() => {
+    if (typeof window === 'undefined') return [];
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (!saved) return [];
@@ -35,6 +36,7 @@ export const RFQProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     } catch (e) {

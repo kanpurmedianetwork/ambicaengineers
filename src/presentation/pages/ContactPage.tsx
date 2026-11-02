@@ -38,7 +38,7 @@ export const ContactPage: React.FC = () => {
   return (
     <div className="space-y-16 pb-20">
       <SEOHead 
-        title="Contact Us | Ambica Engineers & Lubricants Ltd"
+        title="Contact Us | Ambica Engineers & Lubricants"
         description="Get in touch with Ambica Engineers & Lubricants Ltd. Request quotation, technical assistance, or branch office directions."
         canonicalPath="/contact"
       />

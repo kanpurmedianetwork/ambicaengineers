@@ -9,8 +9,8 @@ export interface SEOHeadProps {
   noindex?: boolean;
 }
 
-const DEFAULT_TITLE = 'Ambica Engineers & Lubricants Ltd | Hydraulic Components & Wood Panel Solutions';
-const DEFAULT_DESCRIPTION = 'Ambica Engineers & Lubricants Ltd - Engineering Legacy Since 1982. Trusted supplier of hydraulic components, axial & radial piston pumps, valves, motors, European cushion pads, and wood panel processing lines.';
+const DEFAULT_TITLE = 'Ambica Engineers | Hydraulic Components & Spares';
+const DEFAULT_DESCRIPTION = 'Ambica Engineers & Lubricants: Supplier of hydraulic pumps, valves, motors, European cushion pads, and wood panel machinery since 1982. Fast dispatch.';
 const BASE_URL = 'https://www.ambicaengineers.in';
 const DEFAULT_IMAGE = `${BASE_URL}/images/og-image.jpg`;
 

@@ -8,7 +8,7 @@ export const PrivacyPolicyPage: React.FC = () => {
   return (
     <div className="space-y-12 pb-20 bg-[#F8FAFC]">
       <SEOHead 
-        title="Privacy Policy & Terms | Ambica Engineers & Lubricants Ltd"
+        title="Privacy Policy | Ambica Engineers & Lubricants"
         description="Privacy policy, terms of service, and corporate governance for Ambica Engineers & Lubricants Ltd."
         canonicalPath="/privacy-policy"
       />

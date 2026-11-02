@@ -11,44 +11,61 @@ import {
   Send,
 } from 'lucide-react';
 import { Product } from '../../domain/entities/Product';
-import { productRepository } from '../../infrastructure/repositories/ProductRepositoryImpl';
 import { useRFQ } from '../context/RFQContext';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { ProductCard } from '../components/catalog/ProductCard';
 import { companyData } from '../../infrastructure/data/company.data';
 import { SEOHead } from '../components/common/SEOHead';
+import { productsData } from '../../infrastructure/data/products.data';
 
 export const ProductDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { addItem, isInRFQ } = useRFQ();
 
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [product, setProduct] = useState<Product | null>(() => {
+    if (!slug) return null;
+    const clean = slug.toLowerCase().trim();
+    return productsData.find(p => p.slug.toLowerCase() === clean || p.id.toLowerCase() === clean) || null;
+  });
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>(() => {
+    if (!slug) return [];
+    const clean = slug.toLowerCase().trim();
+    const current = productsData.find(p => p.slug.toLowerCase() === clean || p.id.toLowerCase() === clean);
+    if (!current) return [];
+    let rel = productsData.filter(p => p.category === current.category && p.id !== current.id);
+    if (rel.length < 3) {
+      const supp = productsData.filter(p => p.id !== current.id && !rel.some(r => r.id === p.id));
+      rel = [...rel, ...supp];
+    }
+    return rel.slice(0, 3);
+  });
+  const [loading, setLoading] = useState<boolean>(() => {
+    if (!slug) return true;
+    const clean = slug.toLowerCase().trim();
+    return !productsData.some(p => p.slug.toLowerCase() === clean || p.id.toLowerCase() === clean);
+  });
   const [quantity, setQuantity] = useState(1);
   const [specNote, setSpecNote] = useState('');
-  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
     if (!slug) return;
-    setLoading(true);
-    productRepository.getProductBySlug(slug).then((p) => {
-      setProduct(p);
-      setLoading(false);
-      if (p) {
-        productRepository.getProductsByCategory(p.category).then(async (related) => {
-          let prods = related.filter((r) => r.id !== p.id);
-          if (prods.length < 3) {
-            const all = await productRepository.getAllProducts();
-            const supplements = all.filter((item) => item.id !== p.id && !prods.some(r => r.id === item.id));
-            prods = [...prods, ...supplements];
-          }
-          setRelatedProducts(prods.slice(0, 3));
-        });
+    const clean = slug.toLowerCase().trim();
+    const p = productsData.find(item => item.slug.toLowerCase() === clean || item.id.toLowerCase() === clean) || null;
+    setProduct(p);
+    if (p) {
+      let rel = productsData.filter(item => item.category === p.category && item.id !== p.id);
+      if (rel.length < 3) {
+        const supp = productsData.filter(item => item.id !== p.id && !rel.some(r => r.id === item.id));
+        rel = [...rel, ...supp];
       }
-    });
+      setRelatedProducts(rel.slice(0, 3));
+    }
+    setLoading(false);
   }, [slug]);
 
   if (loading) {
@@ -88,15 +105,22 @@ export const ProductDetailPage: React.FC = () => {
   };
 
   const handleDirectWhatsApp = () => {
+    if (typeof window === 'undefined') return;
     const text = `Hello Ambica Engineers, I am interested in technical specs and pricing for: ${product.name} (${product.series}, Brand: ${product.brand.toUpperCase()}). Please share availability.`;
     window.open(`https://wa.me/${companyData.contact.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (
     <div className="space-y-10 pb-24 bg-[#F8FAFC]">
+      {/* Dynamic SEO Head with <=60 char title and <=155 char description */}
       <SEOHead 
-        title={`${product.name} | Ambica Engineers & Lubricants Ltd`}
-        description={product.shortDescription || `${product.name} (${product.series}) from ${product.brand.toUpperCase()}. Authorized supply with technical support.`}
+        title={(`${product.name} | Ambica Engineers`.length <= 60 
+          ? `${product.name} | Ambica Engineers` 
+          : `${product.brand.toUpperCase()} ${product.series || product.name} | Ambica Engineers`).slice(0, 60)}
+        description={(product.shortDescription 
+          ? `${product.shortDescription} Genuine supply with immediate dispatch across India.` 
+          : `${product.name} (${product.series}) from ${product.brand.toUpperCase()}. In stock at Ambica Engineers.`
+        ).slice(0, 155)}
         canonicalPath={`/products/${product.slug}`}
         image={product.imageUrl.startsWith('http') ? product.imageUrl : `https://www.ambicaengineers.in${product.imageUrl}`}
         type="product"

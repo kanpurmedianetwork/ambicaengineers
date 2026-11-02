@@ -1,36 +1,68 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ShieldCheck, Award, ArrowLeft, Layers, CheckCircle2 } from 'lucide-react';
-import { BrandId, Product } from '../../domain/entities/Product';
+import { ShieldCheck, Award } from 'lucide-react';
+import { Product } from '../../domain/entities/Product';
 import { Brand } from '../../domain/entities/Brand';
-import { productRepository } from '../../infrastructure/repositories/ProductRepositoryImpl';
+import { brandsData } from '../../infrastructure/data/brands.data';
+import { productsData } from '../../infrastructure/data/products.data';
 import { ProductCard } from '../components/catalog/ProductCard';
 import { Button } from '../components/ui/Button';
 import { SEOHead } from '../components/common/SEOHead';
 
+const BRAND_SEO: Record<string, { title: string; description: string }> = {
+  rexroth: {
+    title: 'Bosch Rexroth Hydraulics | Ambica Engineers',
+    description: 'Genuine Bosch Rexroth axial piston pumps, bent-axis motors, and proportional valves. Certified sourcing partner in India with immediate dispatch.',
+  },
+  polyhydron: {
+    title: 'Polyhydron Pumps & Valves | Ambica Engineers',
+    description: 'Direct stockist for Polyhydron radial piston pumps, check valves, and cartridge logic systems. High-pressure hydraulic spares in India.',
+  },
+  nachi: {
+    title: 'Nachi Hydraulic Pumps & Valves | Ambica Engineers',
+    description: 'Nachi Fujikoshi precision variable displacement piston pumps, wet-type solenoid valves, and modular valves in India with complete technical support.',
+  },
+  huade: {
+    title: 'Huade Hydraulic Pumps & Valves | Ambica Engineers',
+    description: 'Authorized importer and stockist for Huade hydraulic pumps and directional control valves manufactured under licensed German precision technology.',
+  },
+  voith: {
+    title: 'Voith High-Pressure Pumps | Ambica Engineers',
+    description: 'Voith Turbo internal gear high-pressure hydraulic pumps with ultra-low noise emissions and superior volumetric efficiency for industrial presses.',
+  },
+  veljan: {
+    title: 'Veljan Vane Pumps & Spares | Ambica Engineers',
+    description: 'Direct stockist for Veljan and Sarva high-performance industrial vane pumps and replacement cartridges with rapid factory dispatch across India.',
+  },
+};
+
 export const BrandPage: React.FC = () => {
   const { brandId } = useParams<{ brandId: string }>();
-  const [brand, setBrand] = useState<Brand | null>(null);
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+
+  const [brand, setBrand] = useState<Brand | null>(() => {
+    return brandId ? brandsData.find(b => b.id === brandId) || null : null;
+  });
+
+  const [products, setProducts] = useState<Product[]>(() => {
+    return brandId ? productsData.filter(p => p.brand === brandId) : [];
+  });
+
+  const [loading, setLoading] = useState<boolean>(() => {
+    return !brandId || !brandsData.some(b => b.id === brandId);
+  });
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
     if (!brandId) return;
-    setLoading(true);
 
-    const bId = brandId as BrandId;
-    productRepository.getBrandById(bId).then((b) => {
-      setBrand(b);
-      if (b) {
-        productRepository.getProductsByBrand(b.id).then((prods) => {
-          setProducts(prods);
-          setLoading(false);
-        });
-      } else {
-        setLoading(false);
-      }
-    });
+    const b = brandsData.find(item => item.id === brandId) || null;
+    setBrand(b);
+    if (b) {
+      setProducts(productsData.filter(p => p.brand === b.id));
+    }
+    setLoading(false);
   }, [brandId]);
 
   if (loading) {
@@ -45,7 +77,7 @@ export const BrandPage: React.FC = () => {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center space-y-4">
         <SEOHead
-          title="Brand Not Found | Ambica Engineers & Lubricants Ltd"
+          title="Brand Not Found | Ambica Engineers"
           description="The requested brand catalog could not be found."
           canonicalPath="/products"
           noindex={true}
@@ -60,11 +92,16 @@ export const BrandPage: React.FC = () => {
     );
   }
 
+  const seoData = (brandId && BRAND_SEO[brandId]) || {
+    title: `${brand.name} Hydraulics | Ambica Engineers`.slice(0, 60),
+    description: (brand.description || `Genuine ${brand.name} components and spare parts in India.`).slice(0, 155),
+  };
+
   return (
     <div className="space-y-12 pb-20">
       <SEOHead 
-        title={`${brand.name} Hydraulic Products & Spares | Ambica Engineers & Lubricants Ltd`}
-        description={brand.description || `Authorized distributor of ${brand.name} components, hydraulic systems, and spare parts in India.`}
+        title={seoData.title}
+        description={seoData.description}
         canonicalPath={`/brands/${brand.id}`}
         image={brand.logoUrl ? (brand.logoUrl.startsWith('http') ? brand.logoUrl : `https://www.ambicaengineers.in${brand.logoUrl}`) : undefined}
       />
@@ -87,60 +124,60 @@ export const BrandPage: React.FC = () => {
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="space-y-4 max-w-2xl">
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center gap-2 bg-[#EF7D01]/15 border border-[#EF7D01]/30 px-3 py-1 rounded-full text-xs font-semibold text-[#EF7D01]">
-                <ShieldCheck className="w-3.5 h-3.5" />
-                {brand.authorizedStatus}
-              </div>
-              <span className="text-xs font-mono text-slate-400 bg-white/5 border border-white/10 px-2.5 py-0.5 rounded-full">
-                Origin: {brand.countryOfOrigin}
-              </span>
-            </div>
-
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              {brand.logoUrl && (
-                <div className="bg-white p-3 rounded-2xl border border-slate-700/60 shadow-xl shrink-0 flex items-center justify-center w-36 h-16">
-                  <img
-                    src={brand.logoUrl}
-                    alt={`${brand.name} logo`}
-                    className="max-h-11 max-w-[120px] object-contain filter contrast-105"
-                  />
+            <div className="space-y-4 max-w-2xl">
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="inline-flex items-center gap-2 bg-[#EF7D01]/15 border border-[#EF7D01]/30 px-3 py-1 rounded-full text-xs font-semibold text-[#EF7D01]">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  {brand.authorizedStatus}
                 </div>
-              )}
-              <div>
-                <h1 className="text-3xl sm:text-5xl font-extrabold text-white uppercase font-mono tracking-tight">
-                  {brand.name}
-                </h1>
-                <p className="text-[#EF7D01] font-mono text-sm font-semibold mt-1">
-                  &ldquo;{brand.tagline}&rdquo;
-                </p>
+                <span className="text-xs font-mono text-slate-400 bg-white/5 border border-white/10 px-2.5 py-0.5 rounded-full">
+                  Origin: {brand.countryOfOrigin}
+                </span>
               </div>
+
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                {brand.logoUrl && (
+                  <div className="bg-white p-3 rounded-2xl border border-slate-700/60 shadow-xl shrink-0 flex items-center justify-center w-36 h-16">
+                    <img
+                      src={brand.logoUrl}
+                      alt={`${brand.name} logo`}
+                      className="max-h-11 max-w-[120px] object-contain filter contrast-105"
+                    />
+                  </div>
+                )}
+                <div>
+                  <h1 className="text-3xl sm:text-5xl font-extrabold text-white uppercase font-mono tracking-tight">
+                    {brand.name}
+                  </h1>
+                  <p className="text-[#EF7D01] font-mono text-sm font-semibold mt-1">
+                    &ldquo;{brand.tagline}&rdquo;
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pt-1">
+                {brand.description}
+              </p>
             </div>
 
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pt-1">
-              {brand.description}
-            </p>
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center shrink-0 min-w-[240px] space-y-2">
+              <Award className="w-8 h-8 text-[#EF7D01] mx-auto" />
+              <div className="text-xs font-bold text-white uppercase font-mono">100% Genuine Partner</div>
+              <div className="text-[11px] text-slate-300">Factory Test Reports Included</div>
+              <div className="text-[11px] text-emerald-400 font-semibold pt-1">Direct Factory Warranty</div>
+            </div>
           </div>
 
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center shrink-0 min-w-[240px] space-y-2">
-            <Award className="w-8 h-8 text-[#EF7D01] mx-auto" />
-            <div className="text-xs font-bold text-white uppercase font-mono">100% Genuine Partner</div>
-            <div className="text-[11px] text-slate-300">Factory Test Reports Included</div>
-            <div className="text-[11px] text-emerald-400 font-semibold pt-1">Direct Factory Warranty</div>
+          {/* Popular Series Tags */}
+          <div className="pt-4 border-t border-slate-800 flex flex-wrap items-center gap-2">
+            <span className="text-xs text-slate-400 font-semibold mr-2">Featured Product Series:</span>
+            {brand.popularSeries.map((s, idx) => (
+              <span key={idx} className="bg-white/10 border border-white/15 text-orange-200 text-xs px-3 py-1 rounded-lg font-mono">
+                {s}
+              </span>
+            ))}
           </div>
         </div>
-
-        {/* Popular Series Tags */}
-        <div className="pt-4 border-t border-slate-800 flex flex-wrap items-center gap-2">
-          <span className="text-xs text-slate-400 font-semibold mr-2">Featured Product Series:</span>
-          {brand.popularSeries.map((s, idx) => (
-            <span key={idx} className="bg-white/10 border border-white/15 text-orange-200 text-xs px-3 py-1 rounded-lg font-mono">
-              {s}
-            </span>
-          ))}
-        </div>
-      </div>
       </section>
 
       {/* Brand Products Grid */}

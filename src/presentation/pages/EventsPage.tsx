@@ -11,7 +11,7 @@ export const EventsPage: React.FC = () => {
   return (
     <div className="space-y-16 pb-20">
       <SEOHead 
-        title="Events & Industrial Expos | Ambica Engineers & Lubricants Ltd"
+        title="Events & Industrial Expos | Ambica Engineers"
         description="Explore Ambica Engineers & Lubricants Ltd trade fairs, industry exhibitions, and summit participations across South Asia."
         canonicalPath="/events"
         image="/images/events/indiawood_2026_01.webp"
