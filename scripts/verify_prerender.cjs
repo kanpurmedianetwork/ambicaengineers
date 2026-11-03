@@ -5,7 +5,7 @@ const { domain, allRoutes } = require('./routes.cjs');
 const distDir = path.join(__dirname, '../dist');
 
 console.log('========================================================================');
-console.log('       SSG PRERENDER VERIFICATION AUDIT (PHASE 1 & 2 VERIFICATION)      ');
+console.log('       SSG PRERENDER VERIFICATION AUDIT (PHASES 1, 2 & 3 AUDIT)        ');
 console.log('========================================================================\n');
 
 const results = [];
@@ -74,7 +74,23 @@ for (const route of allRoutes) {
   // 6. Keywords tag check (must NOT exist)
   const hasKeywords = /<meta\s+name=["']keywords["']/i.test(content);
 
-  const passed = titlePass && descPass && canonPass && h1Pass && bodyTextPass && !hasKeywords;
+  // 7. Charset First Tag Check in <head>
+  const headMatch = content.match(/<head[^>]*>([\s\S]*?)<\/head>/i);
+  const headContent = headMatch ? headMatch[1].trim() : '';
+  const charsetFirst = /^<meta\s+charset=["']utf-8["']/i.test(headContent);
+
+  // 8. Mojibake Check
+  const hasMojibake = /(\u0393[\s\S]{1,4}|â€|â€˜|â€™|â€œ|Ã[\x80-\xbf])/i.test(content);
+
+  // 9. Root cleanliness (no meta or title inside <div id="root">)
+  const hasMetaInRoot = /<meta\s+|<title>/i.test(rootInner);
+
+  // 10. OG image not SVG
+  const ogImgMatch = content.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']*)["']/i);
+  const ogImg = ogImgMatch ? ogImgMatch[1] : '';
+  const noSvgOg = !ogImg.toLowerCase().endsWith('.svg');
+
+  const passed = titlePass && descPass && canonPass && h1Pass && bodyTextPass && !hasKeywords && charsetFirst && !hasMojibake && !hasMetaInRoot && noSvgOg;
 
   results.push({
     path: route.path,
@@ -88,6 +104,10 @@ for (const route of allRoutes) {
     h1Pass,
     bodyTextPass,
     noKeywords: !hasKeywords,
+    charsetFirst,
+    noMojibake: !hasMojibake,
+    rootClean: !hasMetaInRoot,
+    noSvgOg,
     overall: passed ? 'PASS' : 'FAIL',
   });
 }
@@ -99,25 +119,29 @@ console.log(
   'Desc'.padEnd(8) +
   'Canon'.padEnd(8) +
   'H1'.padEnd(6) +
-  'Body'.padEnd(8) +
+  'Charset'.padEnd(9) +
+  'Root'.padEnd(8) +
   'Status'
 );
-console.log('-'.repeat(94));
+console.log(''.padEnd(100, '-'));
 
 let failCount = 0;
-results.forEach((r) => {
+for (const r of results) {
   if (r.overall !== 'PASS') failCount++;
-  const titleCol = (r.titlePass ? `${r.titleLen}c ✓` : `${r.titleLen}c ✗`).padEnd(8);
-  const descCol = (r.descPass ? `${r.descLen}c ✓` : `${r.descLen}c ✗`).padEnd(8);
-  const canonCol = (r.canonPass ? '✓' : '✗').padEnd(8);
-  const h1Col = (r.h1Pass ? `1 ✓` : `${r.h1Count} ✗`).padEnd(6);
-  const bodyCol = (r.bodyTextPass ? '✓' : '✗').padEnd(8);
-  const statusCol = r.overall === 'PASS' ? '✓ PASS' : '✗ FAIL';
-  console.log(r.path.padEnd(48) + titleCol + descCol + canonCol + h1Col + bodyCol + statusCol);
-});
+  console.log(
+    r.path.padEnd(48) +
+    `${r.titleLen}c ${r.titlePass ? '✓' : '✗'}`.padEnd(8) +
+    `${r.descLen}c ${r.descPass ? '✓' : '✗'}`.padEnd(8) +
+    `${r.canonPass ? '✓' : '✗'}`.padEnd(8) +
+    `${r.h1Count} ${r.h1Pass ? '✓' : '✗'}`.padEnd(6) +
+    `${r.charsetFirst ? '✓' : '✗'}`.padEnd(9) +
+    `${r.rootClean ? 'Clean' : '✗'}`.padEnd(8) +
+    `${r.overall === 'PASS' ? '✓ PASS' : '✗ FAIL'}`
+  );
+}
 
-console.log('-'.repeat(94));
-console.log(`Summary: ${results.length - failCount}/${results.length} routes passed all SEO audits.`);
+console.log(''.padEnd(100, '-'));
+console.log(`Summary: ${results.length - failCount}/${results.length} routes passed all SEO & crawlability audits.`);
 
 if (failCount > 0) {
   console.error(`Verification FAILED for ${failCount} route(s).`);
@@ -125,24 +149,24 @@ if (failCount > 0) {
 }
 
 console.log('\n========================================================================');
-console.log('       DEEP BODY GREP VERIFICATION (5 SAMPLE PRODUCT / BRAND ROUTES)    ');
+console.log('       DEEP BODY GREP VERIFICATION (PRODUCT SPECS & IMAGES)             ');
 console.log('========================================================================\n');
 
 const deepGrepChecks = [
   {
     path: '/products/bosch-rexroth-a10vso-axial-piston-pump',
     file: 'dist/products/bosch-rexroth-a10vso-axial-piston-pump/index.html',
-    terms: ['A10VSO', 'Displacement', '350 bar', 'Axial Piston'],
+    terms: ['A10VSO', 'Displacement', '350 bar', 'Axial Piston', 'cc/rev'],
   },
   {
     path: '/products/bosch-rexroth-a4vso-heavy-duty-pump',
     file: 'dist/products/bosch-rexroth-a4vso-heavy-duty-pump/index.html',
-    terms: ['A4VSO', '400 bar', 'swashplate', 'Heavy-Duty'],
+    terms: ['A4VSO', '400 bar', 'swashplate', 'Heavy-Duty', 'cc/rev'],
   },
   {
     path: '/products/polyhydron-1r-2r-radial-piston-pump',
     file: 'dist/products/polyhydron-1r-2r-radial-piston-pump/index.html',
-    terms: ['1R', '2R', 'Radial Piston', 'Polyhydron'],
+    terms: ['1R', '2R', 'Radial Piston', 'Polyhydron', 'cc/rev'],
   },
   {
     path: '/products/cushion-pad-silicon-copper',
@@ -154,6 +178,17 @@ const deepGrepChecks = [
     file: 'dist/brands/rexroth/index.html',
     terms: ['Bosch Rexroth', 'Certified Sourcing Partner', 'A10VSO', 'Germany'],
   },
+  {
+    path: '/brands',
+    file: 'dist/brands/index.html',
+    terms: ['AUTHORIZED &amp; CERTIFIED BRAND PARTNERS', 'Bosch Rexroth', 'Polyhydron', 'Nachi Fujikoshi', 'Huade Hydraulic', 'Voith Turbo', 'Veljan'],
+  },
+  {
+    path: '/products/proportional-servo-directional-valve',
+    file: 'dist/products/proportional-servo-directional-valve/index.html',
+    terms: ['proportional-valve.png', 'OBE Proportional Series'],
+    forbidden: ['polyhydron-de06-directional.webp'],
+  },
 ];
 
 deepGrepChecks.forEach((check) => {
@@ -162,12 +197,22 @@ deepGrepChecks.forEach((check) => {
   console.log(`Checking route: ${check.path}`);
   check.terms.forEach((term) => {
     const present = content.includes(term);
-    console.log(`  - Spec term [${term}]: ${present ? '✓ FOUND IN HTML BODY' : '✗ MISSING'}`);
+    console.log(`  - Expected term [${term}]: ${present ? '✓ FOUND' : '✗ MISSING'}`);
     if (!present) {
-      console.error(`Missing spec term "${term}" in ${check.file}`);
+      console.error(`Missing expected term "${term}" in ${check.file}`);
       process.exit(1);
     }
   });
+  if (check.forbidden) {
+    check.forbidden.forEach((term) => {
+      const present = content.includes(term);
+      console.log(`  - Forbidden term [${term}]: ${!present ? '✓ NOT FOUND' : '✗ PRESENT'}`);
+      if (present) {
+        console.error(`Forbidden term "${term}" found in ${check.file}`);
+        process.exit(1);
+      }
+    });
+  }
 });
 
-console.log('\n✓ All 5 deep body grep verifications passed with 100% precision.');
+console.log('\n✓ All deep body grep verifications passed with 100% precision.');

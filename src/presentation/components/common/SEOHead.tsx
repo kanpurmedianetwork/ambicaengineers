@@ -24,9 +24,15 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 }) => {
   const normalizedPath = canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`;
   const fullCanonicalUrl = normalizedPath === '/' ? `${BASE_URL}/` : `${BASE_URL}${normalizedPath}`;
-  const fullImageUrl = image.startsWith('http://') || image.startsWith('https://') 
-    ? image 
-    : `${BASE_URL}${image.startsWith('/') ? image : `/${image}`}`;
+  
+  // Guard against SVGs for social open graph preview images
+  let resolvedImage = image || DEFAULT_IMAGE;
+  if (resolvedImage.toLowerCase().endsWith('.svg')) {
+    resolvedImage = DEFAULT_IMAGE;
+  }
+  const fullImageUrl = resolvedImage.startsWith('http://') || resolvedImage.startsWith('https://') 
+    ? resolvedImage 
+    : `${BASE_URL}${resolvedImage.startsWith('/') ? resolvedImage : `/${resolvedImage}`}`;
 
   React.useEffect(() => {
     document.title = title;
@@ -70,24 +76,6 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     canonicalLink.setAttribute('href', fullCanonicalUrl);
   }, [title, description, fullCanonicalUrl, fullImageUrl, type, noindex]);
 
-  return (
-    <>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
-      <link rel="canonical" href={fullCanonicalUrl} />
-      <meta property="og:type" content={type} />
-      <meta property="og:site_name" content="Ambica Engineers & Lubricants Ltd" />
-      <meta property="og:locale" content="en_IN" />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:url" content={fullCanonicalUrl} />
-      <meta property="og:image" content={fullImageUrl} />
-      <meta property="og:image:secure_url" content={fullImageUrl} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={fullImageUrl} />
-    </>
-  );
+  // Return null so that no duplicate <title>, <meta>, or <link> tags are rendered inside <div id="root">
+  return null;
 };

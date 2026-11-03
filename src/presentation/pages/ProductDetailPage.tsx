@@ -122,7 +122,7 @@ export const ProductDetailPage: React.FC = () => {
           : `${product.name} (${product.series}) from ${product.brand.toUpperCase()}. In stock at Ambica Engineers.`
         ).slice(0, 155)}
         canonicalPath={`/products/${product.slug}`}
-        image={product.imageUrl.startsWith('http') ? product.imageUrl : `https://www.ambicaengineers.in${product.imageUrl}`}
+        image={product.imageUrl && !product.imageUrl.endsWith('.svg') ? (product.imageUrl.startsWith('http') ? product.imageUrl : `https://www.ambicaengineers.in${product.imageUrl}`) : 'https://www.ambicaengineers.in/images/og-image.jpg'}
         type="product"
       />
       {/* Dark Breadcrumb Banner for Transparent Nav */}
@@ -221,7 +221,17 @@ export const ProductDetailPage: React.FC = () => {
                 </div>
               </div>
             )}
-            {product.displacementCm3Rev && (
+            {product.category === 'hydraulic-valves' ? (
+              <div>
+                <div className="text-[10px] text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                  <Layers className="w-3 h-3 text-sky-600" />
+                  Nominal Flow / Size
+                </div>
+                <div className="text-sm font-mono font-extrabold text-slate-900 mt-0.5 truncate">
+                  {product.specifications.find(s => s.key.includes('Size') || s.key.includes('Flow'))?.value || 'CETOP / ISO 4401'}
+                </div>
+              </div>
+            ) : product.displacementCm3Rev ? (
               <div>
                 <div className="text-[10px] text-slate-400 uppercase tracking-wider flex items-center gap-1">
                   <Layers className="w-3 h-3 text-sky-600" />
@@ -231,7 +241,7 @@ export const ProductDetailPage: React.FC = () => {
                   {product.displacementCm3Rev}
                 </div>
               </div>
-            )}
+            ) : null}
             <div>
               <div className="text-[10px] text-slate-400 uppercase tracking-wider">
                 Availability

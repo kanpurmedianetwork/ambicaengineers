@@ -170,7 +170,8 @@ export const Navbar: React.FC = () => {
               onMouseEnter={() => setBrandsDropdownOpen(true)}
               onMouseLeave={() => setBrandsDropdownOpen(false)}
             >
-              <button
+              <Link
+                to="/brands"
                 className={`px-3.5 py-2 text-[15px] xl:text-[16px] font-semibold rounded-xl inline-flex items-center gap-1.5 transition-all duration-150 tracking-normal cursor-pointer ${
                   isActive('/brands') 
                     ? 'text-[#EF7D01] bg-[#EF7D01]/10 font-bold shadow-xs' 
@@ -179,7 +180,7 @@ export const Navbar: React.FC = () => {
               >
                 Brands
                 <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-white transition-transform duration-150" />
-              </button>
+              </Link>
 
               {brandsDropdownOpen && (
                 <div className="absolute top-full left-0 w-64 bg-[#0A0F1D]/85 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl p-2.5 z-50 ring-1 ring-white/10 animate-in fade-in slide-in-from-top-2 duration-150">
@@ -350,7 +351,7 @@ export const Navbar: React.FC = () => {
           </Link>
 
           <Link
-            to="/products"
+            to="/brands"
             onClick={() => setMobileMenuOpen(false)}
             className="block py-2.5 text-[17px] font-semibold text-slate-100 hover:text-[#EF7D01] transition-colors border-b border-slate-800/80"
           >

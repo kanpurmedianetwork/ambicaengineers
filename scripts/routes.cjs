@@ -63,6 +63,14 @@ const staticRoutes = [
     changefreq: 'weekly',
   },
   {
+    path: '/brands',
+    title: 'Hydraulic Brand Partners & Stockist | Ambica',
+    description: 'Genuine hydraulic brands stocked by Ambica Engineers: Bosch Rexroth, Polyhydron, Nachi, Huade, Voith, and Veljan with rapid nationwide dispatch in India.',
+    image: `${domain}/images/og-image.jpg`,
+    priority: '0.9',
+    changefreq: 'weekly',
+  },
+  {
     path: '/solutions/wood-panel',
     title: 'Wood Panel & MDF Solutions | Ambica Engineers',
     description: 'European silicone cushion pads, hot press spare parts, and continuous production machinery for MDF, particle board, and laminate plants.',
@@ -181,7 +189,8 @@ productBlocks.slice(1).forEach((block) => {
     const brand = brandMatch ? brandMatch[1].toUpperCase() : 'HYDRAULIC';
     const series = seriesMatch ? seriesMatch[1] : '';
     const shortDesc = shortDescMatch ? shortDescMatch[1] : '';
-    const img = imageMatch ? (imageMatch[1].startsWith('http') ? imageMatch[1] : `${domain}${imageMatch[1]}`) : `${domain}/images/og-image.jpg`;
+    const rawImg = imageMatch ? (imageMatch[1].startsWith('http') ? imageMatch[1] : `${domain}${imageMatch[1]}`) : `${domain}/images/og-image.jpg`;
+    const img = rawImg.toLowerCase().endsWith('.svg') ? `${domain}/images/og-image.jpg` : rawImg;
 
     // Title <= 60 chars (checking escaped length)
     let title = `${name} | Ambica Engineers`;

@@ -11,6 +11,7 @@ import { AboutPage } from './presentation/pages/AboutPage';
 import { ProductsPage } from './presentation/pages/ProductsPage';
 import { ProductDetailPage } from './presentation/pages/ProductDetailPage';
 import { BrandPage } from './presentation/pages/BrandPage';
+import { BrandsPage } from './presentation/pages/BrandsPage';
 import { WoodPanelSolutionsPage } from './presentation/pages/WoodPanelSolutionsPage';
 import { EventsPage } from './presentation/pages/EventsPage';
 import { ContactPage } from './presentation/pages/ContactPage';
@@ -27,6 +28,7 @@ export const AppRoutes: React.FC = () => {
       <Route path="/products/:slug" element={<ProductDetailPage />} />
       <Route path="/product-page/:slug" element={<ProductDetailPage />} />
       <Route path="/items/:slug" element={<ProductDetailPage />} />
+      <Route path="/brands" element={<BrandsPage />} />
       <Route path="/brands/:brandId" element={<BrandPage />} />
       <Route path="/solutions/wood-panel" element={<WoodPanelSolutionsPage />} />
       <Route path="/wood-panel-solutions" element={<Navigate to="/solutions/wood-panel" replace />} />

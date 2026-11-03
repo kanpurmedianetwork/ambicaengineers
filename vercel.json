@@ -3,17 +3,6 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "ambicaengineers.in"
-        }
-      ],
-      "destination": "https://www.ambicaengineers.in/:path*",
-      "permanent": true
-    },
-    {
       "source": "/index.php/component/sppagebuilder",
       "has": [
         {
@@ -39,7 +28,7 @@
     },
     {
       "source": "/distributor-stockist",
-      "destination": "/about-us",
+      "destination": "/products",
       "permanent": true
     },
     {
@@ -54,7 +43,7 @@
     },
     {
       "source": "/index.php/brands",
-      "destination": "/products",
+      "destination": "/brands",
       "permanent": true
     },
     {

@@ -103,7 +103,7 @@ export const BrandPage: React.FC = () => {
         title={seoData.title}
         description={seoData.description}
         canonicalPath={`/brands/${brand.id}`}
-        image={brand.logoUrl ? (brand.logoUrl.startsWith('http') ? brand.logoUrl : `https://www.ambicaengineers.in${brand.logoUrl}`) : undefined}
+        image="https://www.ambicaengineers.in/images/og-image.jpg"
       />
       {/* Brand Hero Banner */}
       <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-14 px-4 sm:px-6 lg:px-8 overflow-hidden shadow-xl">

@@ -207,7 +207,7 @@ export const productsData: Product[] = [
     fullDescription: 'The Bosch Rexroth A10VSO is an industry-standard variable axial piston pump engineered for open hydraulic circuits. Featuring a precision swashplate drive, flow is proportional to drive speed and displacement, which can be smoothly adjusted from zero to maximum by regulating the swashplate angle. Renowned for low operating noise, high power-to-weight ratio, rapid control response, and exceptional service life under continuous industrial duties.',
     imageUrl: '/images/products/rexroth-a10vso.webp',
     operatingPressureMaxBar: 350,
-    displacementCm3Rev: '18 to 140 cm³/rev',
+    displacementCm3Rev: '18 to 140 cc/rev',
     keyFeatures: [
       'Nominal continuous pressure 280 bar, peak pressure rating up to 350 bar',
       'Highly flexible control options: DFR1 (pressure & flow), DR (pressure), DFLR (power)',
@@ -216,7 +216,7 @@ export const productsData: Product[] = [
       'Excellent suction characteristics with long bearing life'
     ],
     specifications: [
-      { key: 'Displacement Sizes', value: '18, 28, 45, 71, 100, 140', unit: 'cm³/rev' },
+      { key: 'Displacement Sizes', value: '18, 28, 45, 71, 100, 140', unit: 'cc/rev' },
       { key: 'Nominal Pressure (Continuous)', value: '280', unit: 'bar' },
       { key: 'Maximum Peak Pressure', value: '350', unit: 'bar' },
       { key: 'Maximum Speed at Suction', value: '1800 to 3300', unit: 'rpm' },
@@ -242,16 +242,16 @@ export const productsData: Product[] = [
     fullDescription: 'Engineered for the most demanding heavy-duty continuous industrial applications, the Bosch Rexroth A4VSO handles continuous working pressures up to 350 bar with intermittent peak spikes of 400 bar. Features oversized hydrostatic bearings, robust swashplate swivel cradles, and modular control blocks including electro-proportional displacement controls.',
     imageUrl: '/images/products/rexroth-a4vso.webp',
     operatingPressureMaxBar: 400,
-    displacementCm3Rev: '40 to 1000 cm³/rev',
+    displacementCm3Rev: '40 to 1000 cc/rev',
     keyFeatures: [
       'Heavy-duty industrial pump rated up to 400 bar peak pressure',
-      'Large displacements available up to 1000 cm³/rev for high-tonnage hydraulic presses',
+      'Large displacements available up to 1000 cc/rev for high-tonnage hydraulic presses',
       'Moog / Rexroth servo and proportional displacement control options',
       'Long-life fluid bearing system designed for 24/7 continuous factory duty',
       'Full torque through-drive capability'
     ],
     specifications: [
-      { key: 'Displacement Sizes', value: '40, 71, 125, 180, 250, 355, 500, 750, 1000', unit: 'cm³/rev' },
+      { key: 'Displacement Sizes', value: '40, 71, 125, 180, 250, 355, 500, 750, 1000', unit: 'cc/rev' },
       { key: 'Nominal Working Pressure', value: '350', unit: 'bar' },
       { key: 'Maximum Peak Pressure', value: '400', unit: 'bar' },
       { key: 'Shaft Type', value: 'Splined or Keyed Cylindrical' }
@@ -275,7 +275,7 @@ export const productsData: Product[] = [
     fullDescription: 'The Rexroth A7VO bent axis variable displacement pump utilizes conical tapered pistons arranged around an inclined cylinder block. Because of its bent axis geometry, it delivers unmatched mechanical efficiency, superior self-priming suction speeds, and outstanding service life even when operating under harsh contamination or viscosity variations.',
     imageUrl: '/images/products/rexroth-a7vo.webp',
     operatingPressureMaxBar: 400,
-    displacementCm3Rev: '28 to 500 cm³/rev',
+    displacementCm3Rev: '28 to 500 cc/rev',
     keyFeatures: [
       'High self-priming rotational speed without cavitation',
       'Bent axis geometry with conical piston rings for zero leakage past pistons',
@@ -286,7 +286,7 @@ export const productsData: Product[] = [
     specifications: [
       { key: 'Nominal Pressure', value: '350', unit: 'bar' },
       { key: 'Peak Maximum Pressure', value: '400', unit: 'bar' },
-      { key: 'Displacement Sizes', value: '28, 55, 80, 107, 160, 250, 500', unit: 'cm³/rev' },
+      { key: 'Displacement Sizes', value: '28, 55, 80, 107, 160, 250, 500', unit: 'cc/rev' },
       { key: 'Drive Speeds', value: 'Up to 3400', unit: 'rpm' }
     ],
     applications: [
@@ -306,7 +306,7 @@ export const productsData: Product[] = [
     fullDescription: 'The Huade HD-A8V is a high-performance double variable displacement pump featuring two independent swashplate pumping units inside a compact monoblock housing. Fitted with a summation horsepower limiter, both circuits dynamically balance flow and pressure to utilize 100% of available prime mover motor horsepower without overload, making it ideal for excavators, heavy loaders, and multi-cylinder press circuits.',
     imageUrl: '/images/products/huade-a8v.webp',
     operatingPressureMaxBar: 350,
-    displacementCm3Rev: '2x 55 to 2x 107 cm³/rev',
+    displacementCm3Rev: '2x 55 to 2x 107 cc/rev',
     keyFeatures: [
       'Twin variable displacement pumps in a single compact housing',
       'Automatic summation horsepower control prevents motor stall',
@@ -315,7 +315,7 @@ export const productsData: Product[] = [
       'Superior volumetric efficiency exceeding 94%'
     ],
     specifications: [
-      { key: 'Displacements Available', value: 'HD-A8V 55, HD-A8V 80, HD-A8V 107', unit: 'cm³/rev x 2' },
+      { key: 'Displacements Available', value: 'HD-A8V 55, HD-A8V 80, HD-A8V 107', unit: 'cc/rev x 2' },
       { key: 'Nominal Operating Pressure', value: '300', unit: 'bar' },
       { key: 'Maximum Peak Pressure', value: '350', unit: 'bar' },
       { key: 'Control Types', value: 'Summation HP Limiter + Hydraulic Pilot Overdrive' }
@@ -338,7 +338,7 @@ export const productsData: Product[] = [
     fullDescription: 'The Huade HD-A2F is a proven, reliable bent-axis fixed displacement axial piston pump. Renowned for ruggedness, high starting efficiency, and low sensitivity to fluid contamination, it can operate as either a hydraulic pump or a hydraulic motor without modification.',
     imageUrl: '/images/products/huade-a2f.webp',
     operatingPressureMaxBar: 350,
-    displacementCm3Rev: '10 to 500 cm³/rev',
+    displacementCm3Rev: '10 to 500 cc/rev',
     keyFeatures: [
       'Spherical piston heads with tapered rings provide superior volumetric seal',
       'Heavy-duty bearings designed for radial and axial shaft side-loads',
@@ -348,7 +348,7 @@ export const productsData: Product[] = [
     specifications: [
       { key: 'Nominal Pressure', value: '315', unit: 'bar' },
       { key: 'Peak Maximum Pressure', value: '350', unit: 'bar' },
-      { key: 'Displacements', value: '10, 16, 28, 55, 80, 107, 160, 250, 500', unit: 'cm³/rev' }
+      { key: 'Displacements', value: '10, 16, 28, 55, 80, 107, 160, 250, 500', unit: 'cc/rev' }
     ],
     applications: [
       'Hydrostatic Vehicle Drives',
@@ -367,7 +367,7 @@ export const productsData: Product[] = [
     fullDescription: 'Polyhydron radial piston pumps are valve-controlled, fixed displacement high-pressure units. Featuring radially arranged pumping elements driven by an eccentric drive shaft, they are available in 3, 5, or 7-piston configurations. Each piston element operates as a self-contained pump with independent suction and delivery check valves, allowing multiple separate pressure outputs or combined high-flow discharge.',
     imageUrl: '/images/products/polyhydron-1r-2r.webp',
     operatingPressureMaxBar: 400,
-    displacementCm3Rev: '0.45 to 19.8 cm³/rev',
+    displacementCm3Rev: '0.45 to 19.8 cc/rev',
     keyFeatures: [
       'High working pressure capability up to 400 bar continuous',
       'Individual pumping elements can be split into multiple isolated hydraulic circuits',
@@ -400,7 +400,7 @@ export const productsData: Product[] = [
     fullDescription: 'Nachi Fujikoshi PVS series variable displacement piston pumps feature patented Japanese semi-cylindrical swashplate supports and double balance plates. These design breakthroughs suppress pressure ripples by up to 50% compared to conventional pumps while minimizing operational noise to whisper-quiet levels.',
     imageUrl: '/images/products/nachi-pvs.webp',
     operatingPressureMaxBar: 250,
-    displacementCm3Rev: '16 to 45 cm³/rev',
+    displacementCm3Rev: '16 to 45 cc/rev',
     keyFeatures: [
       'Whisper quiet operation (<62 dB(A) at 210 bar)',
       'Sharp pressure compensation cut-off saves massive electrical energy',
@@ -429,7 +429,7 @@ export const productsData: Product[] = [
     fullDescription: 'Voith internal gear pumps represent the pinnacle of fluid power precision. Featuring patented radial and axial hydrodynamic gap compensation, they maintain exceptional volumetric efficiency (>95%) across their entire service life while running virtually silent under immense 330 bar loads.',
     imageUrl: '/images/products/voith-ipv.webp',
     operatingPressureMaxBar: 330,
-    displacementCm3Rev: '3.5 to 125 cm³/rev',
+    displacementCm3Rev: '3.5 to 125 cc/rev',
     keyFeatures: [
       'Patented hydrodynamic gap compensation eliminates internal slip',
       'Lowest noise emissions in the fluid power industry',
@@ -438,7 +438,7 @@ export const productsData: Product[] = [
     ],
     specifications: [
       { key: 'Operating Pressure Max', value: '330', unit: 'bar' },
-      { key: 'Displacements', value: 'IPV 3, IPV 4, IPV 5, IPV 6, IPV 7 (3.5 to 125 cm³/rev)' },
+      { key: 'Displacements', value: 'IPV 3, IPV 4, IPV 5, IPV 6, IPV 7 (3.5 to 125 cc/rev)' },
       { key: 'Efficiency Rating', value: '> 95%', unit: 'Volumetric' }
     ],
     applications: [
@@ -458,7 +458,7 @@ export const productsData: Product[] = [
     fullDescription: 'The Voith IPH internal gear pump represents the pinnacle of German precision fluid technology. Featuring patented sealing lip gap compensation and optimized gear tooth geometry, the IPH operates at pressures up to 330 bar with minimal pressure pulsation and exceptionally low acoustic emissions.',
     imageUrl: '/images/products/voith-iph.webp',
     operatingPressureMaxBar: 330,
-    displacementCm3Rev: '3.6 to 125 cm³/rev',
+    displacementCm3Rev: '3.6 to 125 cc/rev',
     keyFeatures: [
       'Radial and axial gap compensation maintains 95%+ volumetric efficiency throughout service life',
       'Peak pressure capability up to 345 bar with continuous operation at 330 bar',
@@ -467,7 +467,7 @@ export const productsData: Product[] = [
       'Manufactured in Germany to stringent ISO 9001 precision tolerances'
     ],
     specifications: [
-      { key: 'Displacement Range', value: '3.6 to 125', unit: 'cm³/rev' },
+      { key: 'Displacement Range', value: '3.6 to 125', unit: 'cc/rev' },
       { key: 'Continuous Operating Pressure', value: '330', unit: 'bar' },
       { key: 'Peak Intermittent Pressure', value: '345', unit: 'bar' },
       { key: 'Acoustic Sound Level', value: '58 to 66', unit: 'dBA' },
@@ -490,7 +490,7 @@ export const productsData: Product[] = [
     fullDescription: 'The Veljan Denison T6C series vane pump delivers exceptional volumetric efficiency, low noise levels, and long service life under demanding industrial conditions. Featuring a balanced-vane design that neutralizes hydraulic radial bearing loads, the T6C is ideal for heavy industrial power packs, machine tools, and wood processing equipment. Replaceable cartridge design allows instantaneous field maintenance without uncoupling piping.',
     imageUrl: '/images/products/veljan-t6.webp',
     operatingPressureMaxBar: 275,
-    displacementCm3Rev: '10 to 100 cm³/rev',
+    displacementCm3Rev: '10 to 100 cc/rev',
     keyFeatures: [
       'Operating pressure capability up to 275 bar continuous',
       'High volumetric efficiency exceeding 94% across wide speed range',
@@ -499,7 +499,7 @@ export const productsData: Product[] = [
       'Extremely low noise signature (< 68 dBA) suited for indoor factory environments'
     ],
     specifications: [
-      { key: 'Displacement Options', value: '10 to 100', unit: 'cm³/rev' },
+      { key: 'Displacement Options', value: '10 to 100', unit: 'cc/rev' },
       { key: 'Maximum Operating Pressure', value: '275', unit: 'bar' },
       { key: 'Speed Range', value: '600 to 2800', unit: 'RPM' },
       { key: 'Mounting Flange', value: 'SAE B 2-Bolt / ISO 3019-1' },
@@ -523,7 +523,7 @@ export const productsData: Product[] = [
     fullDescription: 'Engineered specifically for heavy industrial applications requiring higher pressures, the Veljan T7B series combines the high flow characteristics of vane designs with pressure capability up to 320 bar. Bimetal flexible side plates maintain micro-clearance sealing regardless of thermal expansion, providing steady pressure output even with low-viscosity fluids.',
     imageUrl: '/images/products/veljan-t7.webp',
     operatingPressureMaxBar: 320,
-    displacementCm3Rev: '16 to 85 cm³/rev',
+    displacementCm3Rev: '16 to 85 cc/rev',
     keyFeatures: [
       'Up to 320 bar peak operating pressure with high mechanical efficiency',
       'Bimetal side plate construction provides superior thermal and wear compensation',
@@ -532,7 +532,7 @@ export const productsData: Product[] = [
       'Direct interchangeability with Denison T7 series pumps'
     ],
     specifications: [
-      { key: 'Displacement Options', value: '16 to 85', unit: 'cm³/rev' },
+      { key: 'Displacement Options', value: '16 to 85', unit: 'cc/rev' },
       { key: 'Maximum Operating Pressure', value: '320', unit: 'bar' },
       { key: 'Speed Range', value: '600 to 3000', unit: 'RPM' },
       { key: 'Shaft Seal Material', value: 'Viton (FKM) High Temperature' }
@@ -554,7 +554,7 @@ export const productsData: Product[] = [
     fullDescription: 'The Nachi PZS series builds on Nachi patented spherical valve plate and rigid swashplate cradle technology, delivering continuous 280 bar operation with outstanding reliability in high-cycle automated manufacturing cells.',
     imageUrl: '/images/products/nachi-pzs.webp',
     operatingPressureMaxBar: 280,
-    displacementCm3Rev: '70 to 180 cm³/rev',
+    displacementCm3Rev: '70 to 180 cc/rev',
     keyFeatures: [
       'Continuous high-pressure rating of 280 bar (315 bar peak)',
       'High-response swashplate actuator for millisecond pressure cut-off',
@@ -588,7 +588,7 @@ export const productsData: Product[] = [
     fullDescription: 'The Huade HD-A2FM is a fixed displacement bent-axis axial piston motor engineered for hydrostatic transmissions in both open and closed circuits. Its 40° bent axis cylinder geometry provides exceptional mechanical starting torque efficiency and high allowable output shaft speeds, making it the preferred choice for industrial winch drums, mixer agitators, and rotary cutter heads.',
     imageUrl: '/images/products/hydraulic-radial-motor.webp',
     operatingPressureMaxBar: 400,
-    displacementCm3Rev: '10 to 500 cm³/rev',
+    displacementCm3Rev: '10 to 500 cc/rev',
     keyFeatures: [
       'High starting torque efficiency exceeding 92%',
       'High maximum speed rating up to 8000 rpm on smaller frames',
@@ -597,7 +597,7 @@ export const productsData: Product[] = [
       'Bi-directional rotation with integrated counterbalance valve option'
     ],
     specifications: [
-      { key: 'Displacements Available', value: '10, 16, 23, 28, 32, 45, 56, 63, 80, 107, 125, 160, 180, 200, 250, 500', unit: 'cm³/rev' },
+      { key: 'Displacements Available', value: '10, 16, 23, 28, 32, 45, 56, 63, 80, 107, 125, 160, 180, 200, 250, 500', unit: 'cc/rev' },
       { key: 'Nominal Pressure', value: '350', unit: 'bar' },
       { key: 'Peak Pressure', value: '400', unit: 'bar' },
       { key: 'Max Shaft Speed', value: 'Up to 8000', unit: 'rpm' }
@@ -621,7 +621,7 @@ export const productsData: Product[] = [
     fullDescription: 'The HD-A2FE features an intermediate mounting flange located centrally along the motor casing, allowing the cylinder assembly to plug directly into the housing of a mechanical planetary gearbox. This eliminates bulky drive couplings, cuts assembly length in half, and provides a fully enclosed, rigid drive unit.',
     imageUrl: '/images/products/hydraulic-vane-motor.webp',
     operatingPressureMaxBar: 400,
-    displacementCm3Rev: '28 to 180 cm³/rev',
+    displacementCm3Rev: '28 to 180 cc/rev',
     keyFeatures: [
       'Space-saving plug-in design fits directly inside planetary gearboxes',
       'High starting torque and high volumetric efficiency',
@@ -631,7 +631,7 @@ export const productsData: Product[] = [
     specifications: [
       { key: 'Nominal Pressure', value: '350', unit: 'bar' },
       { key: 'Peak Pressure', value: '400', unit: 'bar' },
-      { key: 'Frame Sizes', value: '28, 32, 45, 56, 63, 80, 90, 107, 125, 160, 180', unit: 'cm³/rev' }
+      { key: 'Frame Sizes', value: '28, 32, 45, 56, 63, 80, 90, 107, 125, 160, 180', unit: 'cc/rev' }
     ],
     applications: [
       'Planetary Track Drives for Heavy Machinery',
@@ -650,7 +650,7 @@ export const productsData: Product[] = [
     fullDescription: 'The Bosch Rexroth A6VM bent-axis variable motor is engineered for hydrostatic drives in both open and closed circuits. Its rotary group with tapered piston technology delivers high starting torque, smooth low-speed operation, and extreme acceleration characteristics. The broad displacement control range allows users to achieve high torque at low speeds and high speeds without mechanical gearboxes.',
     imageUrl: '/images/products/hydraulic-motor-variable.png',
     operatingPressureMaxBar: 450,
-    displacementCm3Rev: '28 to 250 cm³/rev',
+    displacementCm3Rev: '28 to 250 cc/rev',
     keyFeatures: [
       'Robust bent-axis rotary group with tapered piston design',
       'Nominal continuous pressure 400 bar, peak maximum pressure 450 bar',
@@ -659,7 +659,7 @@ export const productsData: Product[] = [
       'High power density and exceptional starting torque efficiency'
     ],
     specifications: [
-      { key: 'Displacement Options', value: '28, 55, 80, 107, 140, 160, 200, 250', unit: 'cm³/rev' },
+      { key: 'Displacement Options', value: '28, 55, 80, 107, 140, 160, 200, 250', unit: 'cc/rev' },
       { key: 'Nominal Pressure', value: '400', unit: 'bar' },
       { key: 'Peak Maximum Pressure', value: '450', unit: 'bar' },
       { key: 'Maximum Speed', value: 'Up to 5500', unit: 'RPM' },
@@ -683,7 +683,7 @@ export const productsData: Product[] = [
     fullDescription: 'The Bosch Rexroth A2FE is a plug-in fixed displacement motor designed to be integrated directly into mechanical planetary reduction gearboxes. By recessing the motor housing into the gearbox casing, it achieves substantial space savings while delivering 400 bar continuous hydrostatic drive performance.',
     imageUrl: '/images/products/hydraulic-motor-fixed.png',
     operatingPressureMaxBar: 450,
-    displacementCm3Rev: '28 to 180 cm³/rev',
+    displacementCm3Rev: '28 to 180 cc/rev',
     keyFeatures: [
       'Compact plug-in mounting flange recessed directly into mechanical gearboxes',
       'Proven bent-axis tapered piston technology for heavy-duty cycling',
@@ -692,7 +692,7 @@ export const productsData: Product[] = [
       'Standardized DIN / ISO mounting interface'
     ],
     specifications: [
-      { key: 'Displacement Options', value: '28, 32, 45, 56, 63, 80, 90, 107, 125, 160, 180', unit: 'cm³/rev' },
+      { key: 'Displacement Options', value: '28, 32, 45, 56, 63, 80, 90, 107, 125, 160, 180', unit: 'cc/rev' },
       { key: 'Nominal Operating Pressure', value: '400', unit: 'bar' },
       { key: 'Maximum Peak Pressure', value: '450', unit: 'bar' },
       { key: 'Mounting Style', value: 'Plug-In Flange for Planetary Gearbox' }
@@ -804,7 +804,7 @@ export const productsData: Product[] = [
     category: 'hydraulic-valves',
     shortDescription: 'High-precision electro-proportional valve with integrated digital electronics (OBE) for closed-loop position, speed, and pressure control.',
     fullDescription: 'Designed for automated machinery demanding sub-millimeter positioning and synchronized press platen leveling, this proportional directional valve integrates high-response proportional solenoids with on-board digital control electronics (OBE). Operates on standard 0-10V or 4-20mA control signals.',
-    imageUrl: '/images/products/polyhydron-de06-directional.webp',
+    imageUrl: '/images/products/proportional-valve.png',
     operatingPressureMaxBar: 350,
     keyFeatures: [
       'Integrated digital on-board electronics (OBE) with factory calibrated zero-point',

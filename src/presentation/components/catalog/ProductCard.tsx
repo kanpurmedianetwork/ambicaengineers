@@ -110,8 +110,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div className="flex items-center gap-1.5 text-slate-600 border-l border-slate-200 pl-2">
             <Layers className="w-3.5 h-3.5 text-sky-600 shrink-0" />
             <div className="truncate">
-              <span className="text-slate-400 text-[9px] block uppercase">Displacement</span>
-              <strong className="text-slate-900 truncate block">{product.displacementCm3Rev ? product.displacementCm3Rev.split(' ')[0] : 'Standard'}</strong>
+              {product.category === 'hydraulic-valves' ? (
+                <>
+                  <span className="text-slate-400 text-[9px] block uppercase">Mounting / Size</span>
+                  <strong className="text-slate-900 truncate block">
+                    {product.specifications.find(s => s.key.includes('Size') || s.key.includes('Nominal'))?.value || 'CETOP / ISO 4401'}
+                  </strong>
+                </>
+              ) : product.displacementCm3Rev ? (
+                <>
+                  <span className="text-slate-400 text-[9px] block uppercase">Displacement</span>
+                  <strong className="text-slate-900 truncate block">{product.displacementCm3Rev}</strong>
+                </>
+              ) : (
+                <>
+                  <span className="text-slate-400 text-[9px] block uppercase">Standard</span>
+                  <strong className="text-slate-900 truncate block">Industrial Grade</strong>
+                </>
+              )}
             </div>
           </div>
         </div>
