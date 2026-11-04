@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { ShieldCheck, ArrowRight, CheckCircle2, Globe2, Sparkles, Building2 } from 'lucide-react';
 import { brandsData } from '../../infrastructure/data/brands.data';
 import { SEOHead } from '../components/common/SEOHead';
+import { FAQSection } from '../components/common/FAQSection';
+import { homeFAQs } from '../../infrastructure/data/faq.data';
 import { Button } from '../components/ui/Button';
 
 export const BrandsPage: React.FC = () => {
@@ -140,6 +142,15 @@ export const BrandsPage: React.FC = () => {
           ))}
         </div>
       </section>
+
+      {/* Brand Stockist & Sourcing FAQ Section */}
+      <FAQSection 
+        faqs={homeFAQs.slice(0, 5)}
+        title="OEM Brand Sourcing &amp; Procurement FAQ"
+        subtitle="Common questions regarding authentic sourcing, manufacturer test reports, lead times, and warranty coverage across our brand portfolio."
+        badge="Brand Procurement FAQ"
+        className="pt-2"
+      />
 
       {/* Sourcing Assurance CTA Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

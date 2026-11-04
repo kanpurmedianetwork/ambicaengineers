@@ -8,6 +8,8 @@ import { productsData } from '../../infrastructure/data/products.data';
 import { ProductCard } from '../components/catalog/ProductCard';
 import { Button } from '../components/ui/Button';
 import { SEOHead } from '../components/common/SEOHead';
+import { FAQSection } from '../components/common/FAQSection';
+import { brandFAQs } from '../../infrastructure/data/faq.data';
 
 const BRAND_SEO: Record<string, { title: string; description: string }> = {
   rexroth: {
@@ -214,6 +216,17 @@ export const BrandPage: React.FC = () => {
             </div>
           )}
         </section>
+
+        {/* Brand FAQ Section */}
+        {brandFAQs[brand.id] && brandFAQs[brand.id].length > 0 && (
+          <FAQSection 
+            faqs={brandFAQs[brand.id]}
+            title={`${brand.name} Frequently Asked Questions`}
+            subtitle={`Technical details, inventory availability, and authentic sourcing specifications for ${brand.name} hydraulic components.`}
+            badge={`${brand.name} Engineering FAQ`}
+            className="pt-4"
+          />
+        )}
       </div>
     </div>
   );

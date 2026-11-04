@@ -26,6 +26,8 @@ import { companyData } from '../../infrastructure/data/company.data';
 import { useRFQ } from '../context/RFQContext';
 import { ClientMarquee } from '../components/home/ClientMarquee';
 import { SEOHead } from '../components/common/SEOHead';
+import { FAQSection } from '../components/common/FAQSection';
+import { homeFAQs } from '../../infrastructure/data/faq.data';
 
 export const HomePage: React.FC = () => {
   const { addItem, isInRFQ, openDrawer } = useRFQ();
@@ -698,6 +700,9 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Frequently Asked Questions Section */}
+      <FAQSection faqs={homeFAQs} className="pt-4" />
 
       {/* Global Engineering & Worldwide Export Standards */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

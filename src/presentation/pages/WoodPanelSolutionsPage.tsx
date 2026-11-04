@@ -5,6 +5,8 @@ import { Button } from '../components/ui/Button';
 import { ProductCard } from '../components/catalog/ProductCard';
 import { productsData } from '../../infrastructure/data/products.data';
 import { SEOHead } from '../components/common/SEOHead';
+import { FAQSection } from '../components/common/FAQSection';
+import { cushionPadFAQs } from '../../infrastructure/data/faq.data';
 
 export const WoodPanelSolutionsPage: React.FC = () => {
   const woodProducts = productsData.filter(
@@ -156,6 +158,15 @@ export const WoodPanelSolutionsPage: React.FC = () => {
           ))}
         </div>
       </section>
+
+      {/* European Cushion Pads & Panel Engineering FAQ */}
+      <FAQSection 
+        faqs={cushionPadFAQs}
+        title="Wood Panel &amp; Cushion Pads Technical FAQ"
+        subtitle="Frequently asked engineering questions regarding silicone/copper cushion pad selection, short-cycle hot press installation, and platen protection."
+        badge="Press Engineering &amp; Cushion FAQ"
+        className="pt-2"
+      />
 
       {/* Callout: Engineering Services for Panel Plants */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

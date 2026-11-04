@@ -169,14 +169,24 @@ const deepGrepChecks = [
     terms: ['1R', '2R', 'Radial Piston', 'Polyhydron', 'cc/rev'],
   },
   {
-    path: '/products/cushion-pad-silicon-copper',
-    file: 'dist/products/cushion-pad-silicon-copper/index.html',
-    terms: ['Cushion Pad', 'Silicone', 'Copper', 'Short Cycle Hot Press'],
+    path: '/',
+    file: 'dist/index.html',
+    terms: ['Frequently Asked Questions', 'FAQPage', 'Bosch Rexroth', 'Polyhydron'],
   },
   {
     path: '/brands/rexroth',
     file: 'dist/brands/rexroth/index.html',
-    terms: ['Bosch Rexroth', 'Certified Sourcing Partner', 'A10VSO', 'Germany'],
+    terms: ['Bosch Rexroth', 'Certified Sourcing Partner', 'A10VSO', 'Germany', 'FAQPage', 'Bosch Rexroth Frequently Asked Questions'],
+  },
+  {
+    path: '/products/cushion-pad-silicon-copper',
+    file: 'dist/products/cushion-pad-silicon-copper/index.html',
+    terms: ['Cushion Pad', 'Silicone', 'Copper', 'Short Cycle Hot Press', 'FAQPage', 'European Cushion Pads Technical FAQ'],
+  },
+  {
+    path: '/solutions/wood-panel',
+    file: 'dist/solutions/wood-panel/index.html',
+    terms: ['WOOD PANEL &amp; MDF MANUFACTURING SOLUTIONS', 'FAQPage', 'Wood Panel &amp; Cushion Pads Technical FAQ'],
   },
   {
     path: '/brands',

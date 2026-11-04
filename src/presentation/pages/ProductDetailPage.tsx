@@ -17,6 +17,8 @@ import { Badge } from '../components/ui/Badge';
 import { ProductCard } from '../components/catalog/ProductCard';
 import { companyData } from '../../infrastructure/data/company.data';
 import { SEOHead } from '../components/common/SEOHead';
+import { FAQSection } from '../components/common/FAQSection';
+import { cushionPadFAQs, brandFAQs, homeFAQs } from '../../infrastructure/data/faq.data';
 import { productsData } from '../../infrastructure/data/products.data';
 
 export const ProductDetailPage: React.FC = () => {
@@ -382,6 +384,26 @@ export const ProductDetailPage: React.FC = () => {
           ))}
         </div>
       </section>
+
+      {/* Technical Product FAQ Section */}
+      {(() => {
+        const isCushion = product.category === 'cushion-pads' || product.slug.includes('cushion-pad');
+        const faqsToShow = isCushion 
+          ? cushionPadFAQs 
+          : (brandFAQs[product.brand] && brandFAQs[product.brand].length > 0 
+            ? brandFAQs[product.brand] 
+            : homeFAQs.slice(0, 4));
+
+        return (
+          <FAQSection 
+            faqs={faqsToShow}
+            title={isCushion ? "European Cushion Pads Technical FAQ" : `${product.name} Engineering FAQ`}
+            subtitle="Technical guidance, sizing standards, installation practices, and genuine OEM dispatch guarantees."
+            badge="Component Specifications &amp; FAQ"
+            className="pt-4"
+          />
+        );
+      })()}
 
       {/* Related Components */}
       {relatedProducts.length > 0 && (
