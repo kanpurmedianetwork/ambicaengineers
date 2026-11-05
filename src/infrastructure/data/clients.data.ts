@@ -72,7 +72,7 @@ export const clientsData: ClientLogo[] = [
   },
   {
     "id": "duroply",
-    "name": "Duroply (The Makers of DURO)",
+    "name": "Duroply",
     "imageUrl": "/images/clients/duroply.png"
   },
   {
