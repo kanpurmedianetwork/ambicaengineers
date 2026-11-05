@@ -6,11 +6,6 @@ export interface ClientLogo {
 
 export const clientsData: ClientLogo[] = [
   {
-    "id": "greenlam",
-    "name": "Greenlam Laminates",
-    "imageUrl": "/images/clients/greenlam-laminates.png"
-  },
-  {
     "id": "action-tesa",
     "name": "Action TESA",
     "imageUrl": "/images/clients/action-tesa.jpeg"
@@ -21,24 +16,24 @@ export const clientsData: ClientLogo[] = [
     "imageUrl": "/images/clients/century-ply.jpg"
   },
   {
+    "id": "century-prowud",
+    "name": "Century Prowud",
+    "imageUrl": "/images/clients/amulya-mica.png"
+  },
+  {
+    "id": "greenlam",
+    "name": "Greenlam Industries",
+    "imageUrl": "/images/clients/greenlam-laminates.png"
+  },
+  {
     "id": "durian",
     "name": "Durian Laminates",
     "imageUrl": "/images/clients/durian-laminates.png"
   },
   {
     "id": "e3-panels",
-    "name": "E3 Panels India",
+    "name": "E3 Panels",
     "imageUrl": "/images/clients/e3-panels.jpeg"
-  },
-  {
-    "id": "flavocon",
-    "name": "Flavocon",
-    "imageUrl": "/images/clients/flavocon.jpg"
-  },
-  {
-    "id": "gattani",
-    "name": "Gattani Laminates",
-    "imageUrl": "/images/clients/gattani-laminates.png"
   },
   {
     "id": "greenply",
@@ -46,8 +41,8 @@ export const clientsData: ClientLogo[] = [
     "imageUrl": "/images/clients/greenply-industries.png"
   },
   {
-    "id": "hdf-flooring",
-    "name": "HDF Laminate Flooring",
+    "id": "crossbond",
+    "name": "Crossbond HDF Flooring",
     "imageUrl": "/images/clients/hdf-laminate-flooring.png"
   },
   {
@@ -56,78 +51,73 @@ export const clientsData: ClientLogo[] = [
     "imageUrl": "/images/clients/stylam-laminates.png"
   },
   {
-    "id": "client-11",
-    "name": "Alstone India",
+    "id": "virgo",
+    "name": "Virgo Laminates",
     "imageUrl": "/images/clients/alstone-india.png"
   },
   {
-    "id": "client-12",
-    "name": "Amulya Mica",
-    "imageUrl": "/images/clients/amulya-mica.png"
-  },
-  {
-    "id": "client-13",
-    "name": "Merino Laminates",
+    "id": "merino",
+    "name": "Merino Group",
     "imageUrl": "/images/clients/merino-laminates.png"
   },
   {
-    "id": "client-14",
-    "name": "Rushil Décor (VIR)",
-    "imageUrl": "/images/clients/rushil-decor-vir.png"
-  },
-  {
-    "id": "client-15",
-    "name": "Balaji Action Buildwell",
-    "imageUrl": "/images/clients/balaji-action.jpg"
-  },
-  {
-    "id": "client-16",
-    "name": "Croce Laminates",
-    "imageUrl": "/images/clients/croce-laminates.png"
-  },
-  {
-    "id": "client-17",
-    "name": "Advance Decorative Laminates",
-    "imageUrl": "/images/clients/advance-laminates.jpg"
-  },
-  {
-    "id": "client-18",
-    "name": "Signature Laminates",
+    "id": "flamingo",
+    "name": "Flamingo (Soul of the Wood)",
     "imageUrl": "/images/clients/signature-laminates.jpg"
   },
   {
-    "id": "client-19",
-    "name": "Austin Plywood",
-    "imageUrl": "/images/clients/austin-plywood.jpg"
-  },
-  {
-    "id": "client-20",
-    "name": "Archidply Industries",
-    "imageUrl": "/images/clients/archidply.jpg"
-  },
-  {
-    "id": "client-21",
-    "name": "Kajaria Laminates",
-    "imageUrl": "/images/clients/kajaria-laminates.jpg"
-  },
-  {
-    "id": "client-22",
+    "id": "greenpanel",
     "name": "Greenpanel Industries",
-    "imageUrl": "/images/clients/greenpanel.png"
-  },
-  {
-    "id": "client-23",
-    "name": "Shirdi Industries",
-    "imageUrl": "/images/clients/shirdi-industries.png"
-  },
-  {
-    "id": "client-24",
-    "name": "National Plywood",
-    "imageUrl": "/images/clients/national-plywood.jpeg"
+    "imageUrl": "/images/clients/austin-plywood.jpg"
   },
   {
     "id": "duroply",
     "name": "Duroply (The Makers of DURO)",
     "imageUrl": "/images/clients/duroply.png"
+  },
+  {
+    "id": "positive-chip-boards",
+    "name": "Positive Chip Boards India",
+    "imageUrl": "/images/clients/greenpanel.png"
+  },
+  {
+    "id": "daya",
+    "name": "Daya (Veneer, Laminate, Plywood)",
+    "imageUrl": "/images/clients/shirdi-industries.png"
+  },
+  {
+    "id": "ossam-decor",
+    "name": "Ossam Decor",
+    "imageUrl": "/images/clients/balaji-action.jpg"
+  },
+  {
+    "id": "prominent-fibres",
+    "name": "Prominent Fibres",
+    "imageUrl": "/images/clients/croce-laminates.png"
+  },
+  {
+    "id": "zoha-greenland",
+    "name": "Zoha Greenland",
+    "imageUrl": "/images/clients/advance-laminates.jpg"
+  },
+  {
+    "id": "gattani",
+    "name": "Gattani Plywood & Laminates",
+    "imageUrl": "/images/clients/gattani-laminates.png"
+  },
+  {
+    "id": "flavicon",
+    "name": "Flavicon Eco Boards",
+    "imageUrl": "/images/clients/flavocon.jpg"
+  },
+  {
+    "id": "realply",
+    "name": "Realply",
+    "imageUrl": "/images/clients/rushil-decor-vir.png"
+  },
+  {
+    "id": "mama-laminates",
+    "name": "Mama Laminates",
+    "imageUrl": "/images/clients/national-plywood.jpeg"
   }
 ];
