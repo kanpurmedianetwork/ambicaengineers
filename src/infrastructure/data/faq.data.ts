@@ -106,6 +106,10 @@ export const brandFAQs: Record<string, FAQItem[]> = {
   ],
   huade: [
     {
+      question: "What are the features and pressure ratings of the Huade YCY piston pump?",
+      answer: "The Huade YCY14-1B series is a pressure-compensated variable displacement axial piston pump rated for 315 bar nominal and 400 bar peak pressure. It automatically trims flow to zero-stroke once system pressure reaches the preset limit, significantly reducing hydraulic power draw and heat generation during pressure holding cycles in presses."
+    },
+    {
       question: "What is Huade Hydraulic's manufacturing background and quality standard?",
       answer: "Huade Hydraulic was established through a joint technical cooperation introducing German licensed precision manufacturing technology and machining equipment. Huade components offer interchangeable mounting with European DIN/ISO standards at competitive industrial pricing."
     },

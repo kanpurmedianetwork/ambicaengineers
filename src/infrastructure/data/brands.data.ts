@@ -45,9 +45,9 @@ export const brandsData: Brand[] = [
     description: 'Huade Hydraulic manufactures premium hydraulic pumps and directional control valves produced under licensed German precision technology, offering outstanding durability and cost-effectiveness.',
     logoUrl: '/images/brands/huade.webp',
     bannerColor: '#047857',
-    specialties: ['A8V Variable Double Pumps', 'A2F Fixed Displacement Pumps', 'Directional Control Valves'],
+    specialties: ['A8V Variable Double Pumps', 'YCY Axial Piston Pumps', 'A2F Fixed Displacement Pumps', 'Directional Control Valves'],
     authorizedStatus: 'Authorized National Importer & Stockist',
-    popularSeries: ['HD-A8V Series', 'HD-A10VSO Series', 'HD-A2F Series']
+    popularSeries: ['HD-A8V Series', 'YCY14-1B / YCY Series', 'HD-A10VSO Series', 'HD-A2F Series']
   },
   {
     id: 'voith',

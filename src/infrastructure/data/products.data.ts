@@ -357,6 +357,42 @@ export const productsData: Product[] = [
     ]
   },
   {
+    id: 'prod-huade-ycy-pump',
+    slug: 'huade-ycy-axial-piston-pump',
+    name: 'Huade YCY Variable Axial Piston Pump',
+    series: 'YCY14-1B / CY14-1B Series',
+    brand: 'huade',
+    category: 'hydraulic-pumps',
+    shortDescription: 'High-pressure variable axial piston pump with automatic pressure compensation up to 315 bar.',
+    fullDescription: 'The Huade YCY14-1B is a high-pressure variable displacement axial piston pump featuring an integrated constant-pressure compensation mechanism. Operating on a rotating cylinder block and swashplate principle with hydrostatic balance slipper shoes, the pump automatically adjusts swashplate angle to reduce displacement as system pressure reaches preset limits. Upon hitting terminal pressure, it shifts to energy-saving zero-stroke mode, drastically lowering heat generation and motor power consumption. Widely employed across hydraulic hot presses, forging presses, shearing machines, and heavy-duty industrial machinery.',
+    imageUrl: '/images/products/huade-ycy-piston-pump.webp',
+    operatingPressureMaxBar: 400,
+    displacementCm3Rev: '10 to 250 cc/rev',
+    keyFeatures: [
+      'Automatic pressure compensation control dynamically matches hydraulic load',
+      'Energy-saving zero-stroke standby mode reduces power draw and oil heating',
+      'Hydrostatic balance slipper shoes and valve plate deliver long operational life',
+      'Continuous working pressure up to 31.5 MPa (315 bar) and peak up to 400 bar',
+      'Proven CY14-1B series design trusted across heavy manufacturing lines'
+    ],
+    specifications: [
+      { key: 'Series / Designation', value: 'YCY14-1B / CY14-1B' },
+      { key: 'Displacement Range', value: '10, 25, 40, 63, 80, 160, 250', unit: 'cc/rev' },
+      { key: 'Nominal Operating Pressure', value: '315', unit: 'bar' },
+      { key: 'Maximum Peak Pressure', value: '400', unit: 'bar' },
+      { key: 'Rated Drive Speed', value: '1000 to 1500', unit: 'rpm' },
+      { key: 'Control Type', value: 'Pressure-Compensated Constant Pressure Variable' },
+      { key: 'Mounting Style', value: 'Flange Mounted / Metric & SAE Options' }
+    ],
+    applications: [
+      'Wood Panel Hot Presses & Plywood Machinery',
+      'Forging & Metal Stamping Hydraulic Presses',
+      'Plastic & Rubber Compression Molding Presses',
+      'Heavy Industrial Power Packs & Actuation Units'
+    ],
+    isFeatured: true
+  },
+  {
     id: 'prod-polyhydron-radial-pump',
     slug: 'polyhydron-1r-2r-radial-piston-pump',
     name: 'Polyhydron 1R / 2R High-Pressure Radial Piston Pump',

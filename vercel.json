@@ -27,6 +27,16 @@
       "permanent": true
     },
     {
+      "source": "/products/ycy-piston-pump",
+      "destination": "/products/huade-ycy-axial-piston-pump",
+      "permanent": true
+    },
+    {
+      "source": "/products/ycy-axial-piston-pump",
+      "destination": "/products/huade-ycy-axial-piston-pump",
+      "permanent": true
+    },
+    {
       "source": "/distributor-stockist",
       "destination": "/products",
       "permanent": true

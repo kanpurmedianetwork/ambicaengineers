@@ -154,6 +154,12 @@ console.log('===================================================================
 
 const deepGrepChecks = [
   {
+    path: '/products/huade-ycy-axial-piston-pump',
+    file: 'dist/products/huade-ycy-axial-piston-pump/index.html',
+    terms: ['Huade', 'YCY', 'Axial Piston', '315 bar', '400 bar', 'cc/rev'],
+  },
+
+  {
     path: '/products/bosch-rexroth-a10vso-axial-piston-pump',
     file: 'dist/products/bosch-rexroth-a10vso-axial-piston-pump/index.html',
     terms: ['A10VSO', 'Displacement', '350 bar', 'Axial Piston', 'cc/rev'],

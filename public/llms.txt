@@ -14,7 +14,7 @@
 - [Bosch Rexroth Hydraulics](https://www.ambicaengineers.in/brands/rexroth): Axial piston pumps (A10VSO, A4VSO, A7VO) and bent-axis hydraulic motors (A6VM, A2FE) for mobile and industrial applications.
 - [Polyhydron Systems](https://www.ambicaengineers.in/brands/polyhydron): High-pressure radial piston pumps (1R, 2R series), industrial valves, and cartridge systems.
 - [Nachi-Fujikoshi Hydraulics](https://www.ambicaengineers.in/brands/nachi): Variable volume piston pumps (PVS, PZS series) and energy-efficient wet-solenoid directional control valves (SS-G01, SA-G03).
-- [Huade Hydraulic](https://www.ambicaengineers.in/brands/huade): Variable double displacement pumps (HD-A8V), fixed displacement pumps (HD-A2F), and bent-axis motors (HD-A2FM).
+- [Huade Hydraulic](https://www.ambicaengineers.in/brands/huade): Variable displacement axial piston pumps (YCY14-1B series, HD-A8V), fixed displacement pumps (HD-A2F), and bent-axis motors (HD-A2FM).
 - [Voith Turbo](https://www.ambicaengineers.in/brands/voith): Ultra-low-noise high-pressure internal gear pumps (IPV and IPH series).
 - [Veljan Hydrair](https://www.ambicaengineers.in/brands/veljan): High-performance single and double industrial vane pumps (T6C, T7B series).
 
