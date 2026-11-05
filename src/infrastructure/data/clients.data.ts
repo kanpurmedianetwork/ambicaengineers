@@ -126,8 +126,8 @@ export const clientsData: ClientLogo[] = [
     "imageUrl": "/images/clients/national-plywood.jpeg"
   },
   {
-    "id": "client-25",
-    "name": "Duro Plywood",
-    "imageUrl": "/images/clients/duro-plywood.jpeg"
+    "id": "duroply",
+    "name": "Duroply (The Makers of DURO)",
+    "imageUrl": "/images/clients/duroply.png"
   }
 ];
