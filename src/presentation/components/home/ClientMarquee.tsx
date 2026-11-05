@@ -45,14 +45,14 @@ export const ClientMarquee: React.FC = () => {
             {marqueeRow1.map((client, index) => (
               <div
                 key={`row1-${client.id}-${index}`}
-                className="bg-white border border-slate-200/90 hover:border-[#EF7D01]/50 rounded-2xl p-4 h-20 sm:h-24 w-44 sm:w-56 flex items-center justify-center shadow-xs hover:shadow-md transition-all duration-300 shrink-0 group select-none cursor-pointer"
+                className="bg-white border border-slate-200/90 hover:border-[#EF7D01]/60 rounded-2xl p-3 sm:p-4 h-22 sm:h-26 w-48 sm:w-60 flex items-center justify-center shadow-xs hover:shadow-md transition-all duration-300 shrink-0 group select-none cursor-pointer"
                 title={client.name}
               >
                 <img
                   src={client.imageUrl}
                   alt={client.name}
                   loading="lazy"
-                  className="max-h-12 sm:max-h-14 max-w-[82%] object-contain filter grayscale group-hover:grayscale-0 contrast-110 opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
+                  className="w-full h-full max-h-14 sm:max-h-16 max-w-[92%] object-contain opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
                   onError={(e) => {
                     // Fallback to text label if image fails
                     e.currentTarget.style.display = 'none';
@@ -74,14 +74,14 @@ export const ClientMarquee: React.FC = () => {
             {marqueeRow2.map((client, index) => (
               <div
                 key={`row2-${client.id}-${index}`}
-                className="bg-white border border-slate-200/90 hover:border-[#EF7D01]/50 rounded-2xl p-4 h-20 sm:h-24 w-44 sm:w-56 flex items-center justify-center shadow-xs hover:shadow-md transition-all duration-300 shrink-0 group select-none cursor-pointer"
+                className="bg-white border border-slate-200/90 hover:border-[#EF7D01]/60 rounded-2xl p-3 sm:p-4 h-22 sm:h-26 w-48 sm:w-60 flex items-center justify-center shadow-xs hover:shadow-md transition-all duration-300 shrink-0 group select-none cursor-pointer"
                 title={client.name}
               >
                 <img
                   src={client.imageUrl}
                   alt={client.name}
                   loading="lazy"
-                  className="max-h-12 sm:max-h-14 max-w-[82%] object-contain filter grayscale group-hover:grayscale-0 contrast-110 opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
+                  className="w-full h-full max-h-14 sm:max-h-16 max-w-[92%] object-contain opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                     const fallback = e.currentTarget.nextElementSibling as HTMLElement;
