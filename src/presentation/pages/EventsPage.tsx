@@ -41,7 +41,7 @@ export const EventsPage: React.FC = () => {
       {/* Events List */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {eventsData.map((event) => {
-          const isUpcoming = event.year >= 2026;
+          const isUpcoming = event.badgeText.toLowerCase().includes('upcoming');
           return (
             <Card 
               key={event.id} 
@@ -142,15 +142,15 @@ export const EventsPage: React.FC = () => {
                 </div>
               )}
 
-              {isUpcoming && (
-                <div className="pt-2 flex items-center gap-4">
-                  <Link to="/contact">
-                    <Button variant="primary" size="sm" icon={<ArrowRight className="w-4 h-4" />}>
-                      Book an In-Person Meeting at Stall {event.stallNumber}
-                    </Button>
-                  </Link>
-                </div>
-              )}
+              <div className="pt-2 flex flex-wrap items-center gap-4">
+                <Link to="/contact">
+                  <Button variant={isUpcoming ? 'primary' : 'outline'} size="sm" icon={<ArrowRight className="w-4 h-4" />}>
+                    {isUpcoming 
+                      ? `Book an In-Person Meeting at Stall ${event.stallNumber}`
+                      : `Inquire About Products Showcased at ${event.title}`}
+                  </Button>
+                </Link>
+              </div>
             </Card>
           );
         })}

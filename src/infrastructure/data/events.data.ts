@@ -11,13 +11,13 @@ export const eventsData: ExhibitionEvent[] = [
     city: 'Bengaluru, Karnataka',
     stallNumber: 'Hall 4 - Stall B12',
     hallNumber: 'Hall 4',
-    badgeText: 'Upcoming Major Expo',
+    badgeText: 'Completed Expo',
     highlightProducts: [
       'European Silicon & Copper Cushion Pads for Short Cycle Hot Press',
       'Continuous Production Line Automation Spares',
       'High-Pressure Hydraulic Power Packs for Laminate Presses'
     ],
-    description: 'Join Ambica Engineers at IndiaWood 2026, South Asia’s premier woodworking and panel manufacturing exhibition. We will showcase our next-generation European cushion pads, high-performance Rexroth & Huade hydraulic systems, and customized wood processing spares.',
+    description: 'At IndiaWood 2026 (South Asia’s premier woodworking and furniture manufacturing fair), Ambica Engineers showcased next-generation European cushion pads, high-performance Rexroth & Huade hydraulic systems, and customized wood processing machinery spares at Hall 4 - Stall B12, engaging with leading manufacturers from across India and international markets.',
     images: [
       '/images/events/indiawood_2026_01.webp',
       '/images/events/indiawood_2026_02.webp',
