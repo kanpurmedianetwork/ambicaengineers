@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Trash2, Plus, Minus, Send, FileText, CheckCircle2, ShoppingBag, Hash, Settings, MessageSquare, ShieldCheck } from 'lucide-react';
+import { X, Trash2, Plus, Minus, Send, FileText, CheckCircle2, ShoppingBag, Hash, MessageSquare, ShieldCheck, Globe } from 'lucide-react';
 import { useRFQ } from '../../context/RFQContext';
 import { Button } from '../ui/Button';
 import { inquiryService } from '../../../infrastructure/repositories/InquiryServiceImpl';
 import { RFQSubmission } from '../../../domain/entities/RFQItem';
 import { RFQSequenceService } from '../../../domain/services/RFQSequenceService';
+import { COUNTRIES } from '../../../infrastructure/data/countries.data';
 
 export const RFQDrawer: React.FC = () => {
   const { items, isDrawerOpen, closeDrawer, removeItem, updateQuantity, updateNotes, clearRFQ } = useRFQ();
@@ -28,10 +29,8 @@ export const RFQDrawer: React.FC = () => {
   const [submissionSuccess, setSubmissionSuccess] = useState<string | null>(null);
   const [whatsAppUrl, setWhatsAppUrl] = useState<string | null>(null);
 
-  // Sequential RFQ tracking
+  // Sequential RFQ tracking (strictly automated - no manual editing)
   const [currentRfqId, setCurrentRfqId] = useState<string>('');
-  const [isEditingSequence, setIsEditingSequence] = useState(false);
-  const [manualSequenceInput, setManualSequenceInput] = useState('');
 
   useEffect(() => {
     if (isDrawerOpen) {
@@ -43,6 +42,18 @@ export const RFQDrawer: React.FC = () => {
   }, [isDrawerOpen]);
 
   if (!isDrawerOpen) return null;
+
+  const handleCountryChange = (selectedCountryName: string) => {
+    setCountry(selectedCountryName);
+    // Suggest USD/EUR for international destinations outside India
+    if (selectedCountryName !== 'India') {
+      if (currency === 'INR') {
+        setCurrency('USD');
+      }
+    } else {
+      setCurrency('INR');
+    }
+  };
 
   const handleSubmitRFQ = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -287,8 +298,8 @@ export const RFQDrawer: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Sequential RFQ Reference Banner */}
-                <div className="bg-orange-50/80 border border-orange-200/90 rounded-2xl p-4 space-y-2">
+                {/* Sequential RFQ Reference Banner (Strictly Automated Tracking) */}
+                <div className="bg-orange-50/80 border border-orange-200/90 rounded-2xl p-4">
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <div className="text-[10px] font-mono text-slate-500 uppercase tracking-wider font-semibold flex items-center gap-1">
@@ -305,58 +316,9 @@ export const RFQDrawer: React.FC = () => {
                         Direct WhatsApp
                       </span>
                       <div className="text-[10px] font-mono text-slate-500 mt-1">
-                        Follows #{RFQSequenceService.getLastFollowedNumber()}
+                        Auto-Assigned Sequence
                       </div>
                     </div>
-                  </div>
-
-                  {/* Manual sequence sync option */}
-                  <div className="pt-2 border-t border-orange-200/60 flex items-center justify-between text-[11px] text-slate-600">
-                    <span className="text-slate-500">Match your company sheet counter:</span>
-                    {isEditingSequence ? (
-                      <div className="flex items-center gap-1">
-                        <input
-                          type="number"
-                          value={manualSequenceInput}
-                          onChange={(e) => setManualSequenceInput(e.target.value)}
-                          placeholder="e.g. 1001"
-                          className="w-20 px-2 py-0.5 text-xs bg-white border border-slate-300 rounded font-mono"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => {
-                            const num = parseInt(manualSequenceInput, 10);
-                            if (!isNaN(num) && num > 0) {
-                              RFQSequenceService.setSequence(num - 1);
-                              setCurrentRfqId(RFQSequenceService.getNextRFQId());
-                            }
-                            setIsEditingSequence(false);
-                          }}
-                          className="text-xs text-[#EF7D01] font-bold px-2 py-0.5 bg-white border border-[#EF7D01] rounded hover:bg-orange-50 cursor-pointer"
-                        >
-                          Save
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setIsEditingSequence(false)}
-                          className="text-xs text-slate-400 px-1 hover:text-slate-600 cursor-pointer"
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setManualSequenceInput(String(RFQSequenceService.getLastFollowedNumber() + 1));
-                          setIsEditingSequence(true);
-                        }}
-                        className="text-[11px] text-[#EF7D01] hover:underline font-mono font-medium inline-flex items-center gap-1 cursor-pointer"
-                      >
-                        <Settings className="w-3 h-3" />
-                        Edit Number
-                      </button>
-                    )}
                   </div>
                 </div>
 
@@ -439,19 +401,26 @@ export const RFQDrawer: React.FC = () => {
                         type="text"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
-                        placeholder="e.g. Noida"
+                        placeholder="e.g. Dubai / Noida"
                         className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors"
                       />
                     </div>
                     <div className="col-span-1">
-                      <label className="text-[11px] text-slate-700 font-medium block mb-1">Country</label>
-                      <input
-                        type="text"
+                      <label className="text-[11px] text-slate-700 font-medium block mb-1 flex items-center gap-1">
+                        <Globe className="w-3 h-3 text-[#EF7D01]" />
+                        Country *
+                      </label>
+                      <select
                         value={country}
-                        onChange={(e) => setCountry(e.target.value)}
-                        placeholder="India"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors"
-                      />
+                        onChange={(e) => handleCountryChange(e.target.value)}
+                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-2 py-2 text-xs text-slate-900 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors"
+                      >
+                        {COUNTRIES.map((c) => (
+                          <option key={c.code} value={c.name}>
+                            {c.name} ({c.dialCode})
+                          </option>
+                        ))}
+                      </select>
                     </div>
                     <div className="col-span-1">
                       <label className="text-[11px] text-slate-700 font-medium block mb-1">Currency</label>
@@ -473,7 +442,7 @@ export const RFQDrawer: React.FC = () => {
                       rows={2}
                       value={generalNotes}
                       onChange={(e) => setGeneralNotes(e.target.value)}
-                      placeholder="e.g. Need A10VSO 71 DFR1/31R with SAE flange; 2-day delivery needed..."
+                      placeholder="e.g. Need A10VSO 71 DFR1/31R with SAE flange; urgent delivery required..."
                       className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors resize-none"
                     />
                   </div>
@@ -509,7 +478,7 @@ export const RFQDrawer: React.FC = () => {
                       {submitting ? 'Preparing WhatsApp Dispatch...' : `Submit RFQ via WhatsApp (${currentRfqId || RFQSequenceService.getNextRFQId()})`}
                     </Button>
                     <div className="text-center text-[10px] text-slate-400 mt-1.5">
-                      Direct WhatsApp Transmission • No public forms or spreadsheets
+                      Direct WhatsApp Transmission • Pan-India &amp; Global Export Inquiries
                     </div>
                   </div>
                 </form>

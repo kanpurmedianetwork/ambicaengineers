@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Lock, Eye, FileText, CheckCircle2, UserCheck, AlertCircle, Phone, Mail, Building2, ExternalLink } from 'lucide-react';
+import { ShieldCheck, Lock, CheckCircle2, Phone, Mail, Building2, MessageSquare } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { companyData } from '../../infrastructure/data/company.data';
 import { SEOHead } from '../components/common/SEOHead';
@@ -60,7 +60,7 @@ export const PrivacyPolicyPage: React.FC = () => {
               <div>Corporate Headquarters &amp; Experience Centre:</div>
               <div>5th Floor, Plot No. A-143, Sovereign Corporate Tower, Sector 136, Noida, Uttar Pradesh 201304, India</div>
               <div>Website: <a href="https://www.ambicaengineers.in" className="text-[#EF7D01] underline">www.ambicaengineers.in</a></div>
-              <div>Corporate Contact: <a href={`mailto:${companyData.contact.primaryEmail}`} className="text-[#EF7D01]">{companyData.contact.primaryEmail}</a> | {companyData.contact.primaryPhone}</div>
+              <div>Corporate Contact: <a href="mailto:info@ambicaengineers.in" className="text-[#EF7D01]">info@ambicaengineers.in</a> | {companyData.contact.primaryPhone}</div>
             </div>
           </section>
 
@@ -73,7 +73,7 @@ export const PrivacyPolicyPage: React.FC = () => {
               In accordance with Section 6 of the DPDPA 2023, we process personal data exclusively on the basis of your <strong>free, specific, informed, unconditional, and unambiguous consent</strong> signified by an affirmative action (such as ticking the explicit consent checkbox on our inquiry form or RFQ drawer).
             </p>
             <p>
-              Your consent may be withdrawn at any time with ease equal to the ease with which it was given, by writing to our designated Grievance Redressal Officer at <a href="mailto:compliance@ambicaengineers.in" className="text-[#EF7D01] underline font-mono">compliance@ambicaengineers.in</a>. The withdrawal of consent does not affect the lawfulness of processing undertaken prior to such withdrawal.
+              Your consent may be withdrawn at any time with ease equal to the ease with which it was given, by writing to our designated Grievance Redressal Officer at <a href="mailto:info@ambicaengineers.in" className="text-[#EF7D01] underline font-mono">info@ambicaengineers.in</a>. The withdrawal of consent does not affect the lawfulness of processing undertaken prior to such withdrawal.
             </p>
           </section>
 
@@ -83,10 +83,10 @@ export const PrivacyPolicyPage: React.FC = () => {
               <span className="text-[#EF7D01] font-mono">3.</span> Categories of Personal &amp; Commercial Data Collected
             </h2>
             <p>
-              We collect only the minimum personal data strictly necessary to fulfill your technical and commercial inquiries:
+              We collect only the minimum personal data strictly necessary to fulfill your technical and commercial inquiries from domestic and international procurement offices:
             </p>
             <ul className="list-disc pl-5 space-y-1.5 text-slate-600">
-              <li><strong className="text-slate-800">Identity &amp; Contact Details:</strong> Full name, company/plant name, corporate email address, telephone/WhatsApp mobile number, and delivery city/country.</li>
+              <li><strong className="text-slate-800">Identity &amp; Contact Details:</strong> Full name, company/plant name, corporate email address, telephone/WhatsApp mobile number, and country/delivery city.</li>
               <li><strong className="text-slate-800">Technical &amp; RFQ Information:</strong> Hydraulic component part codes, pump displacement, working pressure parameters, bill of materials (BOM), required quantities, and specific engineering notes.</li>
               <li><strong className="text-slate-800">Security &amp; Abuse Prevention Metadata:</strong> Client IP address, browser user-agent header, and request timestamps, processed transiently to enforce anti-bot honeypot shields and thwart automated cyber-attacks.</li>
             </ul>
@@ -127,7 +127,7 @@ export const PrivacyPolicyPage: React.FC = () => {
                   Logistics &amp; Dispatch
                 </div>
                 <div className="text-[11px] text-slate-600">
-                  Facilitating courier consignment bookings, same-day dispatches, and warehouse transit tracking across India.
+                  Facilitating courier consignment bookings, same-day dispatches, and warehouse transit tracking across India and worldwide destinations.
                 </div>
               </div>
 
@@ -218,7 +218,7 @@ export const PrivacyPolicyPage: React.FC = () => {
               In compliance with Section 8(9) of the Digital Personal Data Protection Act, 2023, Ambica Engineers has designated a Grievance Redressal Officer to address all queries, consent revocations, and data principal rights requests:
             </p>
 
-            <div className="bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 space-y-3 shadow-md">
+            <div className="bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 space-y-4 shadow-md">
               <div className="flex items-center justify-between border-b border-slate-800 pb-3">
                 <div className="space-y-0.5">
                   <div className="text-[10px] font-mono text-[#EF7D01] uppercase tracking-wider font-bold">
@@ -245,13 +245,13 @@ export const PrivacyPolicyPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2.5">
                   <div className="flex items-center gap-2">
                     <Mail className="w-4 h-4 text-[#EF7D01] shrink-0" />
                     <div>
                       <strong className="text-white block">Grievance Email:</strong>
-                      <a href="mailto:compliance@ambicaengineers.in" className="text-[#EF7D01] hover:underline font-mono">
-                        compliance@ambicaengineers.in
+                      <a href="mailto:info@ambicaengineers.in" className="text-[#EF7D01] hover:underline font-mono">
+                        info@ambicaengineers.in
                       </a>
                     </div>
                   </div>
@@ -259,8 +259,25 @@ export const PrivacyPolicyPage: React.FC = () => {
                   <div className="flex items-center gap-2">
                     <Phone className="w-4 h-4 text-[#EF7D01] shrink-0" />
                     <div>
-                      <strong className="text-white block">Helpline / WhatsApp:</strong>
-                      <span className="font-mono text-slate-200">+91 76000 25020</span>
+                      <strong className="text-white block">Helpline / Phone:</strong>
+                      <a href={`tel:${companyData.contact.primaryPhone.replace(/\s+/g, '')}`} className="font-mono text-slate-200 hover:text-[#EF7D01] transition-colors">
+                        {companyData.contact.primaryPhone}
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <MessageSquare className="w-4 h-4 text-[#25D366] shrink-0" />
+                    <div>
+                      <strong className="text-white block">Official WhatsApp Desk:</strong>
+                      <a 
+                        href={`https://wa.me/${companyData.contact.whatsappNumber}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="font-mono text-emerald-400 hover:underline inline-flex items-center gap-1"
+                      >
+                        +91 76000 25020
+                      </a>
                     </div>
                   </div>
                 </div>

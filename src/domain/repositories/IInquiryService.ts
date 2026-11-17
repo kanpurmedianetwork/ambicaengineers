@@ -5,6 +5,8 @@ export interface ContactInquiry {
   email: string;
   phone: string;
   company?: string;
+  country?: string;
+  city?: string;
   subject: string;
   message: string;
 }

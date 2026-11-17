@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Phone, Mail, MapPin, Send, CheckCircle2, Clock, Building2, ExternalLink, Navigation, ShieldCheck, MessageSquare } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, CheckCircle2, Clock, Building2, ExternalLink, Navigation, ShieldCheck, MessageSquare, Globe } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { companyData } from '../../infrastructure/data/company.data';
 import { inquiryService } from '../../infrastructure/repositories/InquiryServiceImpl';
+import { COUNTRIES } from '../../infrastructure/data/countries.data';
 import { SEOHead } from '../components/common/SEOHead';
 
 export const ContactPage: React.FC = () => {
@@ -11,6 +12,8 @@ export const ContactPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [company, setCompany] = useState('');
+  const [country, setCountry] = useState('India');
+  const [city, setCity] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [dpdpaConsent, setDpdpaConsent] = useState(false);
@@ -65,6 +68,8 @@ export const ContactPage: React.FC = () => {
       email: email.trim(),
       phone: phone.trim(),
       company: company.trim(),
+      country: country.trim(),
+      city: city.trim(),
       subject: subject.trim(),
       message: message.trim(),
     });
@@ -108,7 +113,7 @@ export const ContactPage: React.FC = () => {
             CONTACT &amp; ENGINEERING DESK
           </h1>
           <p className="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
-            Connect with our senior fluid power engineers for part cross-referencing, custom cushion pad sizing, or same-day dispatch inquiries. All commercial inquiries route directly to WhatsApp for rapid response.
+            Connect with our senior fluid power engineers for part cross-referencing, custom cushion pad sizing, or same-day dispatch inquiries across India and international industrial markets.
           </p>
         </div>
       </section>
@@ -143,7 +148,7 @@ export const ContactPage: React.FC = () => {
                 <div className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-[#EF7D01] shrink-0" />
                   <div>
-                    <strong className="text-slate-900 block text-sm">Direct Phone &amp; WhatsApp:</strong>
+                    <strong className="text-slate-900 block text-sm">Direct Phone &amp; Helpline:</strong>
                     <a href={`tel:${companyData.contact.primaryPhone.replace(/\s+/g, '')}`} className="hover:text-[#EF7D01] font-mono transition-colors">
                       {companyData.contact.primaryPhone}
                     </a>
@@ -153,9 +158,9 @@ export const ContactPage: React.FC = () => {
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-[#EF7D01] shrink-0" />
                   <div>
-                    <strong className="text-slate-900 block text-sm">Official Inquiries:</strong>
-                    <a href={`mailto:${companyData.contact.primaryEmail}`} className="hover:text-[#EF7D01] font-mono transition-colors">
-                      {companyData.contact.primaryEmail}
+                    <strong className="text-slate-900 block text-sm">Official Inquiries &amp; Grievances:</strong>
+                    <a href="mailto:info@ambicaengineers.in" className="hover:text-[#EF7D01] font-mono transition-colors">
+                      info@ambicaengineers.in
                     </a>
                   </div>
                 </div>
@@ -178,7 +183,7 @@ export const ContactPage: React.FC = () => {
                   className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-xs py-3 px-4 rounded-xl shadow-md shadow-emerald-500/20 transition-colors"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  Direct WhatsApp Engineering Desk
+                  Direct WhatsApp Engineering Desk (+91 76000 25020)
                 </a>
               </div>
             </Card>
@@ -251,7 +256,7 @@ export const ContactPage: React.FC = () => {
                   Send Us an Inquiry
                 </h2>
                 <p className="text-xs text-slate-500">
-                  Your inquiry is formatted into a direct WhatsApp message to our senior engineering desk for instant review.
+                  Global inquiries welcome. Your message is formatted into a direct WhatsApp dispatch to our senior engineering desk.
                 </p>
               </div>
 
@@ -299,6 +304,7 @@ export const ContactPage: React.FC = () => {
                       setEmail('');
                       setPhone('');
                       setCompany('');
+                      setCity('');
                       setSubject('');
                       setMessage('');
                       setDpdpaConsent(false);
@@ -351,6 +357,37 @@ export const ContactPage: React.FC = () => {
                         value={company}
                         onChange={(e) => setCompany(e.target.value)}
                         placeholder="e.g. Greenpanel / Century Ply / Plant Unit"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  {/* International Country & City Selection */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-slate-700 font-semibold mb-1 flex items-center gap-1.5">
+                        <Globe className="w-3.5 h-3.5 text-[#EF7D01]" />
+                        <span>Country / Region *</span>
+                      </label>
+                      <select
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-slate-900 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors"
+                      >
+                        {COUNTRIES.map((c) => (
+                          <option key={c.code} value={c.name}>
+                            {c.name} ({c.dialCode})
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-slate-700 font-semibold mb-1">City / Location</label>
+                      <input
+                        type="text"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        placeholder="e.g. Noida / Dubai / Jakarta / Riyadh"
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors"
                       />
                     </div>

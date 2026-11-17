@@ -56,11 +56,14 @@ export class InquiryServiceImpl implements IInquiryService {
         }
       }
 
+      const locationStr = [inquiry.city, inquiry.country || 'India'].filter(Boolean).join(', ');
+
       const messageText = `*NEW CONTACT INQUIRY - AMBICA ENGINEERS*\n` +
         `━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
         `*Reference:* ${ref}\n` +
         `*Customer Name:* ${inquiry.name}\n` +
         `*Company / Plant:* ${inquiry.company || 'Not Specified'}\n` +
+        `*Country / Location:* ${locationStr}\n` +
         `*Phone / WhatsApp:* ${inquiry.phone}\n` +
         `*Email:* ${inquiry.email}\n` +
         `*Subject:* ${inquiry.subject}\n` +
