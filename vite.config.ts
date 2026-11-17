@@ -8,15 +8,6 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  server: {
-    proxy: {
-      '/api/inquiry': {
-        target: 'https://script.google.com',
-        changeOrigin: true,
-        rewrite: () => '/macros/s/AKfycbySFZPp9xl2X8FXJS4zb9J2PMl1Sp01TjWlQSTNJvf7vWMFFZ3YI2wQOWkRWGH3jLkq-g/exec',
-      },
-    },
-  },
   build: {
     rollupOptions: {
       output: {

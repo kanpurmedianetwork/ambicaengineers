@@ -5,120 +5,30 @@ import { RFQSequenceService } from '../../domain/services/RFQSequenceService';
 
 export class InquiryServiceImpl implements IInquiryService {
   private whatsappNumber = companyData.contact.whatsappNumber;
-  private webhookEndpoints = [
-    '/api/inquiry'
-  ];
-
-  /**
-   * Dispatches payload to Google Sheets Apps Script webhooks using both
-   * Beacon API (failsafe background transmission) and Fetch API with keepalive.
-   */
-  private async transmitToGoogleSheets(payload: Record<string, unknown>): Promise<void> {
-    const rawJson = JSON.stringify(payload);
-
-    for (const url of this.webhookEndpoints) {
-      try {
-        await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'text/plain;charset=utf-8',
-          },
-          body: rawJson,
-        });
-
-        console.info(`[Google Sheets Sync] Live sync dispatched for ${payload.id || payload.ref} to: ${url}`);
-      } catch (err) {
-        console.warn(`[Google Sheets Sync] Fetch attempt note for ${url}:`, err);
-        // Fallback: sendBeacon if fetch threw
-        if (typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function') {
-          const blob = new Blob([rawJson], { type: 'text/plain;charset=utf-8' });
-          navigator.sendBeacon(url, blob);
-        }
-      }
-    }
-  }
 
   async submitRFQ(submission: RFQSubmission): Promise<InquiryResult> {
     try {
-      // 1. Commit and record the sequential number
+      // 1. Commit and record sequential RFQ tracking number
       RFQSequenceService.commitRFQNumber(submission.id);
 
-      // 2. Store in local storage history
-      const key = 'ambica_rfq_submissions';
-      const existing = JSON.parse(localStorage.getItem(key) || '[]');
-      existing.push(submission);
-      localStorage.setItem(key, JSON.stringify(existing));
+      // 2. Store in client-side session history for verification
+      if (typeof window !== 'undefined' && window.localStorage) {
+        try {
+          const key = 'ambica_rfq_submissions';
+          const existing = JSON.parse(localStorage.getItem(key) || '[]');
+          existing.push(submission);
+          localStorage.setItem(key, JSON.stringify(existing));
+        } catch {
+          // Non-critical local storage fallback
+        }
+      }
 
-      // 3. Format comprehensive items breakdown
-      const itemsSummary = submission.items
-        .map((item, idx) => `${idx + 1}. ${item.productName} (${item.series || item.brand || ''}) - Qty: ${item.quantity}${item.notes ? ` [Notes: ${item.notes}]` : ''}`)
-        .join('\n');
-
-      const itemsListComma = submission.items
-        .map(i => `${i.productName} (x${i.quantity})`)
-        .join(', ');
-
-      const safePhone = submission.phone.trim().replace(/^'+/, '');
-
-      // 4. Build enriched payload supporting all common sheet column header names
-      const enrichedPayload = {
-        // ID variations
-        id: submission.id,
-        rfqId: submission.id,
-        referenceId: submission.id,
-        ref: submission.id,
-        rfqNumber: submission.id,
-
-        // Customer & Company variations
-        customerName: submission.customerName,
-        name: submission.customerName,
-        clientName: submission.customerName,
-        companyName: submission.companyName || 'N/A',
-        company: submission.companyName || 'N/A',
-
-        // Contact variations
-        phone: safePhone,
-        mobile: safePhone,
-        contact: safePhone,
-        contactNumber: safePhone,
-        email: submission.email || 'N/A',
-
-        // Location & Currency
-        city: submission.city || '',
-        country: submission.country || 'India',
-        location: [submission.city, submission.country].filter(Boolean).join(', '),
-        currency: submission.currency || 'INR',
-
-        // Items representation
-        items: submission.items,
-        products: itemsListComma,
-        itemsList: itemsSummary,
-        itemsText: itemsSummary,
-        totalQuantity: submission.items.reduce((sum, item) => sum + item.quantity, 0),
-
-        // Remarks & Notes variations
-        notes: submission.notes || '',
-        message: submission.notes || '',
-        remarks: submission.notes || '',
-
-        // Timestamp variations
-        submittedAt: submission.submittedAt || new Date().toISOString(),
-        timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-        date: new Date().toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' }),
-        time: new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' }),
-
-        // Summary column
-        summary: `RFQ ${submission.id} | ${submission.customerName} (${submission.phone}) | ${submission.companyName} | ${itemsListComma}`
-      };
-
-      // 5. Transmit live to Google Sheets
-      await this.transmitToGoogleSheets(enrichedPayload);
-
+      // 3. Generate direct WhatsApp dispatch link
       const whatsappUrl = this.generateWhatsAppLink(submission);
 
       return {
         success: true,
-        message: 'RFQ inquiry successfully recorded and synchronized.',
+        message: 'RFQ successfully recorded and prepared for direct WhatsApp dispatch.',
         referenceId: submission.id,
         whatsappUrl
       };
@@ -133,57 +43,38 @@ export class InquiryServiceImpl implements IInquiryService {
   async submitContactForm(inquiry: ContactInquiry): Promise<InquiryResult> {
     try {
       const ref = `INQ-${RFQSequenceService.getLastFollowedNumber() + 1}`;
-      const key = 'ambica_contact_inquiries';
-      const existing = JSON.parse(localStorage.getItem(key) || '[]');
-      existing.push({ ...inquiry, ref, date: new Date().toISOString() });
-      localStorage.setItem(key, JSON.stringify(existing));
+      
+      // Store in client-side session history
+      if (typeof window !== 'undefined' && window.localStorage) {
+        try {
+          const key = 'ambica_contact_inquiries';
+          const existing = JSON.parse(localStorage.getItem(key) || '[]');
+          existing.push({ ...inquiry, ref, date: new Date().toISOString() });
+          localStorage.setItem(key, JSON.stringify(existing));
+        } catch {
+          // Non-critical local storage fallback
+        }
+      }
 
-      const safePhone = inquiry.phone.trim().replace(/^'+/, '');
-
-      const contactPayload = {
-        id: ref,
-        rfqId: ref,
-        referenceId: ref,
-        ref: ref,
-        customerName: inquiry.name,
-        name: inquiry.name,
-        companyName: inquiry.company || 'N/A',
-        company: inquiry.company || 'N/A',
-        phone: safePhone,
-        mobile: safePhone,
-        contact: safePhone,
-        email: inquiry.email,
-        city: '',
-        country: 'India',
-        currency: 'INR',
-        items: [],
-        products: `Contact Inquiry: ${inquiry.subject}`,
-        itemsList: inquiry.message,
-        notes: `[Subject: ${inquiry.subject}] ${inquiry.message}`,
-        message: inquiry.message,
-        remarks: inquiry.subject,
-        submittedAt: new Date().toISOString(),
-        timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-        date: new Date().toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' }),
-        time: new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' })
-      };
-
-      await this.transmitToGoogleSheets(contactPayload);
-
-      const messageText = `*New Contact Inquiry - Ambica Engineers*\n` +
-        `Ref: ${ref}\n` +
-        `Name: ${inquiry.name}\n` +
-        `Company: ${inquiry.company || 'N/A'}\n` +
-        `Phone: ${inquiry.phone}\n` +
-        `Email: ${inquiry.email}\n` +
-        `Subject: ${inquiry.subject}\n` +
-        `Message: ${inquiry.message}`;
+      const messageText = `*NEW CONTACT INQUIRY - AMBICA ENGINEERS*\n` +
+        `━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `*Reference:* ${ref}\n` +
+        `*Customer Name:* ${inquiry.name}\n` +
+        `*Company / Plant:* ${inquiry.company || 'Not Specified'}\n` +
+        `*Phone / WhatsApp:* ${inquiry.phone}\n` +
+        `*Email:* ${inquiry.email}\n` +
+        `*Subject:* ${inquiry.subject}\n` +
+        `━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `*Message / Operating Parameters:*\n` +
+        `${inquiry.message}\n` +
+        `━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `_Dispatched via Ambica Engineers Live Portal (DPDPA 2023 Consent Confirmed)_`;
 
       const whatsappUrl = `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(messageText)}`;
 
       return {
         success: true,
-        message: `Thank you, ${inquiry.name}. Your inquiry has been registered.`,
+        message: `Thank you, ${inquiry.name}. Your inquiry is ready for WhatsApp dispatch.`,
         referenceId: ref,
         whatsappUrl
       };
@@ -204,6 +95,7 @@ export class InquiryServiceImpl implements IInquiryService {
       `*Phone:* ${submission.phone}\n` +
       `*Email:* ${submission.email || 'Not specified'}\n` +
       `*Location:* ${[submission.city, submission.country].filter(Boolean).join(', ')}\n` +
+      `*Currency:* ${submission.currency || 'INR'}\n` +
       `━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
       `*BOM SCHEDULE / COMPONENTS:*\n`;
 
@@ -220,9 +112,9 @@ export class InquiryServiceImpl implements IInquiryService {
 
     let footer = `\n━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
     if (submission.notes && submission.notes.trim()) {
-      footer += `\n*General Remarks:*\n${submission.notes.trim()}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+      footer += `\n*Application Notes:*\n${submission.notes.trim()}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
     }
-    footer += `\n_Generated via Ambica Engineers Live Portal_`;
+    footer += `\n_Dispatched via Ambica Engineers Live Portal (DPDPA 2023 Consent Confirmed)_`;
 
     const fullMessage = `${header}${itemsText}${footer}`;
     return `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(fullMessage)}`;

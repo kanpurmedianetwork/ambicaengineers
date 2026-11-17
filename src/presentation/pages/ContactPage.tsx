@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, CheckCircle2, Clock, Building2, ExternalLink, Navigation } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Phone, Mail, MapPin, Send, CheckCircle2, Clock, Building2, ExternalLink, Navigation, ShieldCheck, MessageSquare } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { companyData } from '../../infrastructure/data/company.data';
@@ -13,24 +13,73 @@ export const ContactPage: React.FC = () => {
   const [company, setCompany] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
+  const [dpdpaConsent, setDpdpaConsent] = useState(false);
+  
+  // Anti-bot safeguards: Honeypot & Time-gate
+  const [botTrap, setBotTrap] = useState('');
+  const mountTimeRef = useRef<number>(Date.now());
+
   const [submitted, setSubmitted] = useState(false);
+  const [submittedRefId, setSubmittedRefId] = useState<string>('');
   const [whatsappUrl, setWhatsappUrl] = useState<string | null>(null);
+  const [validationError, setValidationError] = useState<string | null>(null);
+
+  useEffect(() => {
+    mountTimeRef.current = Date.now();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setValidationError(null);
+
+    // 1. Bot Honeypot Check: if the invisible honeypot field is filled, silently discard
+    if (botTrap.trim().length > 0) {
+      console.warn('[Security Guard] Automated bot submission rejected.');
+      setSubmitted(true);
+      return;
+    }
+
+    // 2. Time-gate Check: reject submissions completed unnaturally fast (< 1.5 seconds)
+    const elapsedMs = Date.now() - mountTimeRef.current;
+    if (elapsedMs < 1500) {
+      console.warn('[Security Guard] Suspicious instant submission blocked.');
+      setSubmitted(true);
+      return;
+    }
+
+    // 3. Phone validation
+    const digitsOnly = phone.replace(/\D/g, '');
+    if (digitsOnly.length < 7) {
+      setValidationError('Please provide a valid contact telephone or WhatsApp number (minimum 7 digits).');
+      return;
+    }
+
+    // 4. DPDPA 2023 Explicit Consent Check
+    if (!dpdpaConsent) {
+      setValidationError('Please acknowledge the DPDPA 2023 consent checkbox to proceed.');
+      return;
+    }
+
     const result = await inquiryService.submitContactForm({
-      name,
-      email,
-      phone,
-      company,
-      subject,
-      message,
+      name: name.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+      company: company.trim(),
+      subject: subject.trim(),
+      message: message.trim(),
     });
 
     if (result.success) {
       setSubmitted(true);
+      if (result.referenceId) {
+        setSubmittedRefId(result.referenceId);
+      }
       if (result.whatsappUrl) {
         setWhatsappUrl(result.whatsappUrl);
+        // Automatically open WhatsApp in new tab for direct client engagement
+        if (typeof window !== 'undefined') {
+          window.open(result.whatsappUrl, '_blank', 'noopener,noreferrer');
+        }
       }
     }
   };
@@ -39,12 +88,12 @@ export const ContactPage: React.FC = () => {
     <div className="space-y-16 pb-20">
       <SEOHead 
         title="Contact Us | Ambica Engineers & Lubricants"
-        description="Get in touch with Ambica Engineers & Lubricants Ltd. Request quotation, technical assistance, or branch office directions."
+        description="Connect with Ambica Engineers & Lubricants Ltd for hydraulic pumps, proportional valves, press cushion pads, or visit our Noida Experience Centre."
         canonicalPath="/contact"
       />
       {/* Header Banner */}
       <section className="relative bg-[#0A0F1D] text-white border-b border-slate-800 pt-32 pb-16 lg:pt-36 lg:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Ambient Top Glow & Engineering Precision Grid for Transparent Nav */}
+        {/* Ambient Top Glow & Engineering Precision Grid */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
           <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[1100px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(239,125,1,0.22),transparent_70%)]" />
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_20%,#000_60%,transparent_100%)] opacity-80" />
@@ -59,7 +108,7 @@ export const ContactPage: React.FC = () => {
             CONTACT &amp; ENGINEERING DESK
           </h1>
           <p className="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
-            Connect with our senior fluid power engineers for part cross-referencing, custom cushion pad sizing, or same-day dispatch inquiries.
+            Connect with our senior fluid power engineers for part cross-referencing, custom cushion pad sizing, or same-day dispatch inquiries. All commercial inquiries route directly to WhatsApp for rapid response.
           </p>
         </div>
       </section>
@@ -123,18 +172,18 @@ export const ContactPage: React.FC = () => {
 
               <div className="pt-2">
                 <a
-                  href={`https://wa.me/${companyData.contact.whatsappNumber}?text=${encodeURIComponent('Hello Ambica Engineers, I would like to consult with an engineer regarding hydraulic parts.')}`}
+                  href={`https://wa.me/${companyData.contact.whatsappNumber}?text=${encodeURIComponent('Hello Ambica Engineers, I would like to consult with an application engineer regarding hydraulic parts.')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#EF7D01] hover:bg-[#D66D00] text-white font-semibold text-xs py-3 px-4 rounded-xl shadow-md shadow-orange-500/20 transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-xs py-3 px-4 rounded-xl shadow-md shadow-emerald-500/20 transition-colors"
                 >
-                  <Send className="w-4 h-4" />
-                  Direct WhatsApp Engineering Chat
+                  <MessageSquare className="w-4 h-4" />
+                  Direct WhatsApp Engineering Desk
                 </a>
               </div>
             </Card>
 
-            {/* Google Map Card with Live Business Location & Driving Directions */}
+            {/* Google Map Card with Live Business Location */}
             <div className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-sm space-y-0">
               <div className="p-4 border-b border-slate-100 bg-slate-50/80 flex items-center justify-between gap-3">
                 <div className="space-y-0.5">
@@ -192,56 +241,97 @@ export const ContactPage: React.FC = () => {
           <div className="lg:col-span-7">
             <Card className="p-8 space-y-6 bg-white border border-slate-200/90 shadow-sm">
               <div className="space-y-1">
-                <div className="text-xs font-mono text-[#EF7D01] font-bold uppercase tracking-wider">
-                  Technical Inquiry &amp; RFQ
+                <div className="text-xs font-mono text-[#EF7D01] font-bold uppercase tracking-wider flex items-center gap-2">
+                  <span>Direct WhatsApp Inquiries</span>
+                  <span className="bg-emerald-100 text-emerald-800 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                    DPDPA 2023 Aligned
+                  </span>
                 </div>
                 <h2 className="text-2xl font-bold text-slate-900 uppercase font-mono">
-                  Send Us a Direct Message
+                  Send Us an Inquiry
                 </h2>
                 <p className="text-xs text-slate-500">
-                  Our application engineering team typically responds within 2-4 hours on business days.
+                  Your inquiry is formatted into a direct WhatsApp message to our senior engineering desk for instant review.
                 </p>
               </div>
 
               {submitted ? (
                 <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-8 text-center space-y-4">
                   <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
-                  <h3 className="text-lg font-bold text-slate-900">Inquiry Received</h3>
-                  <p className="text-xs text-slate-600 max-w-md mx-auto">
-                    Thank you, {name}. Your message has been logged in our system and forwarded to the appropriate technical sales team.
+                  <div className="space-y-1">
+                    <h3 className="text-lg font-bold text-slate-900">Inquiry Prepared &amp; WhatsApp Opened</h3>
+                    {submittedRefId && (
+                      <div className="text-xs font-mono font-bold text-[#EF7D01]">
+                        Reference: {submittedRefId}
+                      </div>
+                    )}
+                  </div>
+                  <p className="text-xs text-slate-600 max-w-md mx-auto leading-relaxed">
+                    Thank you, <strong className="text-slate-900">{name}</strong>. Your inquiry details have been packaged into WhatsApp. If WhatsApp did not open automatically, click the button below to connect with our team.
                   </p>
+
                   {whatsappUrl && (
                     <div className="pt-2">
                       <a
                         href={whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-[#EF7D01] hover:bg-[#D66D00] text-white font-semibold text-xs px-5 py-3 rounded-xl shadow-md shadow-orange-500/20 transition-colors"
+                        className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-xs px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-600/25 transition-all w-full sm:w-auto"
                       >
-                        <Send className="w-4 h-4" />
-                        Also send via WhatsApp for urgent response
+                        <MessageSquare className="w-4 h-4" />
+                        Open WhatsApp Chat (+91 76000 25020)
                       </a>
                     </div>
                   )}
+
+                  <div className="pt-3 border-t border-emerald-200/80 text-[11px] text-slate-500 flex items-center justify-center gap-1.5">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Processed under DPDPA 2023 • End-to-End Encrypted Communication</span>
+                  </div>
+
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => {
                       setSubmitted(false);
+                      setSubmittedRefId('');
                       setName('');
                       setEmail('');
                       setPhone('');
                       setCompany('');
                       setSubject('');
                       setMessage('');
+                      setDpdpaConsent(false);
+                      setBotTrap('');
+                      mountTimeRef.current = Date.now();
                     }}
-                    className="mt-4"
+                    className="mt-2"
                   >
                     Send Another Inquiry
                   </Button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+                  {/* Anti-bot Honeypot Field (Hidden from real users, filled by naive scrapers) */}
+                  <div style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0, overflow: 'hidden' }} aria-hidden="true">
+                    <label htmlFor="company_website_url">Do not fill this field</label>
+                    <input
+                      id="company_website_url"
+                      type="text"
+                      name="company_website_url"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={botTrap}
+                      onChange={(e) => setBotTrap(e.target.value)}
+                    />
+                  </div>
+
+                  {validationError && (
+                    <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs">
+                      {validationError}
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-slate-700 font-semibold mb-1">Your Full Name *</label>
@@ -250,7 +340,7 @@ export const ContactPage: React.FC = () => {
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="John Doe"
+                        placeholder="e.g. Rajesh Sharma"
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors"
                       />
                     </div>
@@ -260,7 +350,7 @@ export const ContactPage: React.FC = () => {
                         type="text"
                         value={company}
                         onChange={(e) => setCompany(e.target.value)}
-                        placeholder="e.g. Century Ply / Greenpanel / ABC Manufacturing"
+                        placeholder="e.g. Greenpanel / Century Ply / Plant Unit"
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors"
                       />
                     </div>
@@ -285,14 +375,14 @@ export const ContactPage: React.FC = () => {
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="procurement@company.com"
+                        placeholder="purchase@company.com"
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-slate-700 font-semibold mb-1">Subject / Product of Interest *</label>
+                    <label className="block text-slate-700 font-semibold mb-1">Subject / Product Requirement *</label>
                     <input
                       type="text"
                       required
@@ -306,24 +396,46 @@ export const ContactPage: React.FC = () => {
                   <div>
                     <label className="block text-slate-700 font-semibold mb-1">Message / Operating Parameters *</label>
                     <textarea
-                      rows={5}
+                      rows={4}
                       required
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Please include part numbers, working pressure, required quantity, or delivery timeline..."
+                      placeholder="Please mention specific part codes, displacement, working pressure, required quantity, or delivery timeline..."
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors resize-none"
                     />
+                  </div>
+
+                  {/* DPDPA 2023 Explicit Consent Opt-In Notice */}
+                  <div className="pt-2">
+                    <label className="flex items-start gap-2.5 cursor-pointer select-none text-[11px] leading-relaxed text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200 hover:border-slate-300 transition-colors">
+                      <input
+                        type="checkbox"
+                        required
+                        checked={dpdpaConsent}
+                        onChange={(e) => setDpdpaConsent(e.target.checked)}
+                        className="mt-0.5 rounded border-slate-300 text-[#EF7D01] focus:ring-[#EF7D01] shrink-0 w-4 h-4 cursor-pointer"
+                      />
+                      <span>
+                        <strong className="text-slate-800">DPDPA 2023 Consent:</strong> I consent to Ambica Engineers &amp; Lubricants Ltd collecting and processing my contact details solely to respond to this commercial inquiry via WhatsApp / Phone, in accordance with the{' '}
+                        <a href="/privacy-policy" target="_blank" className="text-[#EF7D01] underline font-medium hover:text-[#D66D00]">
+                          DPDPA 2023 Privacy Policy
+                        </a>.
+                      </span>
+                    </label>
                   </div>
 
                   <div className="pt-2">
                     <Button
                       type="submit"
                       variant="primary"
-                      className="w-full py-3 text-sm font-semibold"
+                      className="w-full py-3 text-sm font-semibold justify-center"
                       icon={<Send className="w-4 h-4" />}
                     >
-                      Submit Technical Inquiry
+                      Send Inquiry via WhatsApp
                     </Button>
+                    <div className="text-center text-[10px] text-slate-400 mt-2">
+                      Instant connection to Ambica Technical Sales • Direct WhatsApp link
+                    </div>
                   </div>
                 </form>
               )}

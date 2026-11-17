@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { X, Trash2, Plus, Minus, Send, FileText, CheckCircle2, ShoppingBag, Hash, Settings } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { X, Trash2, Plus, Minus, Send, FileText, CheckCircle2, ShoppingBag, Hash, Settings, MessageSquare, ShieldCheck } from 'lucide-react';
 import { useRFQ } from '../../context/RFQContext';
 import { Button } from '../ui/Button';
 import { inquiryService } from '../../../infrastructure/repositories/InquiryServiceImpl';
@@ -17,6 +17,13 @@ export const RFQDrawer: React.FC = () => {
   const [country, setCountry] = useState('India');
   const [currency, setCurrency] = useState<'INR' | 'USD' | 'EUR'>('INR');
   const [generalNotes, setGeneralNotes] = useState('');
+  const [dpdpaConsent, setDpdpaConsent] = useState(false);
+  
+  // Anti-bot safeguards: Honeypot & Time-gate
+  const [botTrap, setBotTrap] = useState('');
+  const mountTimeRef = useRef<number>(Date.now());
+  const [validationError, setValidationError] = useState<string | null>(null);
+
   const [submitting, setSubmitting] = useState(false);
   const [submissionSuccess, setSubmissionSuccess] = useState<string | null>(null);
   const [whatsAppUrl, setWhatsAppUrl] = useState<string | null>(null);
@@ -30,6 +37,8 @@ export const RFQDrawer: React.FC = () => {
     if (isDrawerOpen) {
       const nextId = RFQSequenceService.getNextRFQId();
       setCurrentRfqId(nextId);
+      mountTimeRef.current = Date.now();
+      setValidationError(null);
     }
   }, [isDrawerOpen]);
 
@@ -37,9 +46,43 @@ export const RFQDrawer: React.FC = () => {
 
   const handleSubmitRFQ = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (items.length === 0) return;
+    setValidationError(null);
+
+    if (items.length === 0) {
+      setValidationError('Your RFQ schedule is empty. Please add components first.');
+      return;
+    }
+
+    // 1. Anti-bot honeypot check
+    if (botTrap.trim().length > 0) {
+      console.warn('[Security Guard] Automated bot RFQ submission blocked.');
+      setSubmissionSuccess(currentRfqId || RFQSequenceService.getNextRFQId());
+      return;
+    }
+
+    // 2. Anti-bot time-gate check (< 1.5 seconds)
+    const elapsedMs = Date.now() - mountTimeRef.current;
+    if (elapsedMs < 1500) {
+      console.warn('[Security Guard] Suspicious instant RFQ submission blocked.');
+      setSubmissionSuccess(currentRfqId || RFQSequenceService.getNextRFQId());
+      return;
+    }
+
     if (!customerName.trim() || !phone.trim()) {
-      alert('Please provide your name and contact phone number.');
+      setValidationError('Please provide your name and contact phone number.');
+      return;
+    }
+
+    // 3. Phone validation
+    const digitsOnly = phone.replace(/\D/g, '');
+    if (digitsOnly.length < 7) {
+      setValidationError('Please provide a valid contact telephone or WhatsApp number (minimum 7 digits).');
+      return;
+    }
+
+    // 4. DPDPA 2023 Explicit Consent
+    if (!dpdpaConsent) {
+      setValidationError('Please acknowledge the DPDPA 2023 consent checkbox to proceed.');
       return;
     }
 
@@ -48,14 +91,14 @@ export const RFQDrawer: React.FC = () => {
 
     const submission: RFQSubmission = {
       id: finalId,
-      customerName,
-      companyName,
-      phone,
-      email,
-      city,
-      country,
+      customerName: customerName.trim(),
+      companyName: companyName.trim(),
+      phone: phone.trim(),
+      email: email.trim(),
+      city: city.trim(),
+      country: country.trim(),
       currency,
-      notes: generalNotes,
+      notes: generalNotes.trim(),
       items: items.map(i => ({
         productId: i.product.id,
         productName: i.product.name,
@@ -75,6 +118,10 @@ export const RFQDrawer: React.FC = () => {
       setSubmissionSuccess(finalId);
       if (result.whatsappUrl) {
         setWhatsAppUrl(result.whatsappUrl);
+        // Direct to WhatsApp popup
+        if (typeof window !== 'undefined') {
+          window.open(result.whatsappUrl, '_blank', 'noopener,noreferrer');
+        }
       }
       // Prepare next consecutive RFQ number
       setCurrentRfqId(RFQSequenceService.getNextRFQId());
@@ -118,9 +165,14 @@ export const RFQDrawer: React.FC = () => {
             {submissionSuccess ? (
               <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 text-center space-y-4">
                 <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
-                <h3 className="text-lg font-bold text-slate-900">RFQ Successfully Generated!</h3>
-                <p className="text-xs text-slate-600">
-                  Sequential reference <span className="font-mono text-[#EF7D01] font-bold text-sm">{submissionSuccess}</span> has been recorded and synchronized live to Google Sheets.
+                <div className="space-y-1">
+                  <h3 className="text-lg font-bold text-slate-900">RFQ Generated &amp; Routed to WhatsApp!</h3>
+                  <div className="text-xs text-slate-600">
+                    Sequential reference: <span className="font-mono text-[#EF7D01] font-bold text-sm">{submissionSuccess}</span>
+                  </div>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Your complete BOM breakdown has been packaged and opened directly in WhatsApp for immediate pricing by our application engineering team.
                 </p>
 
                 {whatsAppUrl && (
@@ -129,13 +181,18 @@ export const RFQDrawer: React.FC = () => {
                       href={whatsAppUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-[#EF7D01] hover:bg-[#D66D00] text-white font-semibold text-xs px-5 py-3 rounded-xl shadow-md shadow-orange-500/20 w-full justify-center transition-colors"
+                      className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-xs px-5 py-3 rounded-xl shadow-md shadow-emerald-500/20 w-full justify-center transition-colors"
                     >
-                      <Send className="w-4 h-4" />
+                      <MessageSquare className="w-4 h-4" />
                       Forward BOM to Engineering Sales via WhatsApp
                     </a>
                   </div>
                 )}
+
+                <div className="pt-2 text-[11px] text-slate-500 flex items-center justify-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>DPDPA 2023 Aligned • Direct Engineering Communication</span>
+                </div>
 
                 <Button
                   variant="outline"
@@ -143,6 +200,7 @@ export const RFQDrawer: React.FC = () => {
                   onClick={() => {
                     setSubmissionSuccess(null);
                     setWhatsAppUrl(null);
+                    setDpdpaConsent(false);
                     closeDrawer();
                   }}
                   className="w-full mt-2"
@@ -242,8 +300,9 @@ export const RFQDrawer: React.FC = () => {
                       </div>
                     </div>
                     <div className="text-right">
-                      <span className="text-[10px] font-mono bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
-                        Live Sheets Sync
+                      <span className="text-[10px] font-mono bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded font-bold uppercase tracking-wider inline-flex items-center gap-1">
+                        <MessageSquare className="w-3 h-3 text-emerald-700" />
+                        Direct WhatsApp
                       </span>
                       <div className="text-[10px] font-mono text-slate-500 mt-1">
                         Follows #{RFQSequenceService.getLastFollowedNumber()}
@@ -303,6 +362,24 @@ export const RFQDrawer: React.FC = () => {
 
                 {/* Customer Details Form */}
                 <form onSubmit={handleSubmitRFQ} className="space-y-3 pt-2 border-t border-slate-200">
+                  {/* Anti-bot Honeypot Field */}
+                  <div style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0, overflow: 'hidden' }} aria-hidden="true">
+                    <input
+                      type="text"
+                      name="rfq_hp_check"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={botTrap}
+                      onChange={(e) => setBotTrap(e.target.value)}
+                    />
+                  </div>
+
+                  {validationError && (
+                    <div className="p-2.5 bg-rose-50 border border-rose-200 rounded-lg text-rose-700 text-xs">
+                      {validationError}
+                    </div>
+                  )}
+
                   <div className="text-xs font-semibold text-[#EF7D01] uppercase tracking-wider">
                     Contact &amp; Delivery Information
                   </div>
@@ -315,7 +392,7 @@ export const RFQDrawer: React.FC = () => {
                         required
                         value={customerName}
                         onChange={(e) => setCustomerName(e.target.value)}
-                        placeholder="John Doe"
+                        placeholder="e.g. John Doe"
                         className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#EF7D01] focus:bg-white transition-colors"
                       />
                     </div>
@@ -401,6 +478,25 @@ export const RFQDrawer: React.FC = () => {
                     />
                   </div>
 
+                  {/* DPDPA 2023 Explicit Consent Checkbox */}
+                  <div className="pt-1">
+                    <label className="flex items-start gap-2 cursor-pointer select-none text-[11px] leading-relaxed text-slate-600 bg-orange-50/60 p-2.5 rounded-lg border border-orange-200/70 hover:border-orange-300 transition-colors">
+                      <input
+                        type="checkbox"
+                        required
+                        checked={dpdpaConsent}
+                        onChange={(e) => setDpdpaConsent(e.target.checked)}
+                        className="mt-0.5 rounded border-slate-300 text-[#EF7D01] focus:ring-[#EF7D01] shrink-0 w-3.5 h-3.5 cursor-pointer"
+                      />
+                      <span>
+                        <strong className="text-slate-800">DPDPA 2023 Consent:</strong> I agree to Ambica Engineers &amp; Lubricants Ltd processing my contact and BOM details to generate quotations via WhatsApp in accordance with the{' '}
+                        <a href="/privacy-policy" target="_blank" className="text-[#EF7D01] underline font-medium hover:text-[#D66D00]">
+                          DPDPA 2023 Privacy Policy
+                        </a>.
+                      </span>
+                    </label>
+                  </div>
+
                   <div className="pt-2">
                     <Button
                       type="submit"
@@ -408,9 +504,13 @@ export const RFQDrawer: React.FC = () => {
                       size="md"
                       disabled={submitting}
                       className="w-full justify-center"
+                      icon={<Send className="w-4 h-4" />}
                     >
-                      {submitting ? 'Transmitting to Engineering Sales...' : `Submit RFQ (${currentRfqId || RFQSequenceService.getNextRFQId()})`}
+                      {submitting ? 'Preparing WhatsApp Dispatch...' : `Submit RFQ via WhatsApp (${currentRfqId || RFQSequenceService.getNextRFQId()})`}
                     </Button>
+                    <div className="text-center text-[10px] text-slate-400 mt-1.5">
+                      Direct WhatsApp Transmission • No public forms or spreadsheets
+                    </div>
                   </div>
                 </form>
               </>
